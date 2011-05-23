@@ -1,0 +1,110 @@
+%&latex
+\documentclass[12pt,letterpaper]{article}
+\usepackage{setspace}
+\doublespacing
+\usepackage{iccv}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+
+% \iccvfinalcopy % *** Uncomment this line for the final submission
+
+\def\iccvPaperID{761} % *** Enter the MICRO Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ificcvfinal\pagestyle{empty}\fi
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Cache Revive: Exploiting Voltality of STT-RAM Caches for Enhanced
+Performance in CMPs.}
+
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\small\url{http://www.author.org/~second}}
+}
+
+\maketitle
+% \thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+%-------------------------------------------------------------------------
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+%-------------------------------------------------------------------------
+%%%%%%%%% BODY TEXT
+%-------------------------------------------------------------------------
+\section{Introduction} \label{sec:intro}
+\input{introduction}
+%-------------------------------------------------------------------------
+\section{Motivation} \label{sec:motivation}
+\input{motivation}
+%-------------------------------------------------------------------------
+\section{STT-RAM Design} \label{sec:design}
+\input{design}
+%-------------------------------------------------------------------------
+\section{Architecting Volatile STT-RAM} \label{sec:implementation}
+\input{implementation}
+%-------------------------------------------------------------------------
+\section{Experimental Evaluation} \label{sec:evaluation}
+\input{evaluation}
+%-------------------------------------------------------------------------
+\section{Results} \label{sec:results}
+\input{results}
+%-------------------------------------------------------------------------
+\section{Related Work} \label{sec:prior_work}
+\input{prior}
+%-------------------------------------------------------------------------
+\section{Conclusions} \label{sec:conclusions}
+\input{conclusions}
+%-------------------------------------------------------------------------
+
+Sample bibliography~\cite{Authors11b}''.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%ASIT: \etal.
+
+%\begin{quotation}
+%\noindent
+%   It displayed the following behaviours
+%   which show how well we solved cases A and B: ...
+%\end{quotation}
+
+%\noindent
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+
+\end{document}
