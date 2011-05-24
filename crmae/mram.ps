@@ -12,7 +12,7 @@
 %DVIPSCommandLine: dvips -Ppdf -P cmz -Pdownload35 -j0 -G0 -t letter -o
 %+ mram.ps mram.dvi
 %DVIPSParameters: dpi=8000
-%DVIPSSource:  TeX output 2011.05.24:1710
+%DVIPSSource:  TeX output 2011.05.24:1746
 %%BeginProcSet: tex.pro 0 0
 %!
 /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
@@ -7237,13 +7237,13 @@ rf /Fb 152[443 2[443 393 443 393 44[443 1[443 4[295 3[295
 rf /Ff 134[590 590 886 590 664 369 517 517 664 664 664
 664 959 369 590 369 369 664 664 369 590 664 590 664 664
 10[812 959 739 664 812 1[812 959 886 1107 739 2[442 959
-2[812 1[886 1[812 8[664 3[664 1[664 664 664 1[332 442
-332 2[442 442 442 1[1107 34[664 2[{TeXBase1Encoding ReEncodeFont}53
-1328.35 /NimbusRomNo9L-ReguItal rf /Fg 134[797 1[1151
-797 886 531 620 708 1[886 797 886 1328 443 886 1[443
-886 797 531 708 886 708 886 797 9[1594 4[1151 1[974 1[1151
-1505 3[620 1240 2[1063 1151 1151 1[1151 8[797 797 797
-797 797 797 797 797 2[399 531 45[{TeXBase1Encoding ReEncodeFont}43
+2[812 1[886 1[812 8[664 1[664 1[664 1[664 664 664 1[332
+442 332 2[442 442 442 1[1107 34[664 2[{TeXBase1Encoding ReEncodeFont}54
+1328.35 /NimbusRomNo9L-ReguItal rf /Fg 135[797 1[797
+886 531 620 708 1[886 797 886 1328 443 886 1[443 886
+797 531 708 886 708 886 797 9[1594 1151 1[1063 886 1151
+1[974 2[1505 3[620 3[1063 1151 1151 1[1151 8[797 797
+797 797 797 797 797 797 2[399 531 45[{TeXBase1Encoding ReEncodeFont}43
 1594.02 /NimbusRomNo9L-Medi rf /Fh 134[797 3[797 1[620
 531 1[797 797 797 1240 3[443 3[708 2[797 708 14[1063
 1[886 1151 1[1417 3[531 4[1151 1063 1[1151 9[797 797
@@ -7361,36 +7361,35 @@ b(pr)-60 b(operty)346 b(of)h(the)f(STT)-98 b(-RAM)344
 b(for)j(designing)g(an)f(ef)-24 b(\002cient)347 b(L2)f(cac)-20
 b(he)346 b(ar)-49 b(c)-20 b(hitectur)-49 b(e)-20 b(.)453
 b(The)346 b(paper)g(addr)-49 b(esses)-2432 52405 y(se)-20
-b(ver)g(al)278 b(critical)g(design)h(issues)e(suc)-20
-b(h)278 b(as)g(how)h(do)f(we)g(decide)g(a)g(suitable)h(r)-49
-b(etention)279 b(time)f(for)h(L2)e(cac)-20 b(he)-13 b(,)289
-b(what)279 b(is)f(the)-2432 55061 y(r)-49 b(elationship)314
-b(between)e(r)-49 b(etention)313 b(time)g(and)g(write)g(latency)-73
-b(,)316 b(and)d(how)g(do)g(we)f(ar)-49 b(c)-20 b(hitect)313
-b(the)g(cac)-20 b(he)312 b(hier)-20 b(ar)-49 b(c)-20
-b(hy)312 b(with)-2432 57718 y(a)420 b(volatile)h(STT)-98
-b(-RAM.)417 b(Thr)-60 b(ough)420 b(an)g(e)-27 b(xtensive)420
-b(e)-27 b(xecution)420 b(driven)g(analysis)g(of)g(the)g(inter)-27
-b(-write)420 b(time)g(of)h(se)-20 b(ver)g(al)-2432 60374
-y(P)-120 b(ARSEC)263 b(and)h(SPEC)f(banc)-20 b(hmarks,)277
-b(we)263 b(observe)g(that)h(r)-49 b(etention)264 b(time)g(in)g(the)g
-(or)-49 b(der)263 b(of)h(10s)g(of)g(ms)f(is)h(a)f(good)i(design)-2432
-63031 y(point)392 b(to)g(handle)h(most)e(of)h(the)g(writes.)589
-b(Then)391 b(for)h(the)g(r)-49 b(est)390 b(of)i(the)g(cac)-20
-b(he)391 b(bloc)-27 b(ks)392 b(that)g(have)g(a)f(higher)h(inter)-27
-b(-write)-2432 65687 y(time)307 b(than)g(the)g(STT)-98
-b(-RAM)304 b(r)-49 b(etention)307 b(time)-13 b(,)312
-b(we)306 b(pr)-60 b(opose)307 b(an)f(ar)-49 b(c)-20 b(hitectur)g(al)307
-b(solution)h(to)f(identify)g(these)g(bloc)-27 b(ks)306
-b(with)-2432 68344 y(a)382 b(per)f(bloc)-27 b(k)383 b(2)f(bit)g
-(counter)-147 b(,)394 b(tempor)-20 b(arily)382 b(save)g(a)g(limited)g
-(number)g(of)h(MR)-53 b(U)380 b(bloc)-27 b(ks)383 b(in)f(a)g(b)-27
-b(uf)j(fer)-147 b(,)394 b(and)383 b(in)-53 b(validate)-2432
-71000 y(the)337 b(r)-49 b(est)337 b(of)h(the)f(dirty)h(bloc)-27
-b(ks)337 b(to)h(avoid)g(any)f(data)h(loss.)428 b(Our)337
-b(e)-27 b(xperiments)337 b(with)h(4)g(and)g(8-cor)-49
-b(e)337 b(ar)-49 b(c)-20 b(hitectur)-49 b(es)336 b(with)p
-Black 24736 74321 a Fe(1)p Black eop end
+b(ver)g(al)434 b(critical)h(design)f(issues)g(suc)-20
+b(h)434 b(as)g(how)h(do)g(we)f(decide)g(a)g(suitable)h(r)-49
+b(etention)435 b(time)g(for)f(last)h(le)-20 b(vel)434
+b(cac)-20 b(he)-13 b(,)-2432 55061 y(what)434 b(is)g(the)g(r)-49
+b(elationship)434 b(between)g(r)-49 b(etention)434 b(time)g(and)g
+(write)g(latency)-73 b(,)459 b(and)434 b(how)g(do)g(we)g(ar)-49
+b(c)-20 b(hitect)433 b(the)h(cac)-20 b(he)-2432 57718
+y(hier)g(ar)-49 b(c)-20 b(hy)433 b(with)g(a)g(volatile)h(STT)-98
+b(-RAM.)431 b(Thr)-60 b(ough)434 b(an)f(e)-27 b(xtensive)433
+b(e)-27 b(xecution)433 b(driven)g(analysis)g(of)h(the)f(inter)-27
+b(-write)-2432 60374 y(time)453 b(of)h(se)-20 b(ver)g(al)452
+b(P)-120 b(ARSEC)452 b(and)h(SPEC)g(2006)g(banc)-20 b(hmarks,)483
+b(we)453 b(observe)f(that)i(r)-49 b(etention)453 b(time)h(in)f(the)g
+(or)-49 b(der)453 b(of)-2432 63031 y(10s)459 b(of)g(ms)g(is)g(a)g(good)
+g(design)g(point)h(to)g(handle)f(most)g(of)h(the)f(writes.)792
+b(Then)458 b(for)h(the)g(r)-49 b(est)459 b(of)g(the)g(cac)-20
+b(he)459 b(bloc)-27 b(ks)-2432 65687 y(that)437 b(have)f(a)g(higher)h
+(than)g(the)f(STT)-98 b(-RAM)434 b(r)-49 b(etention)437
+b(time)-13 b(,)462 b(we)436 b(pr)-60 b(opose)436 b(an)g(ar)-49
+b(c)-20 b(hitectur)g(al)437 b(solution)g(to)g(identify)-2432
+68344 y(these)501 b(bloc)-27 b(ks)502 b(with)h(a)e(per)h(bloc)-27
+b(k)502 b(2)g(bit)g(counter)-147 b(,)544 b(tempor)-20
+b(arily)502 b(save)f(a)h(limited)g(number)g(of)g(MR)-53
+b(U)501 b(bloc)-27 b(ks)502 b(in)g(a)-2432 71000 y(b)-27
+b(uf)j(fer)-147 b(,)468 b(and)441 b(writebac)-27 b(k)440
+b(the)h(r)-49 b(est)439 b(of)i(the)f(dirty)h(bloc)-27
+b(ks)440 b(to)h(avoid)f(any)h(data)g(loss.)736 b(Our)440
+b(e)-27 b(xperiments)440 b(with)h(4)f(and)p Black 24736
+74321 a Fe(1)p Black eop end
 %%Page: 2 2
 TeXDict begin 2 1 bop .5 .5 1 TeXcolorrgb -6306 685 a
 Fl(0054)-6306 2014 y(0055)-6306 3342 y(0056)-6306 4671
@@ -10413,112 +10412,110 @@ a
 SDict begin [ /View [/XYZ H.V] /Dest (figure.1) cvn H.B /DEST pdfmark
 end
  25620 12564 a Black 25923 14070 a Fc(Caption.)p Black
--2432 17875 a Ff(an)449 b(SRAM-based)f(L1)h(cac)-20 b(he)449
-b(and)g(STT)-98 b(-RAM-based)447 b(L2)i(cac)-20 b(he)449
-b(indicate)h(that)f(not)h(only)f(we)g(can)g(eliminate)h(the)-2432
-20531 y(high)348 b(write)g(o)-13 b(verhead)347 b(of)h(an)g(NVM)e(STT)
--98 b(-RAM,)346 b(b)-27 b(ut)349 b(can)e(pr)-60 b(o)-13
-b(vide)348 b(on)g(an)g(aver)-20 b(a)-13 b(g)g(e)346 b(10-12\045)i(impr)
--60 b(o)-13 b(vement)348 b(in)g(IPC)-2432 23187 y(compar)-49
-b(ed)332 b(to)h(the)f(tr)-20 b(aditional)334 b(SRAM-based)d(design,)i
-(while)f(r)-49 b(educing)333 b(the)f(ener)-49 b(gy)331
-b(consumption)i(sigin\002cantly)-73 b(.)-2432 25897 y
+-2432 17875 a Ff(8-cor)-49 b(e)292 b(ar)-49 b(c)-20 b(hitectur)-49
+b(es)292 b(with)i(an)f(SRAM-based)f(L1)g(cac)-20 b(he)292
+b(and)i(STT)-98 b(-RAM-based)291 b(L2)h(cac)-20 b(he)292
+b(indicate)i(that)f(not)h(only)-2432 20531 y(we)474 b(can)h(eliminate)h
+(the)f(high)g(write)g(o)-13 b(verhead)474 b(of)i(an)f(NVM)e(STT)-98
+b(-RAM,)473 b(b)-27 b(ut)476 b(can)f(pr)-60 b(o)-13 b(vide)474
+b(on)h(an)h(aver)-20 b(a)-13 b(g)g(e)473 b(10-)-2432
+23187 y(12\045)419 b(impr)-60 b(o)-13 b(vement)419 b(in)h(IPC)f(compar)
+-49 b(ed)419 b(to)g(the)h(tr)-20 b(aditional)421 b(SRAM-based)d
+(design,)442 b(while)419 b(r)-49 b(educing)419 b(the)h(ener)-49
+b(gy)-2432 25844 y(consumption)333 b(sigin\002cantly)-73
+b(.)-2432 28553 y
 SDict begin H.S end
-
--2432 25897 a -2432 25897 a
+ -2432 28553 a -2432 28553 a
 SDict begin 23.99748 H.A end
- -2432 25897 a -2432 25897
-a
+ -2432 28553
+a -2432 28553 a
 SDict begin [ /View [/XYZ H.V] /Dest (section.1) cvn H.B /DEST pdfmark
 end
- -2432 25897 a 3023 x Fg(1.)398 b(Intr)-29 b(oduction)-2432
-29717 y
+ -2432 28553 a 3024 x Fg(1.)398 b(Intr)-29
+b(oduction)-2432 32374 y
 SDict begin H.S end
- -2432 29717 a -2432 29717 a
+ -2432 32374 a -2432 32374 a
 SDict begin 23.99748 H.A end
- -2432 29717 a -2432
-29717 a
+
+-2432 32374 a -2432 32374 a
 SDict begin [ /View [/XYZ H.V] /Dest (section.2) cvn H.B /DEST pdfmark
 end
- -2432 29717 a 3276 x Fg(2.)398 b(Moti)-16 b(v)g(ation)-1104
-36424 y Fe(The)473 b(ABSTRA)-53 b(CT)472 b(is)h(to)g(be)g(in)h
-(fully-justi\002ed)h(italicized)f(te)-20 b(xt.)835 b(Use)473
-b(the)g(w)-13 b(ord)474 b(\223)-106 b(Abstract\224)472
-b(as)h(the)g(title,)510 b(in)-2432 39081 y(14-point)309
-b(T)-46 b(imes,)311 b(boldf)-13 b(ace)308 b(type,)k(centered)c(relati)
--33 b(v)-20 b(e)307 b(to)h(the)f(column,)314 b(initially)308
-b(capitalized.)404 b(The)307 b(abstract)g(is)g(to)h(be)-2432
-41737 y(in)i(12-point,)315 b(single-spaced)310 b(type.)404
-b(Lea)-27 b(v)-20 b(e)309 b(tw)-13 b(o)310 b(blank)g(lines)f(after)h
-(the)g(Abstract,)k(then)c(be)-20 b(gin)310 b(the)f(main)h(te)-20
-b(xt.)405 b(Look)-2432 44393 y(at)332 b(pre)-33 b(vious)333
-b(MICR)-53 b(O)332 b(abstracts)g(to)h(get)f(a)g(feel)g(for)h(style)f
-(and)g(length.)413 b(referring)334 b(Fig)p 1 0 0 TeXcolorrgb
-38032 44393 a
-SDict begin H.S end
- 38032 44393 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 38696 43487 a
-SDict begin H.R end
- 38696 43487 a 38696 44393
+ -2432 32374 a 3275 x Fg(2.)398
+b(Moti)-16 b(v)g(ation)-1104 39081 y Fe(The)473 b(ABSTRA)-53
+b(CT)472 b(is)h(to)g(be)g(in)h(fully-justi\002ed)h(italicized)f(te)-20
+b(xt.)835 b(Use)473 b(the)g(w)-13 b(ord)474 b(\223)-106
+b(Abstract\224)472 b(as)h(the)g(title,)510 b(in)-2432
+41737 y(14-point)309 b(T)-46 b(imes,)311 b(boldf)-13
+b(ace)308 b(type,)k(centered)c(relati)-33 b(v)-20 b(e)307
+b(to)h(the)f(column,)314 b(initially)308 b(capitalized.)404
+b(The)307 b(abstract)g(is)g(to)h(be)-2432 44393 y(in)i(12-point,)315
+b(single-spaced)310 b(type.)404 b(Lea)-27 b(v)-20 b(e)309
+b(tw)-13 b(o)310 b(blank)g(lines)f(after)h(the)g(Abstract,)k(then)c(be)
+-20 b(gin)310 b(the)f(main)h(te)-20 b(xt.)405 b(Look)-2432
+47050 y(at)332 b(pre)-33 b(vious)333 b(MICR)-53 b(O)332
+b(abstracts)g(to)h(get)f(a)g(feel)g(for)h(style)f(and)g(length.)413
+b(referring)334 b(Fig)p 1 0 0 TeXcolorrgb 38032 47050
 a
+SDict begin H.S end
+ 38032 47050 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+38696 46144 a
+SDict begin H.R end
+ 38696 46144 a 38696 47050 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 38696 44393 a Black 332 w Fe(here.)-1104 47050 y(The)356
-b(ABSTRA)-53 b(CT)356 b(is)g(to)h(be)g(in)g(fully-justi\002ed)h
-(italicized)f(te)-20 b(xt.)486 b(Use)356 b(the)h(w)-13
-b(ord)357 b(\223)-106 b(Abstract\224)356 b(as)g(the)h(title,)363
-b(in)357 b(14-)-2432 49706 y(point)336 b(T)-46 b(imes,)336
-b(boldf)-13 b(ace)336 b(type,)h(centered)e(relati)-33
-b(v)-20 b(e)336 b(to)g(the)g(column,)h(initially)g(capitalized.)422
-b(The)335 b(abstract)h(is)f(to)h(be)g(in)-2432 52363
-y(12-point,)320 b(single-spaced)314 b(type.)407 b(Lea)-27
-b(v)-20 b(e)314 b(tw)-13 b(o)315 b(blank)g(lines)g(after)g(the)f
-(Abstract,)319 b(then)c(be)-20 b(gin)315 b(the)g(main)g(te)-20
-b(xt.)406 b(Look)315 b(at)-2432 55019 y(pre)-33 b(vious)329
+ 38696 47050
+a Black 332 w Fe(here.)-1104 49706 y(The)356 b(ABSTRA)-53
+b(CT)356 b(is)g(to)h(be)g(in)g(fully-justi\002ed)h(italicized)f(te)-20
+b(xt.)486 b(Use)356 b(the)h(w)-13 b(ord)357 b(\223)-106
+b(Abstract\224)356 b(as)g(the)h(title,)363 b(in)357 b(14-)-2432
+52363 y(point)336 b(T)-46 b(imes,)336 b(boldf)-13 b(ace)336
+b(type,)h(centered)e(relati)-33 b(v)-20 b(e)336 b(to)g(the)g(column,)h
+(initially)g(capitalized.)422 b(The)335 b(abstract)h(is)f(to)h(be)g(in)
+-2432 55019 y(12-point,)320 b(single-spaced)314 b(type.)407
+b(Lea)-27 b(v)-20 b(e)314 b(tw)-13 b(o)315 b(blank)g(lines)g(after)g
+(the)f(Abstract,)319 b(then)c(be)-20 b(gin)315 b(the)g(main)g(te)-20
+b(xt.)406 b(Look)315 b(at)-2432 57676 y(pre)-33 b(vious)329
 b(MICR)-53 b(O)328 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f
 (and)g(length.)412 b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb
-36693 55019 a
+36693 57676 a
 SDict begin H.S end
- 36693 55019 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 37357 54113 a
+ 36693 57676 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 37357 56770 a
 SDict begin H.R end
- 37357 54113 a 37357 55019
+ 37357 56770 a 37357 57676
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 55019 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
-b(CT)327 b(is)i(to)-2432 57676 y(be)297 b(in)h(fully-justi\002ed)i
+ 37357 57676 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
+b(CT)327 b(is)i(to)-2432 60332 y(be)297 b(in)h(fully-justi\002ed)i
 (italicized)e(te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13
 b(ord)297 b(\223)-106 b(Abstract\224)298 b(as)f(the)g(title,)306
 b(in)298 b(14-point)h(T)-46 b(imes,)304 b(boldf)-13 b(ace)298
-b(type,)-2432 60332 y(centered)464 b(relati)-33 b(v)-20
+b(type,)-2432 62988 y(centered)464 b(relati)-33 b(v)-20
 b(e)465 b(to)g(the)f(column,)498 b(initially)466 b(capitalized.)809
 b(The)464 b(abstract)g(is)g(to)h(be)f(in)h(12-point,)499
-b(single-spaced)-2432 62988 y(type.)852 b(Lea)-27 b(v)-20
+b(single-spaced)-2432 65645 y(type.)852 b(Lea)-27 b(v)-20
 b(e)479 b(tw)-13 b(o)479 b(blank)g(lines)g(after)g(the)g(Abstract,)516
 b(then)479 b(be)-20 b(gin)480 b(the)f(main)g(te)-20 b(xt.)853
 b(Look)479 b(at)f(pre)-33 b(vious)480 b(MICR)-53 b(O)-2432
-65645 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g(and)g
+68301 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g(and)g
 (length.)831 b(referring)473 b(Fig)p 1 0 0 TeXcolorrgb
-29046 65645 a
+29046 68301 a
 SDict begin H.S end
- 29046 65645 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 29710 64739 a
+ 29046 68301 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 29710 67395 a
 SDict begin H.R end
- 29710 64739 a 29710 65645
+ 29710 67395 a 29710 68301
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 29710 65645 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
-b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 68301 y(justi\002ed)364
+ 29710 68301 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
+b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 70958 y(justi\002ed)364
 b(italicized)g(te)-20 b(xt.)506 b(Use)363 b(the)g(w)-13
 b(ord)364 b(\223)-106 b(Abstract\224)363 b(as)g(the)h(title,)372
 b(in)364 b(14-point)h(T)-46 b(imes,)371 b(boldf)-13 b(ace)363
-b(type,)372 b(centered)-2432 70958 y(relati)-33 b(v)-20
-b(e)356 b(to)f(the)h(column,)362 b(initially)356 b(capitalized.)482
-b(The)354 b(abstract)i(is)f(to)g(be)g(in)h(12-point,)363
-b(single-spaced)355 b(type.)481 b(Lea)-27 b(v)-20 b(e)p
-Black 24736 74321 a(2)p Black eop end
+b(type,)372 b(centered)p Black 24736 74321 a(2)p Black
+eop end
 %%Page: 3 3
 TeXDict begin 3 2 bop .5 .5 1 TeXcolorrgb -6306 685 a
 Fl(0108)-6306 2014 y(0109)-6306 3342 y(0110)-6306 4671
@@ -16513,141 +16510,141 @@ SDict begin H.R end
 SDict begin [ /View [/XYZ H.V] /Dest (figure.2) cvn H.B /DEST pdfmark
 end
  25772 9451 a Black 1506 x
-Fc(Caption.)p Black -2432 14761 a Fe(tw)-13 b(o)348 b(blank)g(lines)f
-(after)h(the)g(Abstract,)j(then)d(be)-20 b(gin)348 b(the)g(main)g(te)
--20 b(xt.)458 b(Look)348 b(at)f(pre)-33 b(vious)348 b(MICR)-53
-b(O)348 b(abstracts)f(to)h(get)f(a)-2432 17418 y(feel)g(for)h(style)f
-(and)g(length.)457 b(referring)348 b(Fig)p 1 0 0 TeXcolorrgb
-18144 17418 a
+Fc(Caption.)p Black -2432 14761 a Fe(relati)-33 b(v)-20
+b(e)356 b(to)f(the)h(column,)362 b(initially)356 b(capitalized.)482
+b(The)354 b(abstract)i(is)f(to)g(be)g(in)h(12-point,)363
+b(single-spaced)355 b(type.)481 b(Lea)-27 b(v)-20 b(e)-2432
+17418 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
+(then)d(be)-20 b(gin)348 b(the)g(main)g(te)-20 b(xt.)458
+b(Look)348 b(at)f(pre)-33 b(vious)348 b(MICR)-53 b(O)348
+b(abstracts)f(to)h(get)f(a)-2432 20074 y(feel)g(for)h(style)f(and)g
+(length.)457 b(referring)348 b(Fig)p 1 0 0 TeXcolorrgb
+18144 20074 a
 SDict begin H.S end
- 18144 17418 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 18808 16512 a
+ 18144 20074 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 18808 19168 a
 SDict begin H.R end
- 18808 16512 a 18808 17418
+ 18808 19168 a 18808 20074
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 18808 17418 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
+ 18808 20074 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
 b(CT)346 b(is)h(to)g(be)g(in)g(fully-justi\002ed)i(italicized)e(te)-20
-b(xt.)-2432 20074 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
+b(xt.)-2432 22731 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
 b(Abstract\224)382 b(as)h(the)g(title,)397 b(in)384 b(14-point)g(T)-46
 b(imes,)396 b(boldf)-13 b(ace)383 b(type,)396 b(centered)383
 b(relati)-33 b(v)-20 b(e)384 b(to)g(the)f(column,)-2432
-22731 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
+25387 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
 (to)f(be)g(in)h(12-point,)308 b(single-spaced)299 b(type.)401
 b(Lea)-27 b(v)-20 b(e)299 b(tw)-13 b(o)300 b(blank)g(lines)f(after)h
-(the)-2432 25387 y(Abstract,)344 b(then)e(be)-20 b(gin)342
+(the)-2432 28043 y(Abstract,)344 b(then)e(be)-20 b(gin)342
 b(the)f(main)h(te)-20 b(xt.)440 b(Look)342 b(at)f(pre)-33
 b(vious)342 b(MICR)-53 b(O)341 b(abstracts)g(to)h(get)g(a)f(feel)g(for)
-h(style)g(and)f(length.)-2432 28043 y(referring)348 b(Fig)p
-1 0 0 TeXcolorrgb 4679 28043 a
+h(style)g(and)f(length.)-2432 30700 y(referring)348 b(Fig)p
+1 0 0 TeXcolorrgb 4679 30700 a
 SDict begin H.S end
- 4679 28043 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 5343 27138 a
+ 4679 30700 a 1 0 0 TeXcolorrgb
+Fe(1)p 1 0 0 TeXcolorrgb 5343 29794 a
 SDict begin H.R end
- 5343 27138 a 5343
-28043 a
+ 5343 29794 a 5343
+30700 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 5343 28043 a Black 346 w Fe(here.)455 b(The)346
+ 5343 30700 a Black 346 w Fe(here.)455 b(The)346
 b(ABSTRA)-53 b(CT)345 b(is)h(to)h(be)f(in)h(fully-justi\002ed)h
 (italicized)e(te)-20 b(xt.)455 b(Use)346 b(the)h(w)-13
-b(ord)346 b(\223)-106 b(Abstract\224)-2432 30700 y(as)376
+b(ord)346 b(\223)-106 b(Abstract\224)-2432 33356 y(as)376
 b(the)h(title,)388 b(in)377 b(14-point)i(T)-46 b(imes,)387
 b(boldf)-13 b(ace)376 b(type,)389 b(centered)376 b(relati)-33
 b(v)-20 b(e)377 b(to)g(the)g(column,)389 b(initially)378
-b(capitalized.)545 b(The)-2432 33356 y(abstract)325 b(is)g(to)g(be)g
+b(capitalized.)545 b(The)-2432 36013 y(abstract)325 b(is)g(to)g(be)g
 (in)g(12-point,)j(single-spaced)d(type.)410 b(Lea)-27
 b(v)-20 b(e)324 b(tw)-13 b(o)325 b(blank)g(lines)g(after)g(the)g
-(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432 36013
+(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432 38669
 y(main)309 b(te)-20 b(xt.)405 b(Look)309 b(at)g(pre)-33
 b(vious)309 b(MICR)-53 b(O)309 b(abstracts)f(to)i(get)f(a)f(feel)h(for)
 h(style)f(and)f(length.)405 b(referring)311 b(Fig)p 1 0 0
-TeXcolorrgb 46507 36013 a
+TeXcolorrgb 46507 38669 a
 SDict begin H.S end
- 46507 36013 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 47171 35107 a
+ 46507 38669 a 1 0 0 TeXcolorrgb
+Fe(1)p 1 0 0 TeXcolorrgb 47171 37763 a
 SDict begin H.R end
- 47171 35107 a
-47171 36013 a
+ 47171 37763 a
+47171 38669 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 47171 36013 a Black 309 w Fe(here.)404
-b(The)-2432 38669 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
+ 47171 38669 a Black 309 w Fe(here.)404
+b(The)-2432 41326 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
 (fully-justi\002ed)j(italicized)e(te)-20 b(xt.)653 b(Use)412
 b(the)h(w)-13 b(ord)412 b(\223)-106 b(Abstract\224)413
-b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 41326
+b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 43982
 y(T)-46 b(imes,)400 b(boldf)-13 b(ace)387 b(type,)400
 b(centered)387 b(relati)-33 b(v)-20 b(e)387 b(to)g(the)g(column,)402
 b(initially)388 b(capitalized.)576 b(The)386 b(abstract)h(is)g(to)g(be)
-f(in)h(12-)-2432 43982 y(point,)426 b(single-spaced)406
+f(in)h(12-)-2432 46638 y(point,)426 b(single-spaced)406
 b(type.)635 b(Lea)-27 b(v)-20 b(e)406 b(tw)-13 b(o)406
 b(blank)h(lines)f(after)h(the)g(Abstract,)425 b(then)407
 b(be)-20 b(gin)406 b(the)h(main)g(te)-20 b(xt.)635 b(Look)406
-b(at)-2432 46638 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
+b(at)-2432 49295 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f(and)g(length.)412
-b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 46638
+b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 49295
 a
 SDict begin H.S end
- 36693 46638 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-37357 45733 a
+ 36693 49295 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+37357 48389 a
 SDict begin H.R end
- 37357 45733 a 37357 46638 a
+ 37357 48389 a 37357 49295 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 46638
+ 37357 49295
 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53 b(CT)327
-b(is)i(to)-2432 49295 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
+b(is)i(to)-2432 51951 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
 (te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13 b(ord)297 b(\223)-106
 b(Abstract\224)298 b(as)f(the)g(title,)306 b(in)298 b(14-point)h(T)-46
-b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 51951
+b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 54608
 y(centered)277 b(relati)-33 b(v)-20 b(e)277 b(to)g(the)g(column,)289
 b(initially)278 b(capitalized.)394 b(The)277 b(abstract)f(is)h(to)g(be)
 g(in)g(12-point,)290 b(single-spaced)277 b(type.)-2432
-54608 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
+57264 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
 (after)g(the)g(Abstract,)316 b(then)311 b(be)-20 b(gin)311
 b(the)g(main)h(te)-20 b(xt.)405 b(Look)311 b(at)g(pre)-33
 b(vious)311 b(MICR)-53 b(O)311 b(abstracts)g(to)-2432
-57264 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
-b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 57264
+59921 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
+b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 59921
 a
 SDict begin H.S end
- 20923 57264 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-21587 56358 a
+ 20923 59921 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+21587 59015 a
 SDict begin H.R end
- 21587 56358 a 21587 57264 a
+ 21587 59015 a 21587 59921 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 21587 57264
+ 21587 59921
 a Black 335 w Fe(here.)422 b(The)335 b(ABSTRA)-53 b(CT)334
 b(is)h(to)g(be)h(in)f(fully-justi\002ed)i(italicized)-2432
-59921 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
+62577 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
 b(\223)-106 b(Abstract\224)480 b(as)g(the)h(title,)519
 b(in)481 b(14-point)i(T)-46 b(imes,)517 b(boldf)-13 b(ace)481
 b(type,)519 b(centered)480 b(relati)-33 b(v)-20 b(e)482
-b(to)f(the)-2432 62577 y(column,)309 b(initially)303
+b(to)f(the)-2432 65233 y(column,)309 b(initially)303
 b(capitalized.)402 b(The)302 b(abstract)f(is)h(to)g(be)g(in)g
 (12-point,)309 b(single-spaced)302 b(type.)402 b(Lea)-27
 b(v)-20 b(e)302 b(tw)-13 b(o)302 b(blank)g(lines)-2432
-65233 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
+67890 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
 b(gin)302 b(the)g(main)h(te)-20 b(xt.)402 b(Look)302
 b(at)g(pre)-33 b(vious)302 b(MICR)-53 b(O)302 b(abstracts)g(to)g(get)g
-(a)f(feel)h(for)h(style)f(and)-2432 67890 y(length.)413
-b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 67890
+(a)f(feel)h(for)h(style)f(and)-2432 70546 y(length.)413
+b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 70546
 a
 SDict begin H.S end
- 8715 67890 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-9379 66984 a
+ 8715 70546 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+9379 69640 a
 SDict begin H.R end
- 9379 66984 a 9379 67890 a
+ 9379 69640 a 9379 70546 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 9379 67890 a Black
-333 w Fe(here.)-1104 70546 y(The)356 b(ABSTRA)-53 b(CT)356
-b(is)g(to)h(be)g(in)g(fully-justi\002ed)h(italicized)f(te)-20
-b(xt.)486 b(Use)356 b(the)h(w)-13 b(ord)357 b(\223)-106
-b(Abstract\224)356 b(as)g(the)h(title,)363 b(in)357 b(14-)p
-Black 24736 74321 a(3)p Black eop end
+ 9379 70546 a Black
+333 w Fe(here.)p Black 24736 74321 a(3)p Black eop end
 %%Page: 4 4
 TeXDict begin 4 3 bop .5 .5 1 TeXcolorrgb -6306 685 a
 Fl(0162)-6306 2014 y(0163)-6306 3342 y(0164)-6306 4671
@@ -16687,170 +16684,170 @@ SDict begin H.R end
  -2432 0 a -2432 0 a
 SDict begin [ /View [/XYZ H.V] /Dest (page.4) cvn H.B /DEST pdfmark
 end
- -2432 0 a Black Black 1328
-x Fe(point)336 b(T)-46 b(imes,)336 b(boldf)-13 b(ace)336
-b(type,)h(centered)e(relati)-33 b(v)-20 b(e)336 b(to)g(the)g(column,)h
-(initially)g(capitalized.)422 b(The)335 b(abstract)h(is)f(to)h(be)g(in)
--2432 3985 y(12-point,)320 b(single-spaced)314 b(type.)407
-b(Lea)-27 b(v)-20 b(e)314 b(tw)-13 b(o)315 b(blank)g(lines)g(after)g
-(the)f(Abstract,)319 b(then)c(be)-20 b(gin)315 b(the)g(main)g(te)-20
-b(xt.)406 b(Look)315 b(at)-2432 6641 y(pre)-33 b(vious)329
-b(MICR)-53 b(O)328 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f
-(and)g(length.)412 b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb
-36693 6641 a
+ -2432 0 a Black Black -1104
+1328 a Fe(The)356 b(ABSTRA)-53 b(CT)356 b(is)g(to)h(be)g(in)g
+(fully-justi\002ed)h(italicized)f(te)-20 b(xt.)486 b(Use)356
+b(the)h(w)-13 b(ord)357 b(\223)-106 b(Abstract\224)356
+b(as)g(the)h(title,)363 b(in)357 b(14-)-2432 3985 y(point)336
+b(T)-46 b(imes,)336 b(boldf)-13 b(ace)336 b(type,)h(centered)e(relati)
+-33 b(v)-20 b(e)336 b(to)g(the)g(column,)h(initially)g(capitalized.)422
+b(The)335 b(abstract)h(is)f(to)h(be)g(in)-2432 6641 y(12-point,)320
+b(single-spaced)314 b(type.)407 b(Lea)-27 b(v)-20 b(e)314
+b(tw)-13 b(o)315 b(blank)g(lines)g(after)g(the)f(Abstract,)319
+b(then)c(be)-20 b(gin)315 b(the)g(main)g(te)-20 b(xt.)406
+b(Look)315 b(at)-2432 9298 y(pre)-33 b(vious)329 b(MICR)-53
+b(O)328 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f(and)g
+(length.)412 b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb
+36693 9298 a
 SDict begin H.S end
- 36693 6641 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0
-TeXcolorrgb 37357 5735 a
+ 36693 9298 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0
+TeXcolorrgb 37357 8392 a
 SDict begin H.R end
- 37357 5735 a 37357 6641 a
+ 37357 8392 a 37357 9298 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
  37357
-6641 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
-b(CT)327 b(is)i(to)-2432 9298 y(be)297 b(in)h(fully-justi\002ed)i
+9298 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
+b(CT)327 b(is)i(to)-2432 11954 y(be)297 b(in)h(fully-justi\002ed)i
 (italicized)e(te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13
 b(ord)297 b(\223)-106 b(Abstract\224)298 b(as)f(the)g(title,)306
 b(in)298 b(14-point)h(T)-46 b(imes,)304 b(boldf)-13 b(ace)298
-b(type,)-2432 11954 y(centered)464 b(relati)-33 b(v)-20
+b(type,)-2432 14610 y(centered)464 b(relati)-33 b(v)-20
 b(e)465 b(to)g(the)f(column,)498 b(initially)466 b(capitalized.)809
 b(The)464 b(abstract)g(is)g(to)h(be)f(in)h(12-point,)499
-b(single-spaced)-2432 14610 y(type.)852 b(Lea)-27 b(v)-20
+b(single-spaced)-2432 17267 y(type.)852 b(Lea)-27 b(v)-20
 b(e)479 b(tw)-13 b(o)479 b(blank)g(lines)g(after)g(the)g(Abstract,)516
 b(then)479 b(be)-20 b(gin)480 b(the)f(main)g(te)-20 b(xt.)853
 b(Look)479 b(at)f(pre)-33 b(vious)480 b(MICR)-53 b(O)-2432
-17267 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g(and)g
+19923 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g(and)g
 (length.)831 b(referring)473 b(Fig)p 1 0 0 TeXcolorrgb
-29046 17267 a
+29046 19923 a
 SDict begin H.S end
- 29046 17267 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 29710 16361 a
+ 29046 19923 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 29710 19017 a
 SDict begin H.R end
- 29710 16361 a 29710 17267
+ 29710 19017 a 29710 19923
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 29710 17267 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
-b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 19923 y(justi\002ed)364
+ 29710 19923 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
+b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 22580 y(justi\002ed)364
 b(italicized)g(te)-20 b(xt.)506 b(Use)363 b(the)g(w)-13
 b(ord)364 b(\223)-106 b(Abstract\224)363 b(as)g(the)h(title,)372
 b(in)364 b(14-point)h(T)-46 b(imes,)371 b(boldf)-13 b(ace)363
-b(type,)372 b(centered)-2432 22580 y(relati)-33 b(v)-20
+b(type,)372 b(centered)-2432 25236 y(relati)-33 b(v)-20
 b(e)356 b(to)f(the)h(column,)362 b(initially)356 b(capitalized.)482
 b(The)354 b(abstract)i(is)f(to)g(be)g(in)h(12-point,)363
 b(single-spaced)355 b(type.)481 b(Lea)-27 b(v)-20 b(e)-2432
-25236 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
+27893 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
 (then)d(be)-20 b(gin)348 b(the)g(main)g(te)-20 b(xt.)458
 b(Look)348 b(at)f(pre)-33 b(vious)348 b(MICR)-53 b(O)348
-b(abstracts)f(to)h(get)f(a)-2432 27893 y(feel)g(for)h(style)f(and)g
+b(abstracts)f(to)h(get)f(a)-2432 30549 y(feel)g(for)h(style)f(and)g
 (length.)457 b(referring)348 b(Fig)p 1 0 0 TeXcolorrgb
-18144 27893 a
+18144 30549 a
 SDict begin H.S end
- 18144 27893 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 18808 26987 a
+ 18144 30549 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 18808 29643 a
 SDict begin H.R end
- 18808 26987 a 18808 27893
+ 18808 29643 a 18808 30549
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 18808 27893 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
+ 18808 30549 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
 b(CT)346 b(is)h(to)g(be)g(in)g(fully-justi\002ed)i(italicized)e(te)-20
-b(xt.)-2432 30549 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
+b(xt.)-2432 33205 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
 b(Abstract\224)382 b(as)h(the)g(title,)397 b(in)384 b(14-point)g(T)-46
 b(imes,)396 b(boldf)-13 b(ace)383 b(type,)396 b(centered)383
 b(relati)-33 b(v)-20 b(e)384 b(to)g(the)f(column,)-2432
-33205 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
+35862 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
 (to)f(be)g(in)h(12-point,)308 b(single-spaced)299 b(type.)401
 b(Lea)-27 b(v)-20 b(e)299 b(tw)-13 b(o)300 b(blank)g(lines)f(after)h
-(the)-2432 35862 y(Abstract,)344 b(then)e(be)-20 b(gin)342
+(the)-2432 38518 y(Abstract,)344 b(then)e(be)-20 b(gin)342
 b(the)f(main)h(te)-20 b(xt.)440 b(Look)342 b(at)f(pre)-33
 b(vious)342 b(MICR)-53 b(O)341 b(abstracts)g(to)h(get)g(a)f(feel)g(for)
-h(style)g(and)f(length.)-2432 38518 y(referring)348 b(Fig)p
-1 0 0 TeXcolorrgb 4679 38518 a
+h(style)g(and)f(length.)-2432 41175 y(referring)348 b(Fig)p
+1 0 0 TeXcolorrgb 4679 41175 a
 SDict begin H.S end
- 4679 38518 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 5343 37612 a
+ 4679 41175 a 1 0 0 TeXcolorrgb
+Fe(1)p 1 0 0 TeXcolorrgb 5343 40269 a
 SDict begin H.R end
- 5343 37612 a 5343
-38518 a
+ 5343 40269 a 5343
+41175 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 5343 38518 a Black 346 w Fe(here.)455 b(The)346
+ 5343 41175 a Black 346 w Fe(here.)455 b(The)346
 b(ABSTRA)-53 b(CT)345 b(is)h(to)h(be)f(in)h(fully-justi\002ed)h
 (italicized)e(te)-20 b(xt.)455 b(Use)346 b(the)h(w)-13
-b(ord)346 b(\223)-106 b(Abstract\224)-2432 41175 y(as)376
+b(ord)346 b(\223)-106 b(Abstract\224)-2432 43831 y(as)376
 b(the)h(title,)388 b(in)377 b(14-point)i(T)-46 b(imes,)387
 b(boldf)-13 b(ace)376 b(type,)389 b(centered)376 b(relati)-33
 b(v)-20 b(e)377 b(to)g(the)g(column,)389 b(initially)378
-b(capitalized.)545 b(The)-2432 43831 y(abstract)325 b(is)g(to)g(be)g
+b(capitalized.)545 b(The)-2432 46488 y(abstract)325 b(is)g(to)g(be)g
 (in)g(12-point,)j(single-spaced)d(type.)410 b(Lea)-27
 b(v)-20 b(e)324 b(tw)-13 b(o)325 b(blank)g(lines)g(after)g(the)g
-(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432 46488
+(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432 49144
 y(main)309 b(te)-20 b(xt.)405 b(Look)309 b(at)g(pre)-33
 b(vious)309 b(MICR)-53 b(O)309 b(abstracts)f(to)i(get)f(a)f(feel)h(for)
 h(style)f(and)f(length.)405 b(referring)311 b(Fig)p 1 0 0
-TeXcolorrgb 46507 46488 a
+TeXcolorrgb 46507 49144 a
 SDict begin H.S end
- 46507 46488 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 47171 45582 a
+ 46507 49144 a 1 0 0 TeXcolorrgb
+Fe(1)p 1 0 0 TeXcolorrgb 47171 48238 a
 SDict begin H.R end
- 47171 45582 a
-47171 46488 a
+ 47171 48238 a
+47171 49144 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 47171 46488 a Black 309 w Fe(here.)404
-b(The)-2432 49144 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
+ 47171 49144 a Black 309 w Fe(here.)404
+b(The)-2432 51800 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
 (fully-justi\002ed)j(italicized)e(te)-20 b(xt.)653 b(Use)412
 b(the)h(w)-13 b(ord)412 b(\223)-106 b(Abstract\224)413
-b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 51800
+b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 54457
 y(T)-46 b(imes,)400 b(boldf)-13 b(ace)387 b(type,)400
 b(centered)387 b(relati)-33 b(v)-20 b(e)387 b(to)g(the)g(column,)402
 b(initially)388 b(capitalized.)576 b(The)386 b(abstract)h(is)g(to)g(be)
-f(in)h(12-)-2432 54457 y(point,)426 b(single-spaced)406
+f(in)h(12-)-2432 57113 y(point,)426 b(single-spaced)406
 b(type.)635 b(Lea)-27 b(v)-20 b(e)406 b(tw)-13 b(o)406
 b(blank)h(lines)f(after)h(the)g(Abstract,)425 b(then)407
 b(be)-20 b(gin)406 b(the)h(main)g(te)-20 b(xt.)635 b(Look)406
-b(at)-2432 57113 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
+b(at)-2432 59770 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f(and)g(length.)412
-b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 57113
+b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 59770
 a
 SDict begin H.S end
- 36693 57113 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-37357 56207 a
+ 36693 59770 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+37357 58864 a
 SDict begin H.R end
- 37357 56207 a 37357 57113 a
+ 37357 58864 a 37357 59770 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 57113
+ 37357 59770
 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53 b(CT)327
-b(is)i(to)-2432 59770 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
+b(is)i(to)-2432 62426 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
 (te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13 b(ord)297 b(\223)-106
 b(Abstract\224)298 b(as)f(the)g(title,)306 b(in)298 b(14-point)h(T)-46
-b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 62426
+b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 65083
 y(centered)277 b(relati)-33 b(v)-20 b(e)277 b(to)g(the)g(column,)289
 b(initially)278 b(capitalized.)394 b(The)277 b(abstract)f(is)h(to)g(be)
 g(in)g(12-point,)290 b(single-spaced)277 b(type.)-2432
-65083 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
+67739 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
 (after)g(the)g(Abstract,)316 b(then)311 b(be)-20 b(gin)311
 b(the)g(main)h(te)-20 b(xt.)405 b(Look)311 b(at)g(pre)-33
 b(vious)311 b(MICR)-53 b(O)311 b(abstracts)g(to)-2432
-67739 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
-b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 67739
+70395 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
+b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 70395
 a
 SDict begin H.S end
- 20923 67739 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-21587 66833 a
+ 20923 70395 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+21587 69489 a
 SDict begin H.R end
- 21587 66833 a 21587 67739 a
+ 21587 69489 a 21587 70395 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 21587 67739
+ 21587 70395
 a Black 335 w Fe(here.)422 b(The)335 b(ABSTRA)-53 b(CT)334
-b(is)h(to)g(be)h(in)f(fully-justi\002ed)i(italicized)-2432
-70395 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
-b(\223)-106 b(Abstract\224)480 b(as)g(the)h(title,)519
-b(in)481 b(14-point)i(T)-46 b(imes,)517 b(boldf)-13 b(ace)481
-b(type,)519 b(centered)480 b(relati)-33 b(v)-20 b(e)482
-b(to)f(the)p Black 24736 74321 a(4)p Black eop end
+b(is)h(to)g(be)h(in)f(fully-justi\002ed)i(italicized)p
+Black 24736 74321 a(4)p Black eop end
 %%Page: 5 5
 TeXDict begin 5 4 bop .5 .5 1 TeXcolorrgb -6306 685 a
 Fl(0216)-6306 2014 y(0217)-6306 3342 y(0218)-6306 4671
@@ -28789,117 +28786,117 @@ SDict begin H.R end
 SDict begin [ /View [/XYZ H.V] /Dest (figure.3) cvn H.B /DEST pdfmark
 end
  25772 19648 a Black 1505
-x Fc(Caption.)p Black -2432 24958 a Fe(column,)309 b(initially)303
-b(capitalized.)402 b(The)302 b(abstract)f(is)h(to)g(be)g(in)g
-(12-point,)309 b(single-spaced)302 b(type.)402 b(Lea)-27
-b(v)-20 b(e)302 b(tw)-13 b(o)302 b(blank)g(lines)-2432
-27614 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
+x Fc(Caption.)p Black -2432 24958 a Fe(te)-20 b(xt.)858
+b(Use)481 b(the)g(w)-13 b(ord)481 b(\223)-106 b(Abstract\224)480
+b(as)g(the)h(title,)519 b(in)481 b(14-point)i(T)-46 b(imes,)517
+b(boldf)-13 b(ace)481 b(type,)519 b(centered)480 b(relati)-33
+b(v)-20 b(e)482 b(to)f(the)-2432 27614 y(column,)309
+b(initially)303 b(capitalized.)402 b(The)302 b(abstract)f(is)h(to)g(be)
+g(in)g(12-point,)309 b(single-spaced)302 b(type.)402
+b(Lea)-27 b(v)-20 b(e)302 b(tw)-13 b(o)302 b(blank)g(lines)-2432
+30271 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
 b(gin)302 b(the)g(main)h(te)-20 b(xt.)402 b(Look)302
 b(at)g(pre)-33 b(vious)302 b(MICR)-53 b(O)302 b(abstracts)g(to)g(get)g
-(a)f(feel)h(for)h(style)f(and)-2432 30271 y(length.)413
-b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 30271
+(a)f(feel)h(for)h(style)f(and)-2432 32927 y(length.)413
+b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 32927
 a
 SDict begin H.S end
- 8715 30271 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-9379 29365 a
+ 8715 32927 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+9379 32021 a
 SDict begin H.R end
- 9379 29365 a 9379 30271 a
+ 9379 32021 a 9379 32927 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 9379 30271 a Black
+ 9379 32927 a Black
 333 w Fe(here.)412 b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb
-19824 30271 a
+19824 32927 a
 SDict begin H.S end
- 19824 30271 a 1 0 0 TeXcolorrgb Fe(2)p
-1 0 0 TeXcolorrgb 20488 29365 a
+ 19824 32927 a 1 0 0 TeXcolorrgb Fe(2)p
+1 0 0 TeXcolorrgb 20488 32021 a
 SDict begin H.R end
- 20488 29365 a 20488 30271
+ 20488 32021 a 20488 32927
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.2) cvn H.B /ANN pdfmark end
- 20488 30271 a Black 333 w Fe(here.)-1104 32927 y(The)356
+ 20488 32927 a Black 333 w Fe(here.)-1104 35584 y(The)356
 b(ABSTRA)-53 b(CT)356 b(is)g(to)h(be)g(in)g(fully-justi\002ed)h
 (italicized)f(te)-20 b(xt.)486 b(Use)356 b(the)h(w)-13
 b(ord)357 b(\223)-106 b(Abstract\224)356 b(as)g(the)h(title,)363
-b(in)357 b(14-)-2432 35584 y(point)336 b(T)-46 b(imes,)336
+b(in)357 b(14-)-2432 38240 y(point)336 b(T)-46 b(imes,)336
 b(boldf)-13 b(ace)336 b(type,)h(centered)e(relati)-33
 b(v)-20 b(e)336 b(to)g(the)g(column,)h(initially)g(capitalized.)422
-b(The)335 b(abstract)h(is)f(to)h(be)g(in)-2432 38240
+b(The)335 b(abstract)h(is)f(to)h(be)g(in)-2432 40896
 y(12-point,)320 b(single-spaced)314 b(type.)407 b(Lea)-27
 b(v)-20 b(e)314 b(tw)-13 b(o)315 b(blank)g(lines)g(after)g(the)f
 (Abstract,)319 b(then)c(be)-20 b(gin)315 b(the)g(main)g(te)-20
-b(xt.)406 b(Look)315 b(at)-2432 40896 y(pre)-33 b(vious)329
+b(xt.)406 b(Look)315 b(at)-2432 43553 y(pre)-33 b(vious)329
 b(MICR)-53 b(O)328 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f
 (and)g(length.)412 b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb
-36693 40896 a
+36693 43553 a
 SDict begin H.S end
- 36693 40896 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 37357 39990 a
+ 36693 43553 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 37357 42647 a
 SDict begin H.R end
- 37357 39990 a 37357 40896
+ 37357 42647 a 37357 43553
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 40896 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
-b(CT)327 b(is)i(to)-2432 43553 y(be)297 b(in)h(fully-justi\002ed)i
+ 37357 43553 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
+b(CT)327 b(is)i(to)-2432 46209 y(be)297 b(in)h(fully-justi\002ed)i
 (italicized)e(te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13
 b(ord)297 b(\223)-106 b(Abstract\224)298 b(as)f(the)g(title,)306
 b(in)298 b(14-point)h(T)-46 b(imes,)304 b(boldf)-13 b(ace)298
-b(type,)-2432 46209 y(centered)464 b(relati)-33 b(v)-20
+b(type,)-2432 48866 y(centered)464 b(relati)-33 b(v)-20
 b(e)465 b(to)g(the)f(column,)498 b(initially)466 b(capitalized.)809
 b(The)464 b(abstract)g(is)g(to)h(be)f(in)h(12-point,)499
-b(single-spaced)-2432 48866 y(type.)852 b(Lea)-27 b(v)-20
+b(single-spaced)-2432 51522 y(type.)852 b(Lea)-27 b(v)-20
 b(e)479 b(tw)-13 b(o)479 b(blank)g(lines)g(after)g(the)g(Abstract,)516
 b(then)479 b(be)-20 b(gin)480 b(the)f(main)g(te)-20 b(xt.)853
 b(Look)479 b(at)f(pre)-33 b(vious)480 b(MICR)-53 b(O)-2432
-51522 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g(and)g
+54178 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g(and)g
 (length.)831 b(referring)473 b(Fig)p 1 0 0 TeXcolorrgb
-29046 51522 a
+29046 54178 a
 SDict begin H.S end
- 29046 51522 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 29710 50616 a
+ 29046 54178 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 29710 53273 a
 SDict begin H.R end
- 29710 50616 a 29710 51522
+ 29710 53273 a 29710 54178
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 29710 51522 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
-b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 54178 y(justi\002ed)364
+ 29710 54178 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
+b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 56835 y(justi\002ed)364
 b(italicized)g(te)-20 b(xt.)506 b(Use)363 b(the)g(w)-13
 b(ord)364 b(\223)-106 b(Abstract\224)363 b(as)g(the)h(title,)372
 b(in)364 b(14-point)h(T)-46 b(imes,)371 b(boldf)-13 b(ace)363
-b(type,)372 b(centered)-2432 56835 y(relati)-33 b(v)-20
+b(type,)372 b(centered)-2432 59491 y(relati)-33 b(v)-20
 b(e)356 b(to)f(the)h(column,)362 b(initially)356 b(capitalized.)482
 b(The)354 b(abstract)i(is)f(to)g(be)g(in)h(12-point,)363
 b(single-spaced)355 b(type.)481 b(Lea)-27 b(v)-20 b(e)-2432
-59491 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
+62148 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
 (then)d(be)-20 b(gin)348 b(the)g(main)g(te)-20 b(xt.)458
 b(Look)348 b(at)f(pre)-33 b(vious)348 b(MICR)-53 b(O)348
-b(abstracts)f(to)h(get)f(a)-2432 62148 y(feel)g(for)h(style)f(and)g
+b(abstracts)f(to)h(get)f(a)-2432 64804 y(feel)g(for)h(style)f(and)g
 (length.)457 b(referring)348 b(Fig)p 1 0 0 TeXcolorrgb
-18144 62148 a
+18144 64804 a
 SDict begin H.S end
- 18144 62148 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 18808 61242 a
+ 18144 64804 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 18808 63898 a
 SDict begin H.R end
- 18808 61242 a 18808 62148
+ 18808 63898 a 18808 64804
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 18808 62148 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
+ 18808 64804 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
 b(CT)346 b(is)h(to)g(be)g(in)g(fully-justi\002ed)i(italicized)e(te)-20
-b(xt.)-2432 64804 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
+b(xt.)-2432 67461 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
 b(Abstract\224)382 b(as)h(the)g(title,)397 b(in)384 b(14-point)g(T)-46
 b(imes,)396 b(boldf)-13 b(ace)383 b(type,)396 b(centered)383
 b(relati)-33 b(v)-20 b(e)384 b(to)g(the)f(column,)-2432
-67461 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
+70117 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
 (to)f(be)g(in)h(12-point,)308 b(single-spaced)299 b(type.)401
 b(Lea)-27 b(v)-20 b(e)299 b(tw)-13 b(o)300 b(blank)g(lines)f(after)h
-(the)-2432 70117 y(Abstract,)344 b(then)e(be)-20 b(gin)342
-b(the)f(main)h(te)-20 b(xt.)440 b(Look)342 b(at)f(pre)-33
-b(vious)342 b(MICR)-53 b(O)341 b(abstracts)g(to)h(get)g(a)f(feel)g(for)
-h(style)g(and)f(length.)p Black 24736 74321 a(5)p Black
-eop end
+(the)p Black 24736 74321 a(5)p Black eop end
 %%Page: 6 6
 TeXDict begin 6 5 bop .5 .5 1 TeXcolorrgb -6306 685 a
 Fl(0270)-6306 2014 y(0271)-6306 3342 y(0272)-6306 4671
@@ -37875,148 +37872,148 @@ a
 SDict begin [ /View [/XYZ H.V] /Dest (figure.5) cvn H.B /DEST pdfmark
 end
  39774 10647 a Black 1505 x Fc(Caption.)p Black -2432
-15957 a Fe(referring)348 b(Fig)p 1 0 0 TeXcolorrgb 4679
-15957 a
+15957 a Fe(Abstract,)344 b(then)e(be)-20 b(gin)342 b(the)f(main)h(te)
+-20 b(xt.)440 b(Look)342 b(at)f(pre)-33 b(vious)342 b(MICR)-53
+b(O)341 b(abstracts)g(to)h(get)g(a)f(feel)g(for)h(style)g(and)f
+(length.)-2432 18613 y(referring)348 b(Fig)p 1 0 0 TeXcolorrgb
+4679 18613 a
 SDict begin H.S end
- 4679 15957 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-5343 15051 a
+ 4679 18613 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0
+TeXcolorrgb 5343 17707 a
 SDict begin H.R end
- 5343 15051 a 5343 15957 a
+ 5343 17707 a 5343 18613 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 5343 15957 a Black
-346 w Fe(here.)455 b(The)346 b(ABSTRA)-53 b(CT)345 b(is)h(to)h(be)f(in)
-h(fully-justi\002ed)h(italicized)e(te)-20 b(xt.)455 b(Use)346
-b(the)h(w)-13 b(ord)346 b(\223)-106 b(Abstract\224)-2432
-18613 y(as)376 b(the)h(title,)388 b(in)377 b(14-point)i(T)-46
-b(imes,)387 b(boldf)-13 b(ace)376 b(type,)389 b(centered)376
-b(relati)-33 b(v)-20 b(e)377 b(to)g(the)g(column,)389
-b(initially)378 b(capitalized.)545 b(The)-2432 21270
-y(abstract)325 b(is)g(to)g(be)g(in)g(12-point,)j(single-spaced)d(type.)
-410 b(Lea)-27 b(v)-20 b(e)324 b(tw)-13 b(o)325 b(blank)g(lines)g(after)
-g(the)g(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432
-23926 y(main)309 b(te)-20 b(xt.)405 b(Look)309 b(at)g(pre)-33
-b(vious)309 b(MICR)-53 b(O)309 b(abstracts)f(to)i(get)f(a)f(feel)h(for)
-h(style)f(and)f(length.)405 b(referring)311 b(Fig)p 1 0 0
-TeXcolorrgb 46507 23926 a
+ 5343
+18613 a Black 346 w Fe(here.)455 b(The)346 b(ABSTRA)-53
+b(CT)345 b(is)h(to)h(be)f(in)h(fully-justi\002ed)h(italicized)e(te)-20
+b(xt.)455 b(Use)346 b(the)h(w)-13 b(ord)346 b(\223)-106
+b(Abstract\224)-2432 21270 y(as)376 b(the)h(title,)388
+b(in)377 b(14-point)i(T)-46 b(imes,)387 b(boldf)-13 b(ace)376
+b(type,)389 b(centered)376 b(relati)-33 b(v)-20 b(e)377
+b(to)g(the)g(column,)389 b(initially)378 b(capitalized.)545
+b(The)-2432 23926 y(abstract)325 b(is)g(to)g(be)g(in)g(12-point,)j
+(single-spaced)d(type.)410 b(Lea)-27 b(v)-20 b(e)324
+b(tw)-13 b(o)325 b(blank)g(lines)g(after)g(the)g(Abstract,)i(then)e(be)
+-20 b(gin)326 b(the)-2432 26582 y(main)309 b(te)-20 b(xt.)405
+b(Look)309 b(at)g(pre)-33 b(vious)309 b(MICR)-53 b(O)309
+b(abstracts)f(to)i(get)f(a)f(feel)h(for)h(style)f(and)f(length.)405
+b(referring)311 b(Fig)p 1 0 0 TeXcolorrgb 46507 26582
+a
 SDict begin H.S end
- 46507 23926 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 47171 23020 a
+ 46507 26582 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+47171 25677 a
 SDict begin H.R end
- 47171 23020 a
-47171 23926 a
+ 47171 25677 a 47171 26582 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 47171 23926 a Black 309 w Fe(here.)404
-b(The)-2432 26582 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
-(fully-justi\002ed)j(italicized)e(te)-20 b(xt.)653 b(Use)412
-b(the)h(w)-13 b(ord)412 b(\223)-106 b(Abstract\224)413
-b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 29239
-y(T)-46 b(imes,)400 b(boldf)-13 b(ace)387 b(type,)400
+ 47171 26582
+a Black 309 w Fe(here.)404 b(The)-2432 29239 y(ABSTRA)-53
+b(CT)411 b(is)h(to)h(be)g(in)f(fully-justi\002ed)j(italicized)e(te)-20
+b(xt.)653 b(Use)412 b(the)h(w)-13 b(ord)412 b(\223)-106
+b(Abstract\224)413 b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432
+31895 y(T)-46 b(imes,)400 b(boldf)-13 b(ace)387 b(type,)400
 b(centered)387 b(relati)-33 b(v)-20 b(e)387 b(to)g(the)g(column,)402
 b(initially)388 b(capitalized.)576 b(The)386 b(abstract)h(is)g(to)g(be)
-f(in)h(12-)-2432 31895 y(point,)426 b(single-spaced)406
+f(in)h(12-)-2432 34552 y(point,)426 b(single-spaced)406
 b(type.)635 b(Lea)-27 b(v)-20 b(e)406 b(tw)-13 b(o)406
 b(blank)h(lines)f(after)h(the)g(Abstract,)425 b(then)407
 b(be)-20 b(gin)406 b(the)h(main)g(te)-20 b(xt.)635 b(Look)406
-b(at)-2432 34552 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
+b(at)-2432 37208 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f(and)g(length.)412
-b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 34552
+b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 37208
 a
 SDict begin H.S end
- 36693 34552 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-37357 33646 a
+ 36693 37208 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+37357 36302 a
 SDict begin H.R end
- 37357 33646 a 37357 34552 a
+ 37357 36302 a 37357 37208 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 34552
+ 37357 37208
 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53 b(CT)327
-b(is)i(to)-2432 37208 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
+b(is)i(to)-2432 39865 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
 (te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13 b(ord)297 b(\223)-106
 b(Abstract\224)298 b(as)f(the)g(title,)306 b(in)298 b(14-point)h(T)-46
-b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 39865
+b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 42521
 y(centered)277 b(relati)-33 b(v)-20 b(e)277 b(to)g(the)g(column,)289
 b(initially)278 b(capitalized.)394 b(The)277 b(abstract)f(is)h(to)g(be)
 g(in)g(12-point,)290 b(single-spaced)277 b(type.)-2432
-42521 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
+45177 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
 (after)g(the)g(Abstract,)316 b(then)311 b(be)-20 b(gin)311
 b(the)g(main)h(te)-20 b(xt.)405 b(Look)311 b(at)g(pre)-33
 b(vious)311 b(MICR)-53 b(O)311 b(abstracts)g(to)-2432
-45177 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
-b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 45177
+47834 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
+b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 47834
 a
 SDict begin H.S end
- 20923 45177 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-21587 44272 a
+ 20923 47834 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+21587 46928 a
 SDict begin H.R end
- 21587 44272 a 21587 45177 a
+ 21587 46928 a 21587 47834 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 21587 45177
+ 21587 47834
 a Black 335 w Fe(here.)422 b(The)335 b(ABSTRA)-53 b(CT)334
 b(is)h(to)g(be)h(in)f(fully-justi\002ed)i(italicized)-2432
-47834 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
+50490 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
 b(\223)-106 b(Abstract\224)480 b(as)g(the)h(title,)519
 b(in)481 b(14-point)i(T)-46 b(imes,)517 b(boldf)-13 b(ace)481
 b(type,)519 b(centered)480 b(relati)-33 b(v)-20 b(e)482
-b(to)f(the)-2432 50490 y(column,)309 b(initially)303
+b(to)f(the)-2432 53147 y(column,)309 b(initially)303
 b(capitalized.)402 b(The)302 b(abstract)f(is)h(to)g(be)g(in)g
 (12-point,)309 b(single-spaced)302 b(type.)402 b(Lea)-27
 b(v)-20 b(e)302 b(tw)-13 b(o)302 b(blank)g(lines)-2432
-53147 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
+55803 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
 b(gin)302 b(the)g(main)h(te)-20 b(xt.)402 b(Look)302
 b(at)g(pre)-33 b(vious)302 b(MICR)-53 b(O)302 b(abstracts)g(to)g(get)g
-(a)f(feel)h(for)h(style)f(and)-2432 55803 y(length.)413
-b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 55803
+(a)f(feel)h(for)h(style)f(and)-2432 58460 y(length.)413
+b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 58460
 a
 SDict begin H.S end
- 8715 55803 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-9379 54897 a
+ 8715 58460 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+9379 57554 a
 SDict begin H.R end
- 9379 54897 a 9379 55803 a
+ 9379 57554 a 9379 58460 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 9379 55803 a Black
+ 9379 58460 a Black
 333 w Fe(here.)412 b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb
-19824 55822 a
+19824 58479 a
 SDict begin H.S end
- 19824 55822 a 1 0 0 TeXcolorrgb -19 x Fe(3)p
-1 0 0 TeXcolorrgb 20488 54897 a
+ 19824 58479 a 1 0 0 TeXcolorrgb -19 x Fe(3)p
+1 0 0 TeXcolorrgb 20488 57554 a
 SDict begin H.R end
- 20488 54897 a 20488 55803
+ 20488 57554 a 20488 58460
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.3) cvn H.B /ANN pdfmark end
- 20488 55803 a Black 333 w Fe(here.)-1104 58460 y(The)356
+ 20488 58460 a Black 333 w Fe(here.)-1104 61116 y(The)356
 b(ABSTRA)-53 b(CT)356 b(is)g(to)h(be)g(in)g(fully-justi\002ed)h
 (italicized)f(te)-20 b(xt.)486 b(Use)356 b(the)h(w)-13
 b(ord)357 b(\223)-106 b(Abstract\224)356 b(as)g(the)h(title,)363
-b(in)357 b(14-)-2432 61116 y(point)336 b(T)-46 b(imes,)336
+b(in)357 b(14-)-2432 63772 y(point)336 b(T)-46 b(imes,)336
 b(boldf)-13 b(ace)336 b(type,)h(centered)e(relati)-33
 b(v)-20 b(e)336 b(to)g(the)g(column,)h(initially)g(capitalized.)422
-b(The)335 b(abstract)h(is)f(to)h(be)g(in)-2432 63772
+b(The)335 b(abstract)h(is)f(to)h(be)g(in)-2432 66429
 y(12-point,)320 b(single-spaced)314 b(type.)407 b(Lea)-27
 b(v)-20 b(e)314 b(tw)-13 b(o)315 b(blank)g(lines)g(after)g(the)f
 (Abstract,)319 b(then)c(be)-20 b(gin)315 b(the)g(main)g(te)-20
-b(xt.)406 b(Look)315 b(at)-2432 66429 y(pre)-33 b(vious)329
+b(xt.)406 b(Look)315 b(at)-2432 69085 y(pre)-33 b(vious)329
 b(MICR)-53 b(O)328 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f
 (and)g(length.)412 b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb
-36693 66429 a
+36693 69085 a
 SDict begin H.S end
- 36693 66429 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 37357 65523 a
+ 36693 69085 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 37357 68179 a
 SDict begin H.R end
- 37357 65523 a 37357 66429
+ 37357 68179 a 37357 69085
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 66429 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
-b(CT)327 b(is)i(to)-2432 69085 y(be)297 b(in)h(fully-justi\002ed)i
-(italicized)e(te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13
-b(ord)297 b(\223)-106 b(Abstract\224)298 b(as)f(the)g(title,)306
-b(in)298 b(14-point)h(T)-46 b(imes,)304 b(boldf)-13 b(ace)298
-b(type,)p Black 24736 74321 a(6)p Black eop end
+ 37357 69085 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53
+b(CT)327 b(is)i(to)p Black 24736 74321 a(6)p Black eop
+end
 %%Page: 7 7
 TeXDict begin 7 6 bop .5 .5 1 TeXcolorrgb -6306 633 a
 Fl(0324)-6306 1961 y(0325)-6306 3290 y(0326)-6306 4618
@@ -38057,183 +38054,187 @@ SDict begin H.R end
 SDict begin [ /View [/XYZ H.V] /Dest (page.7) cvn H.B /DEST pdfmark
 end
  -2432 0 a Black Black 1328
-x Fe(centered)464 b(relati)-33 b(v)-20 b(e)465 b(to)g(the)f(column,)498
+x Fe(be)297 b(in)h(fully-justi\002ed)i(italicized)e(te)-20
+b(xt.)401 b(Use)297 b(the)h(w)-13 b(ord)297 b(\223)-106
+b(Abstract\224)298 b(as)f(the)g(title,)306 b(in)298 b(14-point)h(T)-46
+b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 3985
+y(centered)464 b(relati)-33 b(v)-20 b(e)465 b(to)g(the)f(column,)498
 b(initially)466 b(capitalized.)809 b(The)464 b(abstract)g(is)g(to)h(be)
-f(in)h(12-point,)499 b(single-spaced)-2432 3985 y(type.)852
+f(in)h(12-point,)499 b(single-spaced)-2432 6641 y(type.)852
 b(Lea)-27 b(v)-20 b(e)479 b(tw)-13 b(o)479 b(blank)g(lines)g(after)g
 (the)g(Abstract,)516 b(then)479 b(be)-20 b(gin)480 b(the)f(main)g(te)
 -20 b(xt.)853 b(Look)479 b(at)f(pre)-33 b(vious)480 b(MICR)-53
-b(O)-2432 6641 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g
+b(O)-2432 9298 y(abstracts)471 b(to)h(get)g(a)f(feel)h(for)g(style)g
 (and)g(length.)831 b(referring)473 b(Fig)p 1 0 0 TeXcolorrgb
-29046 6641 a
+29046 9298 a
 SDict begin H.S end
- 29046 6641 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0
-TeXcolorrgb 29710 5735 a
+ 29046 9298 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0
+TeXcolorrgb 29710 8392 a
 SDict begin H.R end
- 29710 5735 a 29710 6641 a
+ 29710 8392 a 29710 9298 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
  29710
-6641 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
-b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 9298 y(justi\002ed)364
+9298 a Black 472 w Fe(here.)830 b(The)471 b(ABSTRA)-53
+b(CT)471 b(is)g(to)h(be)f(in)h(fully-)-2432 11954 y(justi\002ed)364
 b(italicized)g(te)-20 b(xt.)506 b(Use)363 b(the)g(w)-13
 b(ord)364 b(\223)-106 b(Abstract\224)363 b(as)g(the)h(title,)372
 b(in)364 b(14-point)h(T)-46 b(imes,)371 b(boldf)-13 b(ace)363
-b(type,)372 b(centered)-2432 11954 y(relati)-33 b(v)-20
+b(type,)372 b(centered)-2432 14610 y(relati)-33 b(v)-20
 b(e)356 b(to)f(the)h(column,)362 b(initially)356 b(capitalized.)482
 b(The)354 b(abstract)i(is)f(to)g(be)g(in)h(12-point,)363
 b(single-spaced)355 b(type.)481 b(Lea)-27 b(v)-20 b(e)-2432
-14610 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
+17267 y(tw)-13 b(o)348 b(blank)g(lines)f(after)h(the)g(Abstract,)j
 (then)d(be)-20 b(gin)348 b(the)g(main)g(te)-20 b(xt.)458
 b(Look)348 b(at)f(pre)-33 b(vious)348 b(MICR)-53 b(O)348
-b(abstracts)f(to)h(get)f(a)-2432 17267 y(feel)g(for)h(style)f(and)g
+b(abstracts)f(to)h(get)f(a)-2432 19923 y(feel)g(for)h(style)f(and)g
 (length.)457 b(referring)348 b(Fig)p 1 0 0 TeXcolorrgb
-18144 17267 a
+18144 19923 a
 SDict begin H.S end
- 18144 17267 a 1 0 0 TeXcolorrgb Fe(1)p
-1 0 0 TeXcolorrgb 18808 16361 a
+ 18144 19923 a 1 0 0 TeXcolorrgb Fe(1)p
+1 0 0 TeXcolorrgb 18808 19017 a
 SDict begin H.R end
- 18808 16361 a 18808 17267
+ 18808 19017 a 18808 19923
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 18808 17267 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
+ 18808 19923 a Black 347 w Fe(here.)456 b(The)346 b(ABSTRA)-53
 b(CT)346 b(is)h(to)g(be)g(in)g(fully-justi\002ed)i(italicized)e(te)-20
-b(xt.)-2432 19923 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
+b(xt.)-2432 22580 y(Use)383 b(the)g(w)-13 b(ord)384 b(\223)-106
 b(Abstract\224)382 b(as)h(the)g(title,)397 b(in)384 b(14-point)g(T)-46
 b(imes,)396 b(boldf)-13 b(ace)383 b(type,)396 b(centered)383
 b(relati)-33 b(v)-20 b(e)384 b(to)g(the)f(column,)-2432
-22580 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
+25236 y(initially)301 b(capitalized.)401 b(The)299 b(abstract)g(is)h
 (to)f(be)g(in)h(12-point,)308 b(single-spaced)299 b(type.)401
 b(Lea)-27 b(v)-20 b(e)299 b(tw)-13 b(o)300 b(blank)g(lines)f(after)h
-(the)-2432 25236 y(Abstract,)344 b(then)e(be)-20 b(gin)342
+(the)-2432 27893 y(Abstract,)344 b(then)e(be)-20 b(gin)342
 b(the)f(main)h(te)-20 b(xt.)440 b(Look)342 b(at)f(pre)-33
 b(vious)342 b(MICR)-53 b(O)341 b(abstracts)g(to)h(get)g(a)f(feel)g(for)
-h(style)g(and)f(length.)-2432 27893 y(referring)348 b(Fig)p
-1 0 0 TeXcolorrgb 4679 27893 a
+h(style)g(and)f(length.)-2432 30549 y(referring)348 b(Fig)p
+1 0 0 TeXcolorrgb 4679 30549 a
 SDict begin H.S end
- 4679 27893 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 5343 26987 a
+ 4679 30549 a 1 0 0 TeXcolorrgb
+Fe(1)p 1 0 0 TeXcolorrgb 5343 29643 a
 SDict begin H.R end
- 5343 26987 a 5343
-27893 a
+ 5343 29643 a 5343
+30549 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 5343 27893 a Black 346 w Fe(here.)455 b(The)346
+ 5343 30549 a Black 346 w Fe(here.)455 b(The)346
 b(ABSTRA)-53 b(CT)345 b(is)h(to)h(be)f(in)h(fully-justi\002ed)h
 (italicized)e(te)-20 b(xt.)455 b(Use)346 b(the)h(w)-13
-b(ord)346 b(\223)-106 b(Abstract\224)-2432 30549 y(as)376
+b(ord)346 b(\223)-106 b(Abstract\224)-2432 33205 y(as)376
 b(the)h(title,)388 b(in)377 b(14-point)i(T)-46 b(imes,)387
 b(boldf)-13 b(ace)376 b(type,)389 b(centered)376 b(relati)-33
 b(v)-20 b(e)377 b(to)g(the)g(column,)389 b(initially)378
-b(capitalized.)545 b(The)-2432 33205 y(abstract)325 b(is)g(to)g(be)g
+b(capitalized.)545 b(The)-2432 35862 y(abstract)325 b(is)g(to)g(be)g
 (in)g(12-point,)j(single-spaced)d(type.)410 b(Lea)-27
 b(v)-20 b(e)324 b(tw)-13 b(o)325 b(blank)g(lines)g(after)g(the)g
-(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432 35862
+(Abstract,)i(then)e(be)-20 b(gin)326 b(the)-2432 38518
 y(main)309 b(te)-20 b(xt.)405 b(Look)309 b(at)g(pre)-33
 b(vious)309 b(MICR)-53 b(O)309 b(abstracts)f(to)i(get)f(a)f(feel)h(for)
 h(style)f(and)f(length.)405 b(referring)311 b(Fig)p 1 0 0
-TeXcolorrgb 46507 35862 a
+TeXcolorrgb 46507 38518 a
 SDict begin H.S end
- 46507 35862 a 1 0 0 TeXcolorrgb
-Fe(1)p 1 0 0 TeXcolorrgb 47171 34956 a
+ 46507 38518 a 1 0 0 TeXcolorrgb
+Fe(1)p 1 0 0 TeXcolorrgb 47171 37612 a
 SDict begin H.R end
- 47171 34956 a
-47171 35862 a
+ 47171 37612 a
+47171 38518 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 47171 35862 a Black 309 w Fe(here.)404
-b(The)-2432 38518 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
+ 47171 38518 a Black 309 w Fe(here.)404
+b(The)-2432 41175 y(ABSTRA)-53 b(CT)411 b(is)h(to)h(be)g(in)f
 (fully-justi\002ed)j(italicized)e(te)-20 b(xt.)653 b(Use)412
 b(the)h(w)-13 b(ord)412 b(\223)-106 b(Abstract\224)413
-b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 41175
+b(as)e(the)i(title,)433 b(in)413 b(14-point)-2432 43831
 y(T)-46 b(imes,)400 b(boldf)-13 b(ace)387 b(type,)400
 b(centered)387 b(relati)-33 b(v)-20 b(e)387 b(to)g(the)g(column,)402
 b(initially)388 b(capitalized.)576 b(The)386 b(abstract)h(is)g(to)g(be)
-f(in)h(12-)-2432 43831 y(point,)426 b(single-spaced)406
+f(in)h(12-)-2432 46488 y(point,)426 b(single-spaced)406
 b(type.)635 b(Lea)-27 b(v)-20 b(e)406 b(tw)-13 b(o)406
 b(blank)h(lines)f(after)h(the)g(Abstract,)425 b(then)407
 b(be)-20 b(gin)406 b(the)h(main)g(te)-20 b(xt.)635 b(Look)406
-b(at)-2432 46488 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
+b(at)-2432 49144 y(pre)-33 b(vious)329 b(MICR)-53 b(O)328
 b(abstracts)g(to)h(get)f(a)g(feel)h(for)g(style)f(and)g(length.)412
-b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 46488
+b(referring)329 b(Fig)p 1 0 0 TeXcolorrgb 36693 49144
 a
 SDict begin H.S end
- 36693 46488 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-37357 45582 a
+ 36693 49144 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+37357 48238 a
 SDict begin H.R end
- 37357 45582 a 37357 46488 a
+ 37357 48238 a 37357 49144 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 37357 46488
+ 37357 49144
 a Black 328 w Fe(here.)411 b(The)327 b(ABSTRA)-53 b(CT)327
-b(is)i(to)-2432 49144 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
+b(is)i(to)-2432 51800 y(be)297 b(in)h(fully-justi\002ed)i(italicized)e
 (te)-20 b(xt.)401 b(Use)297 b(the)h(w)-13 b(ord)297 b(\223)-106
 b(Abstract\224)298 b(as)f(the)g(title,)306 b(in)298 b(14-point)h(T)-46
-b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 51800
+b(imes,)304 b(boldf)-13 b(ace)298 b(type,)-2432 54457
 y(centered)277 b(relati)-33 b(v)-20 b(e)277 b(to)g(the)g(column,)289
 b(initially)278 b(capitalized.)394 b(The)277 b(abstract)f(is)h(to)g(be)
 g(in)g(12-point,)290 b(single-spaced)277 b(type.)-2432
-54457 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
+57113 y(Lea)-27 b(v)-20 b(e)310 b(tw)-13 b(o)311 b(blank)h(lines)f
 (after)g(the)g(Abstract,)316 b(then)311 b(be)-20 b(gin)311
 b(the)g(main)h(te)-20 b(xt.)405 b(Look)311 b(at)g(pre)-33
 b(vious)311 b(MICR)-53 b(O)311 b(abstracts)g(to)-2432
-57113 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
-b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 57113
+59770 y(get)335 b(a)g(feel)h(for)g(style)f(and)h(length.)422
+b(referring)337 b(Fig)p 1 0 0 TeXcolorrgb 20923 59770
 a
 SDict begin H.S end
- 20923 57113 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-21587 56207 a
+ 20923 59770 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+21587 58864 a
 SDict begin H.R end
- 21587 56207 a 21587 57113 a
+ 21587 58864 a 21587 59770 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 21587 57113
+ 21587 59770
 a Black 335 w Fe(here.)422 b(The)335 b(ABSTRA)-53 b(CT)334
 b(is)h(to)g(be)h(in)f(fully-justi\002ed)i(italicized)-2432
-59770 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
+62426 y(te)-20 b(xt.)858 b(Use)481 b(the)g(w)-13 b(ord)481
 b(\223)-106 b(Abstract\224)480 b(as)g(the)h(title,)519
 b(in)481 b(14-point)i(T)-46 b(imes,)517 b(boldf)-13 b(ace)481
 b(type,)519 b(centered)480 b(relati)-33 b(v)-20 b(e)482
-b(to)f(the)-2432 62426 y(column,)309 b(initially)303
+b(to)f(the)-2432 65083 y(column,)309 b(initially)303
 b(capitalized.)402 b(The)302 b(abstract)f(is)h(to)g(be)g(in)g
 (12-point,)309 b(single-spaced)302 b(type.)402 b(Lea)-27
 b(v)-20 b(e)302 b(tw)-13 b(o)302 b(blank)g(lines)-2432
-65083 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
+67739 y(after)g(the)g(Abstract,)309 b(then)302 b(be)-20
 b(gin)302 b(the)g(main)h(te)-20 b(xt.)402 b(Look)302
 b(at)g(pre)-33 b(vious)302 b(MICR)-53 b(O)302 b(abstracts)g(to)g(get)g
-(a)f(feel)h(for)h(style)f(and)-2432 67739 y(length.)413
-b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 67739
+(a)f(feel)h(for)h(style)f(and)-2432 70395 y(length.)413
+b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb 8715 70395
 a
 SDict begin H.S end
- 8715 67739 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
-9379 66833 a
+ 8715 70395 a 1 0 0 TeXcolorrgb Fe(1)p 1 0 0 TeXcolorrgb
+9379 69489 a
 SDict begin H.R end
- 9379 66833 a 9379 67739 a
+ 9379 69489 a 9379 70395 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.1) cvn H.B /ANN pdfmark end
- 9379 67739 a Black
+ 9379 70395 a Black
 333 w Fe(here.)412 b(referring)333 b(Fig)p 1 0 0 TeXcolorrgb
-19824 67739 a
+19824 70395 a
 SDict begin H.S end
- 19824 67739 a 1 0 0 TeXcolorrgb Fe(4)p
-1 0 0 TeXcolorrgb 20488 66833 a
+ 19824 70395 a 1 0 0 TeXcolorrgb Fe(4)p
+1 0 0 TeXcolorrgb 20488 69489 a
 SDict begin H.R end
- 20488 66833 a 20488 67739
+ 20488 69489 a 20488 70395
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.4) cvn H.B /ANN pdfmark end
- 20488 67739 a Black 333 w Fe(and)f(Fig.)p 1 0 0 TeXcolorrgb
-25507 67758 a
+ 20488 70395 a Black 333 w Fe(and)f(Fig.)p 1 0 0 TeXcolorrgb
+25507 70414 a
 SDict begin H.S end
- 25507 67758 a 1 0 0 TeXcolorrgb -19 x Fe(5)p
-1 0 0 TeXcolorrgb 26171 66833 a
+ 25507 70414 a 1 0 0 TeXcolorrgb -19 x Fe(5)p
+1 0 0 TeXcolorrgb 26171 69489 a
 SDict begin H.R end
- 26171 66833 a 26171 67739
+ 26171 69489 a 26171 70395
 a
 SDict begin [ /Color [1 0 0] /H /I /Border [0 0 0] /Subtype /Link /Dest
 (figure.5) cvn H.B /ANN pdfmark end
- 26171 67739 a Black 332 w Fe(here.)p Black 24736 74321
+ 26171 70395 a Black 332 w Fe(here.)p Black 24736 74321
 a(7)p Black eop end
 %%Page: 8 8
 TeXDict begin 8 7 bop .5 .5 1 TeXcolorrgb -6306 685 a
@@ -38283,26 +38284,26 @@ SDict begin 23.99748 H.A end
 SDict begin [ /View [/XYZ H.V] /Dest (section.3) cvn H.B /DEST pdfmark
 end
  -2432 0 a
-1328 x Fg(3.)398 b(A)-40 b(pplication-Dri)-16 b(v)g(en)399
-b(Design)g(of)f(NoCs)-2432 2428 y
+1328 x Fg(3.)398 b(STT)-147 b(-RAM)399 b(Design)-2432
+2428 y
 SDict begin H.S end
- -2432 2428 a -2432
-2428 a
-SDict begin 23.99748 H.A end
  -2432 2428 a -2432 2428 a
+SDict begin 23.99748 H.A end
+ -2432 2428 a -2432 2428
+a
 SDict begin [ /View [/XYZ H.V] /Dest (section.4) cvn H.B /DEST pdfmark
 end
- -2432 2428 a 2973 x
-Fg(4.)g(Hard)-24 b(war)-29 b(e)398 b(Implementation)-2432
-6500 y
+ -2432 2428 a 2973 x Fg(4.)f(Ar)-29 b(chitecting)398
+b(V)-159 b(olatile)398 b(STT)-147 b(-RAM)-2432 6500 y
 SDict begin H.S end
- -2432 6500 a -2432 6500 a
+
+-2432 6500 a -2432 6500 a
 SDict begin 23.99748 H.A end
- -2432 6500 a -2432 6500
-a
+ -2432 6500 a -2432 6500 a
 SDict begin [ /View [/XYZ H.V] /Dest (section.5) cvn H.B /DEST pdfmark
 end
- -2432 6500 a 2973 x Fg(5.)g(Ev)-16 b(aluation)399 b(Methodology)-2432
+ -2432
+6500 a 2973 x Fg(5.)398 b(Experimental)g(Ev)-16 b(aluation)-2432
 10573 y
 SDict begin H.S end
  -2432 10573 a -2432 10573 a
@@ -38311,13 +38312,13 @@ SDict begin 23.99748 H.A end
 10573 a
 SDict begin [ /View [/XYZ H.V] /Dest (section.6) cvn H.B /DEST pdfmark
 end
- -2432 10573 a 2973 x Fg(6.)f(Results)-2432 14343
-y
+ -2432 10573 a 2973 x Fg(6.)398 b(Results)-2432
+14343 y
 SDict begin H.S end
  -2432 14343 a -2432 14343 a
 SDict begin 23.99748 H.A end
- -2432 14343 a -2432 14343
-a
+ -2432 14343 a -2432
+14343 a
 SDict begin [ /View [/XYZ H.V] /Dest (section.7) cvn H.B /DEST pdfmark
 end
  -2432 14343 a 3275 x Fg(7.)g(Prior)g(W)-120 b(ork)-2432
