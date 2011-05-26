@@ -1,39 +1,121 @@
 \begin{wrapfigure}{l}{0.50\textwidth}
 %\begin{figure*} [t]
 \centering
- \psfig{figure=figures/parsec-hist.eps, width=1.65in, height=0.49\textwidth}
+ \psfig{figure=figures/stt-cell.eps, width=1.65in, height=0.49\textwidth, angle=-90}
  \hrule
- \caption{\label{fig:avg} \scriptsize \bf Percentage of L2 Cache Blocks with different average inter-write times}
+ \caption{\label{fig:motiv} \scriptsize \bf (a) Structural view of of STT-RAM Cache Cell (b) Anti Space Parallel (High Resistance, Indicating ``1" state (c) Parallel (Low Resistance, Indicating ``0" state}
 %\end{figure*}
 \end{wrapfigure}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/parsec-hist.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:avg-parsec} \scriptsize \bf Percentage of L2 Cache Blocks with different average inter-write times}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/spec-hist.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:avg-spec} \scriptsize \bf Percentage of L2 Cache Blocks with different average inter-write times}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:parsec-speedup} \scriptsize \bf Normalized speedup }
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/cdf.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:cdf} \scriptsize \bf CDF}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/confi.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:confi} \scriptsize \bf Confidence Intervals}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/writebacks.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:cdf} \scriptsize \bf Write backs}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/dyn-eng.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:dyn} \scriptsize \bf Dynamic Energy}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/leak-eng.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:leak} \scriptsize \bf Leakage }
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/tot-eng.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:tot} \scriptsize \bf Total Energy}
+%\end{figure*}
+\end{figure*}
+
 
 
 
 % Some part may go into introduction -- overlap possible
 
-Architects always envision to have a cache hierarchy which not only has fast access times but also consume very less leakage and dynamic power.To bridge the gap between the current and the utopian cache hierarchy,  exploration of new properties of emerging memory technologies is imperative. \cite{sudhanva} et.al proposed that reducing the planar area of STT-RAM, reduces the retention time which in turn leads to lower write time.  In current era, where the MTJ size is in the range of 2-5 $F^2$ rather than $>10F^2$, there is not enough scope for reducing write time by this technique. Figure %\fig{rt-wt}
+Architects always envision to have a cache hierarchy which not only has fast access times but also consume very less leakage and dynamic power.To bridge the gap between the current and the utopian cache hierarchy,  exploration of new properties of emerging memory technologies is imperative. \cite{sudhanva} et.al proposed that reducing the planar area of STT-RAM, reduces the retention time which in turn leads to lower write time.  In current era, where the STT-RAM cell size is in the range of 3-5 F$^2$, there is not enough scope for reducing write time by this technique. Figure %\fig{rt-wt} 
 shows how write time reduces when retention time is reduced by means of changing the write pulse duration. The 10 year retention time STT-RAM cache design is traditional non-volatile STT-RAM. As we observe from the graph that write time significantly reduces, as we tend towards volatile STT-RAM.  % cong will give more inputs --- explain figure more
 
 The reduction of retention time of cache blocks has opened plethora of challenges for the architects. The main challenges are (1) To avoid any data loss because of volatility of cache blocks. (2) To ensure that the data is correct and no random bit flips have happened. 3) To architect cache hierarchy, which deals with issues (1) and (2) and still reap performance and energy benefits of reduced write time. This paper systematically addresses these challenges by finding a ideal retention time which can lead to minimum possible write latency with minimal architectural overheads.
 
-By means of many experiments we came up with a term called revival time which is defined as  the time between consecutive writes to the same block. We can say that after every revival time interval, physical cache block is refreshed and ready to be used again.
+By means of many experiments we came up with a term called revival time which is defined as  the time between consecutive writes to the same block. We can say that after every revival time interval, physical cache block is refreshed and ready to be used again. 
 
-Figure~\ref{fig:avg}  shows the percentage of L2 cache blocks binned into different average revival time slots for PARSEC and SPEC 2006 Benchmarks. We collected these results by modeling a 4MB STT-RAM L2 Unified Banked Cache using M5 Simulator with 2GHz processor consisting of 4 cores.Table contains the details of the configuration of the simulated system. While collecting results, we ensured that block is valid when the consecutive writes are performed on this block. If the block gets invalidated in between, we only consider the time between, when the block is last written and when the block gets invalidated.
+Figure~\ref{fig:avg}  shows the percentage of L2 cache blocks binned into different average revival time slots for PARSEC and SPEC 2006 Benchmarks. We collected these results by modeling a 4MB STT-RAM L2 Unified Banked Cache using M5 Simulator with 2GHz processor consisting of 4 cores.Table contains the details of the configuration of the simulated system. While collecting results, we ensured that block is valid when the consecutive writes are performed on this block. If the block gets invalidated in between, we only consider the time between, when the block is last written and when the block gets invalidated. 
 
-We observe from the graph that there are significant number of blocks which gets refreshed frequently and also a good percentage of blocks which remain unrefreshed for longer time. This graph gives us the basis on which we can choose the optimal retention time. Reducing the retention time too much will make the cache too volatile and increasing it will aggravate the write time.  We choose 10ms as the optimal retention time, as there are majority of blocks which gets refreshed within 10ms and hence there is no worry of them getting lost. There is a good probability that the hashed blocks in the figure can get kicked out from the cache by LRU replacement policy as they may not have been accessed in near past, and it is ok to loose them unless they are dirty. There could be some blocks in the same region which are frequently read and not written. In section 5, we describe how these types of blocks are dealt with. We also propose a scheme in Section 5 to handle the blocks which are in the region 10-40ms.
-
-
+We observe from the graph that there are significant number of blocks which gets refreshed frequently and also a good percentage of blocks which remain unrefreshed for longer time. This graph gives us the basis on which we can choose the optimal retention time. Reducing the retention time too much will make the cache too volatile and increasing it will aggravate the write time.  We choose 10ms as the optimal retention time, as there are majority of blocks which gets refreshed within 10ms and hence there is no worry of them getting lost. There is a good probability that the hashed blocks in the figure can get kicked out from the cache by LRU replacement policy as they may not have been accessed in near past, and it is ok to loose them unless they are dirty. There could be some blocks in the same region which are frequently read and not written. In section 5, we describe how these types of blocks are dealt with. We also propose a scheme in Section 5 to handle the blocks which are in the region 10-40ms. 
 
 
 
 
-%The paper showed that by choosing a particular retention time, they get benefit in terms of energy.
+  
+  
+%The paper showed that by choosing a particular retention time, they get benefit in terms of energy.  
 
  %reach the ideal case of getting SRAM technology
-%like latency benefits and STT-RAM
-%High access latency
+%like latency benefits and STT-RAM 
+%High access latency 
 %Best of all worlds is certainly we can think off as high density, lower access
-%latencies. With the intention of going to
+%latencies. With the intention of going to 
 
 %High Write time and write energy
 %capacity benefits
@@ -43,7 +125,7 @@ We observe from the graph that there are significant number of blocks which gets
 %%nearby buffering them 20-40
 %after 40 anyways dey will go eventually to LRU and get
 %invalidated
-% DRAM Style Referesh
+% DRAM Style Referesh 
 % Random bit flips
 
 
