@@ -16,12 +16,10 @@ As shown in Fig.~\ref{fig:mram_cell}, when writing ``0" state into STT-RAM cells
 \subsection{Write current versus write pulse width trade-off} \label{subsec:ict}
 
 \begin{wrapfigure}{l}{0.50\textwidth}
-%\begin{figure*} [t]
 \centering
  \psfig{figure=figures/IcWt.eps, width=3in}
  \hrule
  \caption{\label{fig:IcWt} \scriptsize \bf (a) Structural view of of STT-RAM Cache Cell (b) Anti Space Parallel (High Resistance, Indicating ``1" state (c) Parallel (Low Resistance, Indicating ``0" state}
-%\end{figure*}
 \end{wrapfigure}
 
 The current amplitude required to reverse the direction of the free ferromagnetic layer is determined by a lot of factors such as material property, device geometry and importantly the write pulse duration. Generally, the longer the write pulse is applied, the less the switching current is needed to switch the MTJ state. Three distinct switching modes were identified~\cite{STTRAM:JAP07} according to the operating range of switching pulse width $\tau$: thermal activation ($\tau>20ns$), processional switching ($\tau<3ns$) and dynamic reversal ($3ns<\tau<20ns$).
@@ -32,7 +30,7 @@ J_{c,TA}(\tau) &=& J_{c0}\{1- (\frac{k_{B}T}{E_{b}})ln(\frac{\tau}{\tau_{0}})\} 
 J_{c,PS}(\tau) &=& J_{c0}+ \frac{C}{\tau^{\gamma}} \label{eqn:jcps} \\
 J_{c,DR}(\tau) &=& \frac{J_{c,TA}(\tau)+J_{c,PS}(\tau)e^{-k(\tau - \tau_{c})}}{1+e^{-k(\tau - \tau_{c})}} \label{eqn:jcdr}
 \end{eqnarray}
-where $J_{c,TA}$, $J_{c,PS}$, $J_{c,DR}$ are the switching current densities for thermal activation, precessional switching and dynamic reversal respectively. $J_{c0}$ is the critical switching current density, $k_{B}$ is the Boltzmann constant, $T$ is the temperature, $E_{b}$ is the thermal barrier, and $\tau_{0}$ is inverse of the attempt frequency. $C$, $\gamma$, $k$, and $\tau_{c}$ are fitting constants. Based on the observation from Fig.~\ref{fig:IcWt} and analysis of the analytical model,  we found very different switching characteristics in the three switching modes. For example, in thermal activation mode, the required switching current increases very slowly even we decrease the write pulse width by orders of magnitude, thus short write pulse width is more favorable in this regime because reducing write pulse can reduce both write latency and energy without much penalty on read latency and energy. While in processional switching, write current goes up rapidly if we further reduce write pulse width, therefore minimum write energy of the MTJ is achieved at some particular write pulse width in this regime. Consequently, this paper will focus on the exploration of write pulse width in processional switching and dynamic reversal to optimize for different design goals. 
+where $J_{c,TA}$, $J_{c,PS}$, $J_{c,DR}$ are the switching current densities for thermal activation, precessional switching and dynamic reversal respectively. $J_{c0}$ is the critical switching current density, $k_{B}$ is the Boltzmann constant, $T$ is the temperature, $E_{b}$ is the thermal barrier, and $\tau_{0}$ is inverse of the attempt frequency. $C$, $\gamma$, $k$, and $\tau_{c}$ are fitting constants. Based on the observation from Fig.~\ref{fig:IcWt} and analysis of the analytical model,  we found very different switching characteristics in the three switching modes. For example, in thermal activation mode, the required switching current increases very slowly even we decrease the write pulse width by orders of magnitude, thus short write pulse width is more favorable in this regime because reducing write pulse can reduce both write latency and energy without much penalty on read latency and energy. While in processional switching, write current goes up rapidly if we further reduce write pulse width, therefore minimum write energy of the MTJ is achieved at some particular write pulse width in this regime. Consequently, this paper will focus on the exploration of write pulse width in processional switching and dynamic reversal to optimize for different design goals.
 
 \subsection{STT-RAM Cell Area Modeling}
 To simulate the performance of STT-RAM cache, it is important to estimate its cell area first. As mentioned before, each 1T1J STT-RAM cell is composed of one NMOS and one MTJ. The NMOS access device is connected in series with the MTJ. The size of NMOS is constrained by both SET and RESET current, which are inversely proportional to the writing pulse width. In order to estimate the current driving ability of MOSFET devices, a small test circuit using HSPICE with PTM 45nm HP model~\cite{PTM} is simulated. The BL-to-SL current and SL-to-BL current are obtained by assuming typical TMR (120\%) and LRS ($3k\Omega$) value~\cite{STTRAM:Qualcomm09} and bursting wordline voltage to be 1.5V (the optimal value is extracted from~\cite{STTRAM:Gatech10}). And we over size the access transistor width to guarantee enough write current provided to MTJ using the methodology discussed in~\cite{STTRAM:RPI10}. To achieve high cell density, we model the STT-RAM cell area by referring to DRAM design rules~\cite{DRAM:6F2}.  As a result, the cell size of a STT-RAM cell is calculated as follows,
@@ -40,6 +38,42 @@ To simulate the performance of STT-RAM cache, it is important to estimate its ce
 \mathrm{Area}_{\mathrm{cell}}={3\left(W/L+1\right)}(F^2)
 \end{equation}
 
+\subsection{Impact of MTJ Retention Time on STT-RAM} \label{subsec:retention}
+\begin{wrapfigure}{l}{0.50\textwidth}
+\centering
+ \psfig{figure=figures/RT_TB.eps, width=3in}
+ \hrule
+ \caption{\label{fig:retention} \scriptsize \bf MTJ thermal stability requirement for different retention time}
+\end{wrapfigure}
 
+The retention time of a MTJ is largely determined by the thermal stability of the MTJ. The relation between retention time and thermal barrier is captured in Figure~\ref{fig:retention}, which can be modeled as $t=C\times e^{k\Delta}$, where $t$ is the retention time and $\Delta$ is the thermal barrier while $C$ and $k$ are fitting constants. Thermal stability of the free layer in an MTJ does not only have impact on retention time of STT-RAM memory cell but also on the write current. It was found in~\ref{PMTJ:Toshiba08} that the switching current of MTJ increases almost linearly with thermal barrier when thermal barrier is $<70k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is temperature. Here we combine this observation with the write current versus write time trade-off described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ is lowered we are able to achieve faster write speed or/and smaller write current/energy. The most straightforward way to reduce thermal barrier is to tune device geometry such as planar area, thickness of free layer and aspect ratio of the elliptic MTJ.
 
- 
+\subsection{STT-RAM Cache Simulation Setup}
+We simulate SRAM-based caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}, which is a circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile memories. All the models described in this Section has been integrated in NVsim. The simulation results are listed in Table~\ref{allcaches}.
+
+\begin{table*}[t]
+  \centering
+  \caption{16-way L2 Cache Simulation Results}
+  \label{allcaches}
+  \begin{tabular}{| c | c | c  | c | c | c | c |}
+  	\hline\hline
+  	\multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & Area  & Read Latency & Write Latency & Leakage Power\\
+  & & & ($mm^2$) & ($ns$) & ($ns$) & ($mW$) \\
+  	\hline\hline
+  	\multicolumn{3}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $4542$ \\
+  	\hline
+  	\multirow{6}{*}{$4MB$ STT-RAM} & \multirow{2}{*}{$t=10yr$} & Leakage Opt.& $2.628$ & $2.434$ & $4.919$ & $1399$ \\
+  	\cline{3-3}\cline{4-7}
+  	& & Latency Opt. & $3.003$ & $0.998$ & $10.61$ & $2524$ \\
+  	\cline{2-3}\cline{4-7}
+  	& \multirow{2}{*}{$t=1s$} & Leakage Opt. & $2.203$ & $2.044$ & $3.552$ & $1388$ \\
+  	\cline{3-3}\cline{4-7}
+  	& & Latency Opt. & $2.904$ & $0.973$ & $5.571$ & $2235$ \\
+  	\cline{2-3}\cline{4-7}
+  	& \multirow{2}{*}{$t=10ms$} & Leakage Opt. & $1.767$ & $1.856$ & $3.376$ & $1027$ \\
+  	\cline{3-3}\cline{4-7}
+  	& & Latency Opt. & $2.901$ & $0.959$ & $2.598$ & $2227$ \\	
+  	\hline\hline
+  \end{tabular}
+\end{table*}
+
