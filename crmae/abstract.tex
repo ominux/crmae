@@ -13,9 +13,10 @@ In this paper, we exploit this volatile property of the STT-RAM for designing an
 architecture. The paper addresses several critical design issues such as how do we decide a suitable retention time for last level cache,
 what is the relationship between retention time and write latency,
 and how do we architect the cache hierarchy with a volatile STT-RAM.
-Through an extensive execution driven analysis of the inter-write time  of several PARSEC and SPEC 2006 banchmarks, we 
-observe that retention time in the order of 10s of ms is a good design point to handle most of the
-writes.  Then for the rest of the cache blocks that have a higher than the STT-RAM retention time, we propose an architectural solution to identify these blocks
+Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 banchmarks, we 
+observe that retention time in the order of 10-40 ms is a good design point to handle most of the
+writes.  Then for the rest of the cache blocks that have a higher inter-write
+time than the STT-RAM retention time, we propose an architectural solution to identify these blocks
 with a per block 2 bit counter, temporarily save a limited number of MRU blocks in a buffer,
 and writeback the rest of the dirty blocks to avoid any data loss.
 %are not in first seven MRU slots.
@@ -24,5 +25,5 @@ and writeback the rest of the dirty blocks to avoid any data loss.
 Our experiments with 4 and 8-core architectures with an SRAM-based L1 cache and STT-RAM-based L2 cache 
 indicate that not only we can eliminate the high write overhead of an NVM STT-RAM, but can provide
 on an average 10-12\% improvement in IPC compared to the traditional SRAM-based
-design, while reducing the energy consumption siginficantly. 
+design, while reducing the energy consumption significantly 
 
