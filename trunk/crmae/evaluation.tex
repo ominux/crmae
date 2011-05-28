@@ -1,0 +1,14 @@
+
+
+
+\noindent\textbf{Experimental Setup}
+We evaluate our design and schemes on modified ALPHA M5 Simulator \cite{} . We operate M5 Simulator in Full System (FS) mode for PARSEC applications and in System Emulation (SE) Mode for SPEC 2006 Multiprogammed mixes. We model a 4GHz processor with four out of order cores. We modified M5  simulator to model low retention time STT-RAM for L2 cache. The L2 cache  is banked with different read and write latencies, with all the banks connected via a shared memory bus. We assume a fixed 400 cycles main memory latency for all our simulations. Table \cite{} details our experimental system configuration. 
+
+\noindent\textbf{Collection of Results}
+We report results of 12 mulithreaded PARSEC applications and 14 SPEC 2006  multiprogrammed mixes. Table ~\ref{fig:benchmarks} shows the characterization of PARSEC applications and list of multiprogrammed mixes.
+We use simsmall input for PARSEC benchmarks and report the results of only Region of Interest (ROI) after skipping the initilization and termination phases (except facesim, where we report results for only 2B instructions of ROI) We also warm up caches for 100M Instructions in ROI. For SPEC multiprogrammed mixes, we fast forward 1B Instructions, warm up caches for 500M instructions and then report results for 1B instructions. 
+
+\noindent\textbf{Performance Metrics}
+For mulltithreaded PARSEC applications, we assume 4 threads are mapped to our modeled processor with four cores. We report normalized speedup for these applications, which is defined as the decrease in execution time of the slowest thread. We randomly choose 14 multiprogram mixes, each mix with four different applications and assign each every application to a core. 
+We report Instruction throughput and Weighted Speedup for SPEC multiprogrammed mixes, which are defined as:
+
