@@ -1,181 +1,58 @@
-\begin{wrapfigure}{l}{0.50\textwidth}
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/stt-cell.eps, width=1.65in, height=0.49\textwidth, angle=-90}
- \hrule
- \caption{\label{fig:motiv} \scriptsize \bf (a) Structural view of of STT-RAM Cache Cell (b) Anti Space Parallel (High Resistance, Indicating ``1" state (c) Parallel (Low Resistance, Indicating ``0" state}
-%\end{figure*}
-\end{wrapfigure}
+
+
+
+In order to utilize the volatile STT-RAM as the last level cache in designing an effective cache hieararchy,
+we need to know what should be the ideal/feasible retention time. Ideally, the STT-RAM write  latency
+should be competitive to SRAM  latency and the cache retention time should be  high.
+However, as discussed in the following section, since the write latency is inversely propositonal to the
+retention time, we need to find a feasible tradeoff based on the STT-RAM device characteristics.
+Thus, we first attempt to decide an ideal retention time by analyzing the characteristics of a last level
+cache in a multiprogrammed environment. The idea is to understand the distribution of the inter-write 
+interval and thus the average inter-write time to a last level cache and use this time as the STT-RAM
+retention time.
+This section describes our application-driven study to estimate the retention time.
+
+
+
+\subsection{Relating Application Characteristics to Retention Time}
 
 \begin{figure*} [t]
-%\begin{figure*} [t]
 \centering
- \psfig{figure=figures/parsec-hist.eps, width=6.9in, height=2.5in}
+\begin{tabular}{cc}
+ \psfig{figure=figures/parsec-hist.eps, width=3.4in, height=2.0in} &
+\psfig{figure=figures/spec-hist.eps, width=3.4in, height=2.0in} \\
+\scriptsize (a) PARSEC  & \scriptsize (b) SPEC 2006
+\end{tabular}
  \hrule
- \caption{\label{fig:avg-parsec} \scriptsize \bf Percentage of L2 Cache Blocks with different average inter-write times}
-%\end{figure*}
+ \caption{\scriptsize \bf Distribution of Blocks Showing Different Revival Times}
+\label{fig:distribution}
 \end{figure*}
 
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/spec-hist.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:avg-spec} \scriptsize \bf Percentage of L2 Cache Blocks with different average inter-write times}
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:parsec-speedup} \scriptsize \bf Normalized speedup }
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/cdf.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:cdf} \scriptsize \bf CDF}
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/confi.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:confi} \scriptsize \bf Confidence Intervals}
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/writebacks.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:cdf} \scriptsize \bf Write backs}
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/dyn-eng.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:dyn} \scriptsize \bf Dynamic Energy}
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/leak-eng.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:leak} \scriptsize \bf Leakage }
-%\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
-%\begin{figure*} [t]
-\centering
- \psfig{figure=figures/tot-eng.eps, width=6.9in, height=2.5in}
- \hrule
- \caption{\label{fig:tot} \scriptsize \bf Total Energy}
-%\end{figure*}
-\end{figure*}
+Application characterization gives the basis for evaluating the impact of low retention time STT-RAM caches on the overall system performance. In order to do this characterization, the first step is to  find the ideal time for which the cache block should retain the data.  We see that, cache block is only refreshed when the block is written. Since we are using low retention time STT-RAM for L2 cache, we record intervals between two successive writes (refreshes) to the same L2 cache block. We define this interval to be {\it revival time}. While collecting these results, we ensure that if a block gets invalidated in between two consecutive writes, we don't consider the time in between the invalidation and the next write. Previous works ~\cite{brooks} do similar type of revival time analysis but for L1 cache. Figure~\ref{fig:distribution} shows the distribution of L2 cache blocks having different revival time intervals. These results are obtained by running multi-threaded (PARSEC~\cite{PARSEC}) and multi-programmed (SPEC 2006~\cite{SPEC}) applications on M5 Simulator~\cite{M5} which models a 4GHz processor consisting of 4 cores, with 4MB STT-RAM L2 cache. Table~\ref{table:configuration} contains additional details of the system configuration. Figure~\ref{fig:distribution} (a) and (b) shows results of three PARSEC and SPEC benchmarks along with the averages across 12 PARSEC  and 14 SPEC benchmarks respectively. We observe from the figure that, on an average, approximately 50\% of cache blocks get refreshed within 10 ms. About 20\% of blocks remain in the cache for more than 40 ms and rest of the blocks have intermediate revival times. We conclude that blocks which stay longer than the retention time in the cache without being refreshed are going to affect the application performance the most. The opportunities lie with the computer architect to design micro-architecture schemes to make the unrefreshed block percentage as low as possible. This distribution also gives us the basis on which we can choose the optimal retention time. Reducing the retention time too much will make the cache too volatile leading to degraded performance. In the next subsection, we will see how increasing the retention time, has negative impacts on write latency. 
 
 
 
+\subsection{Low Retention STT-RAM Characteristics}
+Table~\ref{table:rt-wt} shows that there is significant reduction in write latency with reduction in retention time. Section 4 explains how these numbers originate. We want to clarify from device fabrication perspective that, these retention times are the most stable designs possible. As we lower the retention times of these STT-RAM cells in the range of {\it ms} it becomes much harder to precisely mark a STT-RAM cell with a fixed retention time. For the sake of correctness and preciseness we discuss these designs only in the paper. Later in the Section 7, it will be clear, that our design assumptions have no affect on the generality of the results.
 
-% Some part may go into introduction -- overlap possible
+To analyze the tradeoffs between retention time and overall system performance, lets consider an utopian cache with 10 year retention time having minimum write latency and energy.  To bridge the gap between current and utopian cache, we need to reap the benefits of both: application characteristics and emerging device technology. From application side, it is best to choose a retention time which minimizes the unrefreshed blocks and from technology side it is ideal to choose the STT-RAM with minimum write latency and energy. We choose 10 ms retention time as optimal retention time which balances both the sides. In Section 7, we do a sensitivity analysis by choosing retention times 100 ms, 500 ms and 1sec. In Section 5, we propose micro-architecture techniques to deal with blocks having revival time greater than 10ms. 
 
-Architects always envision to have a cache hierarchy which not only has fast access times but also consume very less leakage and dynamic power.To bridge the gap between the current and the utopian cache hierarchy,  exploration of new properties of emerging memory technologies is imperative. \cite{sudhanva} et.al proposed that reducing the planar area of STT-RAM, reduces the retention time which in turn leads to lower write time.  In current era, where the STT-RAM cell size is in the range of 3-5 F$^2$, there is not enough scope for reducing write time by this technique. Figure %\fig{rt-wt} 
-shows how write time reduces when retention time is reduced by means of changing the write pulse duration. The 10 year retention time STT-RAM cache design is traditional non-volatile STT-RAM. As we observe from the graph that write time significantly reduces, as we tend towards volatile STT-RAM.  % cong will give more inputs --- explain figure more
+\begin{table*}[t]
+  \centering
+  \caption{Retention and Write Latencies for STT-RAM L2 Cache}
+  \label{table:rt-wt}
+  \begin{tabular}{| c | c | c | c | c | c |}
+  	\hline
+	 Retention Time & 10years & 1sec & 500ms & 100ms & 10ms \\
+	\hline
+	Write Latency @4GHz & 44 cycles & 24 cycles & 20 cycles & 16 cycles & 12 cycles \\
+	\hline
+  \end{tabular}
+\end{table*}
 
-The reduction of retention time of cache blocks has opened plethora of challenges for the architects. The main challenges are (1) To avoid any data loss because of volatility of cache blocks. (2) To ensure that the data is correct and no random bit flips have happened. 3) To architect cache hierarchy, which deals with issues (1) and (2) and still reap performance and energy benefits of reduced write time. This paper systematically addresses these challenges by finding a ideal retention time which can lead to minimum possible write latency with minimal architectural overheads.
-
-By means of many experiments we came up with a term called revival time which is defined as  the time between consecutive writes to the same block. We can say that after every revival time interval, physical cache block is refreshed and ready to be used again. 
-
-Figure~\ref{fig:avg}  shows the percentage of L2 cache blocks binned into different average revival time slots for PARSEC and SPEC 2006 Benchmarks. We collected these results by modeling a 4MB STT-RAM L2 Unified Banked Cache using M5 Simulator with 2GHz processor consisting of 4 cores.Table contains the details of the configuration of the simulated system. While collecting results, we ensured that block is valid when the consecutive writes are performed on this block. If the block gets invalidated in between, we only consider the time between, when the block is last written and when the block gets invalidated. 
-
-We observe from the graph that there are significant number of blocks which gets refreshed frequently and also a good percentage of blocks which remain unrefreshed for longer time. This graph gives us the basis on which we can choose the optimal retention time. Reducing the retention time too much will make the cache too volatile and increasing it will aggravate the write time.  We choose 10ms as the optimal retention time, as there are majority of blocks which gets refreshed within 10ms and hence there is no worry of them getting lost. There is a good probability that the hashed blocks in the figure can get kicked out from the cache by LRU replacement policy as they may not have been accessed in near past, and it is ok to loose them unless they are dirty. There could be some blocks in the same region which are frequently read and not written. In section 5, we describe how these types of blocks are dealt with. We also propose a scheme in Section 5 to handle the blocks which are in the region 10-40ms. 
 
 
-
-
+ 
   
-  
-%The paper showed that by choosing a particular retention time, they get benefit in terms of energy.  
 
- %reach the ideal case of getting SRAM technology
-%like latency benefits and STT-RAM 
-%High access latency 
-%Best of all worlds is certainly we can think off as high density, lower access
-%latencies. With the intention of going to 
-
-%High Write time and write energy
-%capacity benefits
-%can be get closer to oracle ideal case?
-%%distribution is important
-%finding suitable cutoff -- justify why this cut off
-%%nearby buffering them 20-40
-%after 40 anyways dey will go eventually to LRU and get
-%invalidated
-% DRAM Style Referesh 
-% Random bit flips
-
-
-%
-%\begin{figure*} [t]
-%\centering
-%\begin{tabular}{cc}
-% \psfig{figure=figures/motiv.eps, width=2.24in, height=1.0in} &
-% \psfig{figure=figures/motiv.eps, width=2.24in, height=1.0in} \\
-% \scriptsize (a) 4 fig-a & \scriptsize (b) 4 fig-a
-%\end{tabular}
-% \hrule
-% \caption{\scriptsize \bf Caption.}
-%\label{fig:2-placement}
-%\end{figure*}
-%
-%\begin{figure*}
-%\centering
-%\begin{tabular}{cc}
-% \psfig{figure=figures/motiv.eps, width=2.24in, height=1.0in} &
-% \psfig{figure=figures/motiv.eps, width=2.24in, height=1.0in} \\
-% \scriptsize (a) 2 fig-a & \scriptsize (b) 2 fig-a \\
-%\end{tabular}
-%\begin{tabular}{cc}
-% \psfig{figure=figures/motiv.eps, width=2.24in, height=1.0in} &
-% \psfig{figure=figures/motiv.eps, width=2.24in, height=1.0in} \\
-% \scriptsize (c) 2 fig-c & \scriptsize (d) 2 fig-d
-%\end{tabular}
-% \hrule
-% \caption{\scriptsize \bf Caption.}
-%\label{fig:4-placement}
-%\end{figure*}
-%
-%
-%\begin{figure*} [t]
-%\begin{minipage}{0.50\textwidth}
-%\centering
-% \psfig{figure=figures/motiv.eps, width=1.35in, height=1.35in}
-%\hrule \caption{\scriptsize \bf Caption.} \label{fig:1-fig}
-%\end{minipage}
-%\hfill
-%\begin{minipage}{0.50\textwidth}
-%\begin{tabular}{cc}
-%\psfig{figure=figures/motiv.eps, width=1.5in, height=1.35in} &
-%\psfig{figure=figures/motiv.eps, width=1.5in, height=1.35in} \\
-%\end{tabular}
-% \hrule
-% \caption{\scriptsize \bf Caption.}
-%\label{fig:2-fig}
-%\end{minipage}
-%\end{figure*}
-%
 
