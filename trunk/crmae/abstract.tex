@@ -1,29 +1,29 @@
 
-Spin-Transfer Torque RAM (STT-RAM) is a CMOS compatible emerging non-volatile memory (NVM) 
+Spin-Transfer Torque RAM (STT-RAM) is a CMOS compatible emerging non-volatile memory (NVM)
 technology that has the potential to replace the conventional
 on-chip SRAM caches for designing a more efficient memory hierarchy for
-future multicore architectures. 
+future multicore architectures.
 %While the high density, low leakage and high endurance
-%of STT-RAM are attractive compared to SRAM, 
+%of STT-RAM are attractive compared to SRAM,
 However, it's high write latency and dynamic
 write energy are major obstacles for being competitive with the SRAM-based cache hierarchy.
 On the other hand, STT-RAM technology has another adaptable feature that it is possible to reduce its write
 latency by reducing its retention time, thereby making it volatile.
-In this paper, we exploit this volatile property of the STT-RAM for designing an efficient L2 cache 
+In this paper, we exploit this volatile property of the STT-RAM for designing an efficient L2 cache
 architecture. The paper addresses several critical design issues such as how do we decide a suitable retention time for last level cache,
 what is the relationship between retention time and write latency,
 and how do we architect the cache hierarchy with a volatile STT-RAM.
-Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 banchmarks, we 
+Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 benchmarks, we
 observe that retention time in the order of 10-40 ms is a good design point to handle most of the
 writes.  Then for the rest of the cache blocks that have a higher inter-write
 time than the STT-RAM retention time, we propose an architectural solution to identify these blocks
 with a per block 2 bit counter, temporarily save a limited number of MRU blocks in a buffer,
-and writeback the rest of the dirty blocks to avoid any data loss.
+and write-back the rest of the dirty blocks to avoid any data loss.
 %are not in first seven MRU slots.
 %The blocks in these slots are copied to
 %a per bank small buffer and again copied back to the respective slots.
-Our experiments with 4 and 8-core architectures with an SRAM-based L1 cache and STT-RAM-based L2 cache 
+Our experiments with 4 and 8-core architectures with an SRAM-based L1 cache and STT-RAM-based L2 cache
 indicate that not only we can eliminate the high write overhead of an NVM STT-RAM, but can provide
 on an average 10-12\% improvement in IPC compared to the traditional SRAM-based
-design, while reducing the energy consumption significantly 
+design, while reducing the energy consumption significantly
 
