@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{pifont}
 
 
 % Include other packages here, before hyperref.
@@ -65,11 +66,11 @@ First line of institution2 address\\
 \section{Introduction} \label{sec:intro}
 \input{introduction}
 %-------------------------------------------------------------------------
-\section{Motivation} \label{sec:motivation}
-\input{motivation}
-%-------------------------------------------------------------------------
 \section{STT-RAM Design} \label{sec:design}
 \input{design}
+%-------------------------------------------------------------------------
+\section{Understanding tradeoffs of Retention Time} \label{sec:motivation}
+\input{motivation}
 %-------------------------------------------------------------------------
 \section{Architecting Volatile STT-RAM} \label{sec:implementation}
 \input{implementation}
@@ -87,7 +88,7 @@ First line of institution2 address\\
 \input{conclusions}
 %-------------------------------------------------------------------------
 
-Sample bibliography~\cite{MRAM:Chen2008}''.
+Sample bibliography~\cite{Authors11b}''.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ASIT: \etal.
@@ -103,7 +104,7 @@ Sample bibliography~\cite{MRAM:Chen2008}''.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\small
 \bibliographystyle{ieee}
-\bibliography{bibtex/mram,bibtex/cacti,bibtex/sttram,bibtex/others}
+\bibliography{egbib}
 }
 
 
