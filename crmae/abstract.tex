@@ -13,9 +13,13 @@ In this paper, we exploit this volatile property of the STT-RAM for designing an
 architecture. The paper addresses several critical design issues such as how do we decide a suitable retention time for last level cache,
 what is the relationship between retention time and write latency,
 and how do we architect the cache hierarchy with a volatile STT-RAM.
-Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 benchmarks, we
-observe that retention time in the order of 10-40 ms is a good design point to handle most of the
-writes.  Then for the rest of the cache blocks that have a higher inter-write
+%Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 benchmarks, we
+%observe that retention time in the order of 10-40 ms is a good design point to handle most of the
+%writes.  
+In this paper, we propose to trade off the non-volatility (data retention time)
+for better write performance/energy in STT-RAM cache design. We study two
+data-retention relaxation cases, one with data retention time of 1 second, which satisfies the lifetime requirement of typical cache blocks; and the other one with data retention time of 1ms, which is a more aggressive design for better performance/energy gains but a data refreshing mechanism is needed.
+In the aggressive data retention time relaxation design, for the rest of the cache blocks that have a higher inter-write
 time than the STT-RAM retention time, we propose an architectural solution to identify these blocks
 with a per block 2 bit counter, temporarily save a limited number of MRU blocks in a buffer,
 and write-back the rest of the dirty blocks to avoid any data loss.
