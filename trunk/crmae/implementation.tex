@@ -4,35 +4,62 @@
 \center
  \psfig{figure=figures/arch.eps, width=4.5in, height=3.5in}
  \hrule
- \caption{\label{fig:architecture} \scriptsize \bf Schematic of Revived STT-RAM Scheme}
+ \caption{\label{fig:architecture} \scriptsize \bf A modified 16-way L2 cache architecture with a 2-bit counter and a small buffer}
 %\end{figure*}
 \end{figure*}
 
 
-In Section 3, we argued that 10 ms is the ideal retention time for L2 cache blocks. We observe from figure~\ref{fig:distribution} that on an average, approximately 50\% of the cache blocks will expire after 10 ms, if no action is taken. It will not only result in additional cache misses but also the expiration of dirty blocks would result in data loss.  In this section, we will first describe the counter design used for tracking revival times of the cache blocks. We will then propose our architectural solution starting with naive scheme of writing back all the dirty blocks,  to more sophisticated schemes where we minimize the number of refreshes and write backs. 
-
-\noindent\textbf{Counter Design:}
-We maintain a 2 bit counter per cache block similar to the one used in \cite{marget}. These bits are kept as a part of the SRAM tag array. Figure~\ref{fig:architecture} (b) shows the transition diagram of the counter. Each cache block can be in one of the four possible states.  The block in {\it S3} state indicates that it has attained its retention time and is going to expire. After every 2.5 ms (= retention time / number of states), block changes it state as shown in the figure. The block goes back to its initial {\it S0} state if the data is written or invalidated in between. We calculate the overhead of 2 bit counters to be 0.4\% over one L2 cache bank.
+In Section 3, we argued that 10 ms is the ideal retention time for L2 cache blocks by considering both application characteristics
+and technology aspect. We also observe from figure~\ref{fig:distribution} that on an average, approximately 50\% blocks will 
+expire after 10 ms, if no action is taken. This expiration of blocks will not only result in additional cache misses but also would
+result in data loss, if they were dirty. In this section we propose our architectural solution starting with a naive scheme of writing back
+all the dirty blocks to more sophisticated schemes, where we minimize the number of refreshes and write backs. 
 
 \subsection{{Volatile STT-RAM}}
-In this naive design, we write back all the dirty blocks which are going to expire. It has negative impact on the performance for two reasons: 1) There will be large number of write backs to the main memory. 2) The expired block could have been frequently read and losing it will incur additional read misses. We evaluate the results of this design in Section 7.
+In this naive design, we write back all the dirty blocks which are going to expire.To identify these blocks, 
+we maintain a counter per cache block.  To understand the working of the counter, let us consider a {\it n} bit
+counter. We assume the time between transitions (T) from one state to another equals to the retention time divided by the number of states,
+where the number of states is 2$^n$ .
+The block is put in {\it S$_0$} state when it is first written. After every transition time (T), the counter of each block is incremented.
+When the block reaches {\it S$_{n-1}$}, it indicates that it is going to expire in time T. 
+We define this time as {\it alert time} and the block in state {\it S$_{n-1}$} as diminishing block. 
+Increasing the value of {\it n}, will decrease the alert time at the cost of increased overhead of checking blocks at finer granularity. 
+
+Our experimental results show that a 2 bit counter similar to the one used in \cite{marget} is sufficient enough to detect the expiration time of the block .
+The block can be in one of the four states as shown in the figure~\ref{fig:architecture} (b). Counter bits are kept as a part of the SRAM tag array. 
+We calculate the overhead of 2 bit counters to be 0.4\% over one L2 cache bank.  
+Volatile STT-RAM scheme has negative impact on the performance for two reasons: (1) There will be large number of write backs to the main memory. 
+(2) The expired block could have been frequently read and losing it will incur additional read misses. We evaluate the results of this design in Section 7.
+
+% where to include gray encoding style?
 
 \subsection{{Revived STT-RAM Scheme}}
-Figure~\ref{fig:architecture} shows the schematic diagram of overall architecture design of this scheme. The main components of this design are:
+Figure~\ref{fig:architecture} a) shows the schematic diagram of the overall architecture design of this scheme. The main components of this design are:
 
 \noindent\textbf{Buffer:}
-It is a per bank small storage space with fixed number of entries made up of low-retention time STT-RAM cells. We use these entries to temporarily store the expired blocks. The optimal size of this buffer is calculated later in the section.
+It is a per bank small storage space with fixed number of entries made up of low-retention time STT-RAM cells.
+We use these entries to temporarily store the diminished blocks. We estimate the optimal buffer size later in 
+the section.
 
-\noindent\textbf{Buffer Controller}
-Buffer controller consists of a 12 bit overflow detector for the buffer. We also maintain a 12 bit block identifier associated with every buffer entry. If an expired block is directed to the buffer, overflow detector is first checked to see the occupancy of the buffer. If the buffer can hold blocks, a block id is generated by concatenating its set and way id and stored along with actual block in one of the empty buffer entries. If the buffer is fully occupied, block is written back to the main memory if it is dirty, otherwise we will let it expire.  
+\noindent\textbf{Buffer Controller:}
+Buffer controller consists of a buffer overflow detector of log$_2$N bits where N is the buffer size. If a diminishing block is directed to the buffer, the overflow detector
+is first checked to see the occupancy of the buffer. If the buffer is not full, the block is copied to one of the empty buffer entries along with set and way id.
+If the buffer is full, the dirty blocks are written back to the main memory, otherwise it is invalidated. The buffer overflow detector is also incremented by one.
 
-\noindent\textbf{Implementation Details}
-Revived STT-RAM Scheme is hereby proposed. In figure ~\ref{fig:architecture} (a) L2 cache is shown with associated tag array containing counter bits.  One of the sets, is shown in detail to clarify the details of the scheme.  All the blocks in the way are marked with their current state. We only refresh expiring blocks which are present in first eight MRU slots. We will shortly justify our decision of taking eight MRU Slots. \ding{182} shows a block which is in of the eight MRU slots and is expiring. This block is directed to the buffer. \ding{183} checks the occupancy of the buffer and if it is not full, it is copied to \ding{184} along with block id. This block id is again used to copy back the block in \ding{182} . \textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots, but are going to expire. We check these blocks in \textcircled{\raisebox{-.9pt}{B}}  to see whether they are dirty or not. If they are dirty we first write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}}.  If they are not dirty, we let them expire.
+\noindent\textbf{Implementation Details:}
+Figure ~\ref{fig:architecture} (a) shows 16-way set associative cache bank with associated tag array. Counter bits are also placed in tag array. We show the working of
+our scheme using a 2 bit counter.  One of the sets, is shown in detail to clarify the details of the scheme. All the blocks in the way are marked with their 
+current state. Each bank is a associated with a buffer and buffer controller.  Let us consider that we are using buffering scheme for eight MRU slots. Later in 
+this section, we will justify this decision. In Section 7, we will vary the number of slots to see the effects on the performance. 
 
+\noindent\textbf{Illustration of the scheme:}
+\ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the buffer. \ding{183} checks the occupancy of the buffer and if it is not full, they are copied to one of the entries of \ding{184} along with way and set id. Way and set id are again used by the \ding{183}  to copy back the blocks to the same place from where they brought from . \textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots, but are dimishing. We check these blocks in \textcircled{\raisebox{-.9pt}{B}}  to see whether they are dirty or not. If they are dirty we first write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}}.  If they are not dirty, it is invalidated.
 
-\noindent\textbf{Choosing Optimal MRU and Buffer Slots}
-In order to calculate the optimal MRU slots for buffering, we collected statistics of MRU positions of expired blocks by running various PARSEC and SPEC Benchmarks on the M5 Simulator. 
-Figure ~\ref{fig:cdf} shows the average cumulative distribution of expired blocks per bank varying with number of ways in a set. We observe that, number of expired blocks become stable after first eight MRU ways. The mean number of blocks corresponding to the first eight ways is 2048 (3.16\% overhead over per L2 cache bank), which is a good initial choice as a size of buffer. In sensitivity analysis we will fine tune the buffer size to prevent buffer overflows. 
+\noindent\textbf{Choosing Optimal Buffer and MRU Slots:}
+In order to calculate the optimal MRU slots for buffering, we collected statistics of MRU positions of diminishing blocks by running various PARSEC and SPEC Benchmarks on the M5 Simulator. 
+Figure ~\ref{fig:cdf} shows the average cumulative distribution of expired blocks per bank varying with number of ways in a set. We observe that, number of diminished blocks become stable
+after first eight MRU ways. The mean number of blocks corresponding to the first eight ways is 2048 (3.16\% overhead over per L2 cache bank),
+which is a good initial choice as the size of buffer. In sensitivity analysis we will fine tune the buffer size to minimize buffer overflows. 
 
 
 \begin{figure*} [t]
