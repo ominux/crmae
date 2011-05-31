@@ -1,3 +1,43 @@
+\begin {table}[t]
+ \centering
+  \singlespacing
+ \caption{{\bf Application characteristics}: {\it Read\%}:Denotes the percentage of reads to the L2 cache out of the total L2 accesses,
+ {\it Write\%}:Denotes the percentage of writes to the L2 cache out of the total L2 accesses, {\it Intensity}: Read/Write intensive based on read\%/write\%}
+ \label{table:benchmark}
+ \scriptsize
+\begin{tabular}{||c|c|c|c|c||c|c|c|c|c||}
+\hline
+\# & PARSEC & Read\% & Write\% & Intensity & \# & SPEC-2K6 & Read\% & Write\% & Intensity \\
+\hline \hline
+1 & blackscholes  &  91.9 &  8.1 &   Read &  13 &  bzip2 & 86.2 & 13.8 & Read \\
+\hline
+2 &     bodytrack  &     92.2 &  7.8 &   Read &  14 & gcc &  99.4 &  0.6 & Read \\
+\hline
+3 &     dedup  & 73.8 &  26.2 &  Write & 15 &    mcf & 94.5 &  5.5 & Read \\
+\hline
+4 &     facesim (fcsim.) & 78.7 &  21.3 &  Read &  16 & leslie3d & 70.7 & 29.3 & Write \\
+\hline
+5 &     ferret (frrt.) & 46.2 &  53.8 &  Write & 17 & namd &  92.7 &  7.3 & Read \\
+\hline
+6 &     fluidanimate (fluid.) &  82.4 &  17.6 &  Read &  18 & soplex & 59.6 & 40.4 & Write \\
+\hline
+7 &     freqmine (freq.) & 72.1 & 27.9 & Write & 19 & hmmer &   63.6 &  36.4 &  Write \\
+\hline
+8 &     rtview (rtvw.) & 64.1 & 35.9 &  Write & 20 & sjeng & 76.6 &  23.4 &  Write \\
+\hline
+9 &     streamcluster & 98.4 &  1.6 &   Read &  21 & libquantum & 100.0 & 0.0 & Read \\
+\hline
+10 &    swaptions (swpts.) & 49.9 & 50.1 & Write & 22 & lbm & 15.7 & 84.3 & Write \\
+\hline
+11 &    vips &  75.0 &  25.0 &  Read &  23 & GemsFDTD & 99.2 & 0.8 & Read \\
+\hline
+12 &    x264 &  95.5 &  4.5 & Read &  24 & omnetpp & 97.7 & 2.3 & Read \\
+\hline
+& & & & & 25 &  h264ref & 57.8 &  42.2 &  Write \\
+\hline \hline
+\end{tabular}
+\end{table}
+
 
 
 \begin {table*} [t]
@@ -32,7 +72,8 @@ Multiprogrammed mixes are chosen randomly from the set of 13 SPEC 2K6 applicatio
 Table ~\ref{fig:benchmarks} shows the properties of PARSEC and SPEC 2K6 applications.
 We use sim-small input for PARSEC applications and report the results of only Region of Interest (ROI)
 after warming up the caches for 500M instructions and skipping the initialization and termination phases
-(except facesim, where we report results for only 2B instructions of ROI). For the SPEC multiprogrammed mixes, we fast forward 1B Instructions, warm up caches for 500M instructions and then report
+(except facesim, where we report results for only 2B instructions of ROI). For the SPEC multiprogrammed mixes,
+we fast forward 1B Instructions, warm up caches for 500M instructions and then report
 results for 1B instructions.
 
 \noindent\textbf{Design Choices:}
@@ -75,4 +116,3 @@ configuration when no other application is running on the other cores.(Eq.(6)).
 \frac{IPC_{i}^{shared}}{IPC_{i}^{alone}}$ \hspace{1mm} \textbf{(6)}
 
 }
-
