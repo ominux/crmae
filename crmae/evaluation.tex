@@ -3,28 +3,74 @@
 \begin {table*} [t]
  \scriptsize
   \centering
- \caption {{\bf Baseline processor, cache, memory and configuration}} \label{table:sim_config}
+ \caption {{\bf Baseline processor, cache, memory and network configuration}} \label{table:sim_config}
  \begin{tabular}{|l|l|}
  \hline
 Processor Pipeline & 2 GHz processor, 64-entry instruction window, Fetch/Exec/Commit width 8 \\
 \hline
-L1 Caches & 64 KB per-core (private), 4-way set associative, 64B block size, write-back, split I/D caches, 10 MSHRs \\
+L1 Cache (SRAM) & 32 KB per-core (private) I/D cache, 4-way set associative, 64B block size, write-back, 10 MSHRs \\
 \hline
-L2 Caches &  1MB banks, shared, 16-way set associative, 64B block size, 4-cycle bank latency, 10 MSHRs \\
+L2 Cache (SRAM or STT-RAM) &  1MB (SRAM) or 4MB (STT-RAM) bank, shared, 16-way set associative, 64B block size, 10 MSHRs \\
 \hline
-Main Memory & 4GB DRAM, up to 16 outstanding requests for each processor, 400 cycle access \\
+Network & Ring network, one router per bank, 3 cycle router and 1 cycle link latency \\
+\hline
+Main Memory & 4GB DRAM, 400 cycle access \\
 \hline
 \end{tabular}
 \end{table*}
 
-\noindent\textbf{Experimental Setup}
-We evaluate our design and schemes on the modified  ALPHA M5 Simulator \cite{} . We operate M5 Simulator in Full System (FS) mode for PARSEC applications and in System Emulation (SE) Mode for SPEC 2006 Multiprogammed mixes. We model a 2GHz processor with four out of order cores. We modified M5  simulator to model low retention time STT-RAM for L2 cache. The L2 cache  is banked with different read and write latencies, with all the banks connected via a shared memory bus. We assume a fixed 400 cycles main memory latency for all our simulations. Table~\ref{table:sim_config} details our experimental system configuration. 
+\noindent\textbf{Experimental Setup:}
+We evaluate our design and schemes using modified ALPHA M5 Simulator \cite{M5} . 
+We operate M5 Simulator in Full System (FS) mode for PARSEC applications and in System Emulation (SE) Mode for SPEC 2K6 Multiprogammed mixes. We model a 2GHz processor with four out of order cores. The memory instructions are modeled through M5 detailed memory hierarchy. We modified M5  simulator to model  L2 cache banks composed of tunable retention time STT-RAM cells. A fixed 400 cycles main memory latency is used for all our simulations. Table~\ref{table:sim_config} details our experimental system configuration. 
 
-\noindent\textbf{Collection of Results}
-We report results of 12 multithreaded PARSEC applications and 14 SPEC 2006  multiprogrammed mixes. Table ~\ref{fig:benchmarks} shows the characterization of PARSEC applications and list of multiprogrammed mixes.
-We use sim-small input for PARSEC benchmarks and report the results of only Region of Interest (ROI) after skipping the initialization and termination phases (except facesim, where we report results for only 2B instructions of ROI) We also warm up caches for 100M Instructions in ROI. For SPEC multiprogrammed mixes, we fast forward 1B Instructions, warm up caches for 500M instructions and then report results for 1B instructions. 
+\noindent\textbf{Collection of Results:}
+We report results of 12 multithreaded PARSEC applications and 14 multiprogrammed mixes of 4 SPEC 2K6 applications. 
+Multiprogrammed mixes are chosen randomly from the set of 13 SPEC 2K6 applications.
+Table ~\ref{fig:benchmarks} shows the properties of PARSEC and SPEC 2K6 applications.
+We use sim-small input for PARSEC applications and report the results of only Region of Interest (ROI) 
+after warming up caches for 500M instructions and skipping the initialization and termination phases 
+(except facesim, where we report results for only 2B instructions of ROI). For SPEC multiprogrammed mixes,
+we fast forward 1B Instructions, warm up caches for 500M instructions and then report
+results for 1B instructions. 
 
-\noindent\textbf{Performance Metrics}
-For multithreaded PARSEC applications, we assume 4 threads are mapped to our modeled processor with four cores. We report normalized speedup for these applications, which is defined as the decrease in execution time of the slowest thread. We randomly choose 14 multiprogram mixes, each mix with four different applications and assign each every application to a core. 
-We report Instruction throughput and Weighted Speedup for SPEC multiprogrammed mixes, which are defined as:
+\noindent\textbf{Design Choices:}
+We report the results for the following designs:
+\squishlist
+\item {\bf S-1MB:} This is our baseline scheme, where all L2 cache banks are
+composed of SRAM cells. Capacity of each bank  is 1MB. 
+\item {\bf S-4MB:} This is our ideal case, where all L2 cache banks
+are composed of SRAM cells. Capacity of each bank is 4MB and each bank
+has same read and write latency as that of S-1MB.
+\item {\bf M-4MB:} This is our baseline scheme for STT-RAM design, where
+all L2 cache banks are composed of 10 year retention time STT-RAM cells. 
+Capacity of each bank is 4MB.  
+\item{\bf Volatile M-4MB(1sec):} This design is used to evaluate our 
+ Volatile STT-RAM Scheme described in ~\ref{}, where all L2 cache 
+banks are composed of 1 sec retention time STT-RAM cells. 
+\item {\bf Volatile M-4MB(10ms):} This design is similar to Volatile M-4MB(1sec)
+except that, now the retention time of STT-RAM cells is 10 ms.
+\item {\bf Revived M-4MB(10ms):} This design is used to evaluate our 
+ Revived STT-RAM Scheme described in ~\ref{}, where all L2 cache 
+banks are composed of 10 ms retention time STT-RAM cells. All the
+results shown with design uses 8 MRU Slots and 2048 Buffer Slots. 
+\squishend
+
+\noindent\textbf{Performance Metrics:}
+For multithreaded PARSEC applications, we assume 4 threads are mapped to our modeled
+processor with four cores. We report normalized speedup for these applications, 
+which is defined as the improvement over the slowest thread. 
+For multiprogrammed SPEC applications, we report Instruction throughput and Weighted Speedup.
+We define instruction throughput (IT) to be sum total of all the number of instructions committed
+per cycle in the entire CMP (Eq. (5)).  The weighted speedup (WS) is defined as the slowdown experienced
+by each application in a multiprogram mix, compared to its run under the same
+configuration when no other application is running on the other cores.(Eq.(6)).
+
+{
+%\scriptsize{
+ $Instruction$ $throughput$ $=$ $\displaystyle\sum_{i} IPC_{i}$ \hspace{1mm} \textbf{(5)}
+
+ $Weighted$ $speedup$ $=$ $\displaystyle\sum_{i}
+\frac{IPC_{i}^{shared}}{IPC_{i}^{alone}}$ \hspace{1mm} \textbf{(6)}
+
+}
 
