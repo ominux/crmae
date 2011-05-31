@@ -1,0 +1,118 @@
+In this section, we will discuss all the experimental results associated with our design choices.
+
+
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:parsec-new} \scriptsize \bf Normalized speedup for PARSEC Applications }
+%\end{figure*}
+\end{figure*}
+
+
+
+\noindent\textbf {Performance:} Figure \ref{fig:parsec-speedup} shows speedup improvements of a subset of PARSEC 
+multithreaded applications along with the average (taken across 12 PARSEC applications listed in Table~\ref{}). 
+All speedup numbers are normalized to S-1MB. When M-4MB design is used, the applications to the right of x264 application (including x264) are
+showing speedup improvements over S-1MB, inspite of high write latency of M-4MB.
+The reason for this is multi-fold. These applications are benefiting from 4x capacity increase and also 
+because of the presence of write buffers. To see the benefits of write buffer, 
+consider fluidanimate and vips applications. Even though they have high number of writes to the L2 cache, 
+they are benefiting from M-4MB because of the staggered writes which help write buffers in amleirorating increased write latency
+of M-4MB.The applications to the left of x264 are write intensive applications. In all these applications we see degradation in speedup
+because of the high write latency.  On an average, traditional 10 year STT-MRAM gives 3\% speedup improvement over S-1MB.
+
+
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/spec-ws.eps, width=3.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:spec-new} \scriptsize \bf Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2006 multiprogrammed mixes. }
+%\end{figure*}
+\end{figure*}
+
+
+Consider Volatile M-4MB(1sec) design. This design has no refreshing scheme, but since 1 sec time 
+covers almost all the refreshes as discussed in ~\ref{fig:distribution}, one can expect benefits of reduced write latency.
+We observe benefits over M-4MB in all the applications. Volatile M-4MB(10ms) design also 
+doesn't have any refreshing scheme but the retention time of STT-RAM
+cells used is 10ms. Although this design has very less write latency, no refreshing scheme triggers
+large number of write backs. For example in the case of vips, there is about 20\% speedup degradation over
+M-4MB, because of the large number of write backs shown in~\ref{fig:writebacks}. It is interesting to see
+the case of swaptions where there is slight improvement in speedup over M-4MB, although 
+there is increase in number of writebacks. It is because of the reduced write latency and staggered write backs. 
+Our scheme revived M-4MB(10ms), which incorporates refreshing scheme is showing speedup improvments
+in almost all applications except fluidanimate. On an average our scheme is better than traditional 10yr
+STT-RAM by 15\% and over Volatile STT-RAM (1sec) by 4.5\% (In case of facesim, our scheme is better than
+Volatile STT-RAM (1 sec) by 22.7\%). Our scheme is closer to the ideal S-4M case, difference is 4\%.
+
+
+Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup for multiprogram
+mixes. We observe that our scheme revived M-4MB gives 22\% improvement in instruction throughput 
+over M-4MB and 11\% improvement over Volatile STT-RAM (1 sec). (In case of the mix of bzip2, gcc, lbm, hmmer,
+the improvement is 15\%). 
+Weighted speedup improvement over M-4MB is 4\% and over Volatile STT-RAM(1 sec) is 2\%. 
+
+
+\noindent\textbf {Energy:}
+
+
+\begin{figure*} [t]
+\centering
+\begin{tabular}{c}
+\psfig{figure=figures/legend.eps, width=5.5in, height=0.15in}
+\end{tabular}
+\begin{tabular}{ccc}
+ \psfig{figure=figures/leak-eng.eps, width=2.1in, height=2.0in} &
+\psfig{figure=figures/dyn-eng.eps, width=2.1in, height=2.0in} &
+\psfig{figure=figures/tot-eng.eps, width=2.1in, height=2.0in} \\
+\scriptsize (a) Leakage Energy  & \scriptsize (b) Dynamic Energy & \scriptsize (c) Total Energy
+\end{tabular}
+ \hrule
+ \caption{\scriptsize \bf Energy of Applications Normalized to that of S-1MB}
+\label{fig:energy}
+\end{figure*}
+
+
+
+
+
+
+
+\subsection{Sensitivity Analysis}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/writebacks.eps, width=4.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:writebacks} \scriptsize \bf Number of Write backs normalized to M-4MB}
+%\end{figure*}
+\end{figure*}
+
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/confi.eps, width=3.9in, height=2.5in}
+ \hrule
+ \caption{\label{fig:confi} \scriptsize \bf Confidence Intervals of Dead Blocks for each Way}
+%\end{figure*}
+\end{figure*}
+
+\noindent\textbf {Choosing correct buffer slots}
+
+\noindent\textbf {Number of bits for counter}
+There is no observable difference in performance and energy by increase in the number of bits of the counter. 
+\subsection{Scaling Effects}
+
+
+
+
+
+
+
