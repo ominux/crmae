@@ -1,24 +1,22 @@
 \singlespacing
 
-Spin-Transfer Torque RAM (STT-RAM) is a CMOS compatible emerging non-volatile memory (NVM)
+Spin-Transfer Torque RAM (STT-RAM) is an emerging non-volatile memory (NVM)
 technology that has the potential to replace the conventional
 on-chip SRAM caches for designing a more efficient memory hierarchy for
 future multicore architectures.
 %While the high density, low leakage and high endurance
 %of STT-RAM are attractive compared to SRAM,
-However, it's high write latency and dynamic
+However, it's long write latency and high dynamic
 write energy are major obstacles for being competitive with the SRAM-based cache hierarchy.
-On the other hand, STT-RAM technology has another adaptable feature that it is possible to reduce its write
-latency by reducing its retention time, thereby making it volatile.
-In this paper, we exploit this volatile property of the STT-RAM for designing an efficient L2 cache
-architecture. The paper addresses several critical design issues such as how do we decide a suitable retention time for last level cache,
+On the other hand, the non-volatility feature with years of data retention time for STT-RAM technology is not necessary for the usage of STT-RAM as on-chip cache, since the life time of cache data are usually within us or ms. Consequently,  we exploit such observation for designing an efficient L2 cache
+architecture, and propose to trade off the non-volatility (data retention time)
+for better write performance/energy in STT-RAM cache design. The paper addresses several critical design issues such as how do we decide a suitable retention time for last level cache,
 what is the relationship between retention time and write latency,
 and how do we architect the cache hierarchy with a volatile STT-RAM.
 %Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 benchmarks, we
 %observe that retention time in the order of 10-40 ms is a good design point to handle most of the
-%writes.  
-In this paper, we propose to trade off the non-volatility (data retention time)
-for better write performance/energy in STT-RAM cache design. We study two
+%writes.
+We study two
 data-retention relaxation cases, one with data retention time of 1 second, which satisfies the lifetime requirement of typical cache blocks; and the other one with data retention time of 1ms, which is a more aggressive design for better performance/energy gains but a data refreshing mechanism is needed.
 In the aggressive data retention time relaxation design, for the rest of the cache blocks that have a higher inter-write
 time than the STT-RAM retention time, we propose an architectural solution to identify these blocks
