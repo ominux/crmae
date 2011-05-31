@@ -3,7 +3,7 @@
 \begin{wrapfigure}{l}{0.50\textwidth}
 %\begin{figure*} [t]
 \centering
- \psfig{figure=figures/stt-cell.eps, width=1.65in, height=0.49\textwidth, angle=-90}
+ \psfig{figure=figures/stt-cell.eps, width=1.6in, height=0.4\textwidth, angle=-90}
  \hrule
  \caption{\label{fig:mram_cell} \scriptsize \bf (a) Structural view of of STT-RAM Cache Cell (b) Anti Space Parallel (High Resistance, Indicating ``1" state (c) Parallel (Low Resistance, Indicating ``0" state}
 %\end{figure*}
@@ -46,39 +46,40 @@ To simulate the performance of STT-RAM cache, it is important to estimate its ce
  \caption{\label{fig:retention} \scriptsize \bf MTJ thermal stability requirement for different retention time}
 \end{wrapfigure}
 
-The retention time of a MTJ is largely determined by the thermal stability of the MTJ. The relation between retention time and thermal barrier is captured in Figure~\ref{fig:retention}, which can be modeled as $t=C\times e^{k\Delta}$, where $t$ is the retention time and $\Delta$ is the thermal barrier while $C$ and $k$ are fitting constants. Thermal stability of the free layer in an MTJ does not only have impact on retention time of STT-RAM memory cell but also on the write current. It was found in~\cite{PMTJ:Toshiba08} that the switching current of MTJ increases almost linearly with thermal barrier when thermal barrier is $<70k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is temperature. Here we combine this observation with the write current versus write time trade-off described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ is lowered we are able to achieve faster write speed or/and smaller write current/energy. The most straightforward way to reduce thermal barrier is to tune device geometry such as planar area, thickness of free layer and aspect ratio of the elliptic MTJ. 
+The retention time of a MTJ is largely determined by the thermal stability of the MTJ. The relation between retention time and thermal barrier is captured in Figure~\ref{fig:retention}, which can be modeled as $t=C\times e^{k\Delta}$, where $t$ is the retention time and $\Delta$ is the thermal barrier while $C$ and $k$ are fitting constants. Thermal stability of the free layer in an MTJ does not only have impact on retention time of STT-RAM memory cell but also on the write current. It was found in~\cite{PMTJ:Toshiba08} that the switching current of MTJ increases almost linearly with thermal barrier when thermal barrier is $<70k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is temperature. Here we combine this observation with the write current versus write time trade-off described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ is lowered we are able to achieve faster write speed or/and smaller write current/energy. The most straightforward way to reduce thermal barrier is to tune device geometry such as planar area, thickness of free layer and aspect ratio of the elliptic MTJ.
 
 \subsection{STT-RAM Cache Simulation Setup}
 
 \begin{table*}[t]
+ \scriptsize
   \centering
   \caption{16-way L2 Cache Simulation Results}
   \label{allcaches}
-  \begin{tabular}{| c | c | c  | c | c | c | c |}
+  \begin{tabular}{| c | c | c  | c | c | c | c | c | c |}
   	\hline\hline
-  	\multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & Area  & Read Latency & Write Latency & Leakage Power\\
-  & & & ($mm^2$) & ($ns$) & ($ns$) & ($mW$) \\
+  	\multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & Area  & Read Latency & Write Latency & Read Energy & Write Energy & Leakage Power\\
+  & & & ($mm^2$) & ($ns$) & ($ns$) & ($nJ$) & ($nJ$) & ($mW$) \\
   	\hline\hline
-  	\multicolumn{3}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $4542$ \\
+  	\multicolumn{3}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $0.578$ & $0.578$ &$4542$ \\
   	\hline
-  	\multirow{8}{*}{$4MB$ STT-RAM} & \multirow{2}{*}{$t=10yr$} & Leakage Opt.& $2.628$ & $2.434$ & $4.919$ & $1399$ \\
-  	\cline{3-3}\cline{4-7}
-  	& & Latency Opt. & $3.003$ & $0.998$ & $10.61$ & $2524$ \\
-  	\cline{2-3}\cline{4-7}
-  	& \multirow{2}{*}{$t=1s$} & Leakage Opt. & $2.203$ & $2.044$ & $3.552$ & $1388$ \\
-  	\cline{3-3}\cline{4-7}
-  	& & Latency Opt. & $2.904$ & $0.973$ & $5.571$ & $2235$ \\
-  	\cline{2-3}\cline{4-7}
-    & \multirow{2}{*}{$t=100ms$} & Leakage Opt. & $2.181$ & $1.994$ & $3.432$ & $1250$ \\
-  	\cline{3-3}\cline{4-7}
-  	& & Latency Opt. & $2.902$ & $0.963$ & $3.002$ & $2230$ \\
-  	\cline{2-3}\cline{4-7}
-  	& \multirow{2}{*}{$t=10ms$} & Leakage Opt. & $2.167$ & $1.956$ & $3.390$ & $1151$ \\
-  	\cline{3-3}\cline{4-7}
-  	& & Latency Opt. & $2.901$ & $0.959$ & $2.598$ & $2227$ \\	
+  	\multirow{8}{*}{$4MB$ STT-RAM} & \multirow{2}{*}{$t=10yr$} & Leakage Opt.& $2.628$ & $2.434$ & $4.919$ & $0.635$ & $0.663$ & $1399$ \\
+  	\cline{3-3}\cline{4-9}
+  	& & Latency Opt. & $3.003$ & $0.998$ & $10.61$ & $1.035$ & $1.066$ & $2524$ \\
+  	\cline{2-3}\cline{4-9}
+  	& \multirow{2}{*}{$t=1s$} & Leakage Opt. & $2.203$ & $2.044$ & $3.552$ & $0.589$ & $0.616$ & $1388$ \\
+  	\cline{3-3}\cline{4-9}
+  	& & Latency Opt. & $2.904$ & $0.973$ & $5.571$ & $1.015$ & $1.036$ & $2235$ \\
+  	\cline{2-3}\cline{4-9}
+    & \multirow{2}{*}{$t=100ms$} & Leakage Opt. & $2.181$ & $1.994$ & $3.432$ & $0.575$ & $0.608$ & $1250$ \\
+  	\cline{3-3}\cline{4-9}
+  	& & Latency Opt. & $2.902$ & $0.963$ & $3.002$ & $1.008$ & $1.021$ & $2230$ \\
+  	\cline{2-3}\cline{4-9}
+  	& \multirow{2}{*}{$t=10ms$} & Leakage Opt. & $2.167$ & $1.956$ & $3.390$ & $0.571$ & $0.601$ & $1151$ \\
+  	\cline{3-3}\cline{4-9}
+  	& & Latency Opt. & $2.901$ & $0.959$ & $2.598$ & $1.002$ & $1.028$ & $2227$ \\	
   	\hline\hline
   \end{tabular}
 \end{table*}
 
-We simulate SRAM-based caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}, which is a circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile memories. All the models described in this Section has been integrated in NVsim. The simulation results are listed in Table~\ref{allcaches}. We can see that the leakage-optimized $4MB$ non-volatile STT-RAM cache has almost the same area with $1MB$ SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}. By relaxing retention time of STT-RAM with lower thermal barrier, the leakage-optimized STT-RAM cache can have smaller area, faster write latency and less leaky peripheral circuity. However, as retention time is exponentially related with thermal barrier and thermal barrier is extremely sensitive to process variation and temperature, the benefit of decreasing write latency by relaxing the retention time in the same order (i.e. from $50ms$ to $10ms$) is so small which may be offset by slight variation in device geometry or environment temperature. Moreover, the intrinsic fluctuations in CACTI make it very difficult to observe that small benefit as well. Another point worth mentioning is that the read latency of leakage-optimized $4MB$ STT-RAM cache is significantly larger than $1MB$ SRAM cache because sensing the state of STT-RAM cell takes longer and fast SRAM sensing. Thus, we reduce the array size to improve the latency of STT-RAM cache. As can be seen in Table~\ref{allcaches}, the latency-optimized STT-RAM cache has noticeable better read and write latency with $14\%-34\%$ area overhead compared to leakage-optimized STT-RAM cache with the same retention time.
+We simulate SRAM-based caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}, which is a circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile memories. All the models described in this Section has been integrated in NVsim. The simulation results are listed in Table~\ref{allcaches}. We can see that the leakage-optimized $4MB$ non-volatile STT-RAM cache has almost the same area with $1MB$ SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}. By relaxing retention time of STT-RAM with lower thermal barrier, the leakage-optimized STT-RAM cache can have smaller area, faster write latency and less leaky peripheral circuity. However, as retention time is exponentially related with thermal barrier and thermal barrier is extremely sensitive to process variation and temperature, the benefit of decreasing write latency by relaxing the retention time in the same order (i.e. from $50ms$ to $10ms$) is so small which may be offset by slight variation in device geometry or environment temperature. Moreover, the intrinsic fluctuations in CACTI make it very difficult to observe that small benefit as well. Another point worth mentioning is that the read latency of leakage-optimized $4MB$ STT-RAM cache is significantly larger than $1MB$ SRAM cache because sensing the state of STT-RAM cell takes longer and fast SRAM sensing. Thus, we reduce the array size to improve the latency of STT-RAM cache. As can be seen in Table~\ref{allcaches}, the latency-optimized STT-RAM cache has noticeable better read and write latency with $14\%-34\%$ area overhead about $40\%$ dynamic energy overhead compared to leakage-optimized STT-RAM cache with the same retention time.
 
