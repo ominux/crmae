@@ -10,7 +10,7 @@
 
 STT-RAM uses Magnetic Tunnel Junction~(MTJ) as the memory storage and leverages the difference in magnetic directions to represent the memory bit.  As shown in Fig.~\ref{fig:mram_cell}, an MTJ contains two ferromagnetic layers.  One ferromagnetic layer has fixed magnetization direction and it is called the reference layer, while the other layer has a free magnetization direction that can be changed by passing write current, and it is called the free layer. The relative magnetization direction of two ferromagnetic layers determines the resistance of MTJ.  If two ferromagnetic layers have the same directions, the resistance of MTJ is low, indicating a ``1" state; if two layers have different directions, the resistance of MTJ is high, indicating a ``0" state.
 
-As shown in Fig.~\ref{fig:mram_cell}, when writing ``0" state into STT-RAM cells, positive voltage difference is established between SL and BL; when writing ``1" state, vice versa.  The current amplitude required to reverse the direction of the free ferromagnetic layer is determined by the size and aspect ratio of MTJ and the write pulse duration. %Generally, the smaller the MTJ is or the longer the write pulse is applied, the less the critical switching current is needed to switch the MTJ state.
+As shown in Fig.~\ref{fig:mram_cell}, when writing ``0" state into STT-RAM cells, positive voltage is applied on bitline; when writing ``1" state, vice versa.  The current amplitude required to reverse the direction of the free ferromagnetic layer is determined by the size and aspect ratio of MTJ and the write pulse duration.
 
 \subsection{Write current versus write pulse width trade-off} \label{subsec:ict}
 
@@ -19,9 +19,6 @@ As shown in Fig.~\ref{fig:mram_cell}, when writing ``0" state into STT-RAM cells
  \psfig{figure=figures/IcWt.eps, width=3in}
  \caption{\label{fig:IcWt} \scriptsize \bf Demonstration of three switching phases: thermal activation, dynamic reversal and precessional switching }
 \end{wrapfigure}
-
-
-
 
 
 The current amplitude required to reverse the direction of the free ferromagnetic layer is determined by a many factors such as the material property, device geometry and importantly the write pulse duration. Generally, the longer the write pulse is applied, the less the switching current is needed to switch the MTJ state. Three distinct switching modes were identified~\cite{STTRAM:JAP07} according to the operating range of switching pulse width $\tau$: thermal activation ($\tau>20ns$), processional switching ($\tau<3ns$) and dynamic reversal ($3ns<\tau<20ns$).
@@ -39,6 +36,7 @@ To simulate the performance of STT-RAM cache, it is important to estimate its ce
 \begin{equation}
 \mathrm{Area}_{\mathrm{cell}}={3\left(W/L+1\right)}(F^2)
 \end{equation}
+where $W$ and $L$ are the channel width and length of the access NMOS transistor.
 
 \subsection{Impact of MTJ Retention Time on STT-RAM} \label{subsec:retention}
 \begin{wrapfigure}{l}{0.50\textwidth}
