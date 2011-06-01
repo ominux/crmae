@@ -14,7 +14,7 @@ the memory wall problem for many core systems.
 
 
 Spin-Transfer Torque RAM (STT-RAM) is a promising memory technology that delivers on many aspects,
-desirable of an universal memory. It has the potential to replace the conventional on-chip SRAM
+desirable of a universal memory. It has the potential to replace the conventional on-chip SRAM
 caches because of its higher density, competitive read times, and lower leakage power consumption
 compared to static-RAM (SRAM). However, the high write latencies and write energy are key drawbacks
 of this technology for providing competitive or better performance compared to the SRAM-based cache
@@ -23,57 +23,55 @@ and write energy at the architectural level~\cite{mram-energy-reduction,gsun-hpc
 these architectural approaches, a recent  work explored the {\it feasibility} of relaxing STT-RAM
 data retention times to reduce both write latencies and write energy~\cite{STTRAM:HPCA11}. This
 adaptable feature of tuning the data retention time can be exploited in several dimensions. The focus
-of this paper is to tune this data retention time to closely match the required lifetime of the last
+of this paper is to tune this data retention time to closely match the required refresh time of the last
 level cache blocks to achieve significant performance and energy gains. In this context, the paper
 addresses several design issues such as how to decide an appropriate retention time for the last
-level caches, what is the relationship between retention time and write latency, and how do we
+level caches, what the relationship between retention time and write latency is, and how we
 architect the cache hierarchy with a volatile STT-RAM.
 
 The non-volatile nature and non-destructive read ability of STT-RAM provides a key difference with
 regard to traditional on-chip cache design with SRAM technology. However, as our analysis will show,
 for many applications, it is sufficient if the data stored in the last level of a cache hierarchy
-remains valid for a few tens of {\it milliseconds} in contrast to {\it microseconds} for the L1 cache~\cite{3t1d-cache}.
+remains valid for a few tens of {\it ms} in contrast to {\it $\mu$} for the L1 cache~\cite{3t1d-cache}.
 Consequently, the duration of data retention in STT-RAM
 is an obvious candidate for device optimization for the cache design. We, therefore, conduct an
-application-driven study to analyze the inter-write times of the L2 cache blocks to decide a suitable
-data retention time. Although lifetime analysis of cache lines has been the conducted earlier to
+application-driven study to analyze the inter-write times (refresh times) of the L2 cache blocks to decide a suitable
+data retention time. Although lifetime analysis of cache lines has been conducted earlier to
 improve performance and reduce power consumption~\cite{cache-decay-2001,3t1d-cache}, we revisit this
-topic with a different intention - correlating STT-RAM data retention time to cache life time. An
+topic with a different intention - correlating STT-RAM data-retention time to cache lifetime. An
 extensive analysis of PARSEC and SPEC 2006 benchmarks using the M5 simulator~\cite{M5} indicates that
-the average inter-write times for most of the L2 cache blocks is close to 10ms, and thus, we advocate
+the average inter-write times for most of the L2 cache blocks is close to 10{\it ms}, and thus, we advocate
 our STT-RAM design with this retention time.
 
 We conduct a detailed device level analysis of the STT-RAM cells to analyze the write current versus
 write pulse width tradeoffs, cell area analysis, and retention time stability analysis to capture the
-relationship between area, read/write latency and leakage power as a function of the retention time.
+relationship between area, read/write latency and leakage power as a function of the retention time. Our observations demonstrate that the retention times in the range of {\it ms} are more practical compared to the retention time in the
+{\it $\mu$s} range as described in prior work~\cite{STTRAM:HPCA11}. Consequently, using this {\it ms} range retention time model, we propose effective
+architectural techniques to avoid any data loss due to the volatile STT-RAM-based cache hierarchy.
 
-Our observations demonstrate that the retention times in the range of milliseconds ({\it ms}) are more practical compared to the retention time in the microseconds
-({\it $\mu$s}) range as described in prior work~\cite{STTRAM:HPCA11}. Consequently, using this {\it ms} range retention time model, we then propose effective
-architectural techniques to avoid any data loss due the volatile STT-RAM-based cache hierarchy.
-
-%Our observations demonstrate that the retention times in the range of 
+%Our observations demonstrate that the retention times in the range of
 %Our observations, in contrast to the results reported in~\cite{STTRAM:HPCA11} indicate that retention
 %times in the range of milliseconds ({\it ms}) are probably more achievable than in the microseconds
 %({\it $\mu$s}) range. Thus, using this {\it ms} range retention time model, we propose effective
 %architectural techniques to avoid any data loss due the volatile STT-RAM-based cache hierarchy.
 
-A key challenge in determining a suitable data retention times for the STT-RAM is to balance the
-reduced write latency of cells with lower retention time against the overhead for data refresh or
-write back of cache lines with longer lifetimes. In this paper, we compare 3 different STT-RAM based
+A key challenge in determining a suitable data-retention time for the STT-RAM is to balance the
+reduced write latency of STT-RAM cells with lower retention time against the overhead for data refresh or
+write-back of cache lines with longer lifetimes. In this paper, we compare 3 different STT-RAM based
 cache designs: (1) STT-RAM cache without retention time relaxation (10+ years of data retention
-time); (2) STT-RAM cache with retention time of 1 second, which is long enough for the lifetime of
+time); (2) STT-RAM cache with retention time of 1{\it sec}, which is long enough for the inter-write time of
 majority of the cache lines,and therefore, no refreshing overhead is incurred; (3)STT-RAM cache with
-retention time of 10ms, which is a more aggressive design with better performance/energy gain, but a
-data refreshing technique is needed for correct operations, since cache lines that have lifetimes
-exceeding 10ms are likely to loose data. Thus, we propose simple extensions to the L2 cache design
-for avoiding any data loss. This include a simple 2-bit counter (similar to one proposed
-in~\cite{cache-decay-2001}) to keep track of the lifetime of all the cache blocks and a small buffer
-to temporarily store the blocks whose time has exceeded the retention time. We conduct
+retention time of 10{\it ms}, which is a more aggressive design with better performance/energy gain, but a
+data refreshing technique is needed for correct operations, since cache lines that have inter-write times
+exceeding 10{\it ms} are likely to lose data. Thus, we propose simple extensions to the L2 cache design
+for avoiding any data loss. This includes a simple 2-bit counter (similar to one proposed
+in~\cite{cache-decay-2001}) to keep track of the inter-write times of all the cache blocks and a small buffer
+to temporarily store the blocks whose inter-write time has exceeded the retention time. We conduct
 execution-driven analysis of our proposed techniques using the M5 simulator and a suite of PARSEC and
 SPEC 2006 benchmarks. The main contributions of this work are the following:
 
 \noindent\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
-device characterization of data retention tunability in STT-RAM Cells providing insight to the
+device characterization of data-retention tunability in STT-RAM Cells providing insight to the
 underlying principles enabling these tradeoffs. We believe the design in~\cite{STTRAM:HPCA11} is very
 aggressive and may not be feasible considering the state-of-the-art in device technology. Moreover,
 as our analysis shows, a very aggressive {\it $\mu$s} level retention time is unsuitable for the last
@@ -86,7 +84,7 @@ We analyze the time between writes or replacements to a cache line for
 various multi-threaded and multi-programmed workloads. Our characterization
 augments the prior body of work that analyzes cache lifetimes mainly in
 single processor and single program configurations. Based on the L2 cache
-behavior, we propose to design STT-RAMs with retention time in the range of 10ms.
+behavior, we propose to design STT-RAMs with retention time in the range of 10{\it ms}.
 
 \noindent\textbf{Architectural solution to handle STT-RAM volatility:} We present a simple buffering
 mechanism to ensure the integrity of programs given the volatile nature of our tuned STT-RAM cells.
@@ -104,7 +102,7 @@ with SPEC 2K6 benchmarks, and an average energy saving of 60\%, over 1MB SRAM ac
 The rest of this paper is as follows: In Section~\ref{sec:design}, we discuss the volatile STT-RAM design to
 parameterize the retention time and write latency behavior. Section~\ref{sec:motivation} presents a retention time
 estimation study from application perspective. Following this, the design of a volatile STT-RAM-based last
-level cache architecture is given in Section~\ref{sec:implementation}; the experimental platform details in Section~\ref{sec:evaluation},
+level cache architecture is given in Section~\ref{sec:implementation}; the experimental platform details in Section~\ref{sec:evaluation};
 results in Section~\ref{sec:results}, and description of related work in Section~\ref{sec:prior_work}.
 The last section provides concluding remarks.
 
