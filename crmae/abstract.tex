@@ -6,27 +6,27 @@ on-chip SRAM caches for designing a more efficient memory hierarchy for
 multi-core architectures.
 %While the high density, low leakage and high endurance
 %of STT-RAM are attractive compared to SRAM,
-However, it's long write latency and high dynamic
+However, its long write latency and high dynamic
 write energy are major obstacles for being competitive with the SRAM-based cache hierarchy.
-On the other hand, the non-volatility feature with years of data retention time for STT-RAM technology is not necessary for the usage of STT-RAM as on-chip cache, since the life time of cache data are usually within ({\it $\mu$s}) or {\it ms}. Consequently,  we exploit such observation for designing an efficient L2 cache
-architecture, and propose to trade off the non-volatility (data retention time)
-for better write performance/energy in STT-RAM cache design. The paper addresses several critical design issues such as how do we decide a suitable retention time for last level cache,
-what is the relationship between retention time and write latency,
-and how do we architect the cache hierarchy with a volatile STT-RAM.
+On the other hand, the non-volatility feature with years of data-retention time for STT-RAM technology is not necessary for the usage of STT-RAM as on-chip cache, since the refresh times of cache data are usually within {\it $\mu$s} or {\it ms}. Consequently,  we exploit such observation for designing an efficient L2 cache
+architecture, and propose to trade off the non-volatility (data-retention time)
+for better write performance/energy in STT-RAM cache design. The paper addresses several critical design issues such as how we decide a suitable retention time for last level cache,
+what the relationship between retention time and write latency is,
+and how we architect the cache hierarchy with a volatile STT-RAM.
 %Through an extensive execution driven analysis of the inter-write time of several PARSEC and SPEC 2006 benchmarks, we
 %observe that retention time in the order of 10-40 ms is a good design point to handle most of the
 %writes.
 We study two
-data-retention relaxation cases, one with data retention time of 1 {\it sec}, which satisfies the lifetime requirement of typical cache blocks; and the other one with data retention time of 10ms, which is a more aggressive design for better performance/energy gains, but a data refreshing mechanism is needed.
-In the aggressive 10 {\it ms} retention time design, for the rest of the cache blocks that have a higher inter-write
+data-retention relaxation cases, one with data-retention time of 1{\it sec}, which satisfies the refresh time requirement of typical cache blocks; and the other one with data-retention time of 10{\it ms}, which is a more aggressive design for better performance/energy gains, but a data refreshing mechanism is needed.
+In the aggressive 10{\it ms} retention time design, for the rest of the cache blocks that have a higher refresh time
 time than the STT-RAM retention time, we propose an architectural solution to identify these blocks
-with a per block 2 bit counter, temporarily save a limited number of MRU blocks in a buffer,
+with a per block 2-bit counter, temporarily save a limited number of MRU blocks in a buffer,
 and write-back the rest of the dirty blocks to avoid any data loss.
 %are not in first seven MRU slots.
 %The blocks in these slots are copied to
 %a per bank small buffer and again copied back to the respective slots.
-Our experiments with a 4 core architecture with an SRAM-based L1 cache and STT-RAM-based L2 cache
+Our experiments with a 4-core architecture with an SRAM-based L1 cache and STT-RAM-based L2 cache
 indicate that not only we can eliminate the high write overhead of an NVM STT-RAM, but can provide
-on an average 10-12\% improvement in speedup compared to the traditional SRAM-based
+on an average 10-12\% improvement in performance compared to the traditional SRAM-based
 design, while reducing the energy consumption significantly.
 
