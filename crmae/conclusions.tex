@@ -7,11 +7,11 @@ for better write performance/energy in STT-RAM cache design.
 In this context, we conduct an application-driven study to characterize the
 life time of a second level cache with the intention of using this time as the ideal
 retention time for the STT-RAM. Execution-driven experiments with several PARSEC and SPEC benchmarks
-indicate that at leat 50\% of the cache blocks are updated in 10ms and thus, choose 10 ms
+indicate that at leat 50\% of the cache blocks are updated in 10ms and thus, chose 10 ms
 as an optimal retention time by analyzing the STT-RAM retention time and write time trade-offs.
 We investigate two design alternatives for avoiding the data loss due to the volatile nature of the
 STT-RAM. The first approach write backs all the dirty blocks in the cache at the end of the retention time
-and the second approach uses a limited buffering scheme to refresh the cache blocks that are not refreshed
+and the second approach uses a buffering scheme to refresh the cache blocks that are not refreshed
 during the retention time.
 
 We analyze three different scenarios for designing the L2 cache: one with 1 second retention time with write back,
@@ -24,4 +24,6 @@ throughput and YY\% reduction in total energy consumption, the proposed design c
 with an equal capacity SRAM configuration, while being more energy efficient.
 Furthermore, compared to the prior schemes that are aimed at hiding the high write latency of STT-RAMs,
 the approach to reduce its write latency seems a better solution for designing a performance and power efficient
-memory hierarchy for multi-cores.
+memory hierarchy for multi-cores. 
+
+NOTE: ADD FINAL CONCLUSION
