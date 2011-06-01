@@ -3,7 +3,6 @@
 %\begin{figure*} [t]
 \center
  \psfig{figure=figures/arch.eps, width=4.5in, height=3.5in}
- \hrule
  \caption{\label{fig:architecture} \scriptsize \bf A modified 16-way L2 cache architecture with a 2-bit counter and a small buffer}
 %\end{figure*}
 \end{figure*}
@@ -11,8 +10,8 @@
 
 %In Section 3, we argued that 10 ms is the ideal retention time for L2 cache blocks by considering both application characteristics
 %and technology aspect.
-We observe from figure~\ref{fig:distribution} that on an average, approximately 50\% blocks will
-expire after 10 ms, if no action is taken. This expiration of blocks will not only result in additional cache misses
+We observe from Figure~\ref{fig:distribution} that on an average, approximately 50\% blocks will
+expire after 10 ms, if no action is taken. This expiration of blocks will not only result in additional cache misses,
 but also would
 result in data loss, if they were dirty. In this section, we propose our architectural solutions starting with
 a naive scheme of writing back
@@ -23,7 +22,7 @@ In this design, we write back all the unrefreshed dirty blocks which become vola
 To identify these blocks,
 we maintain a counter per cache block.  To understand the working of the counter, let us consider an {\it n} bit
 counter. We assume the time between transitions (T) from one state to another equals to the retention time
-divided by the number of states, where the number of states is 2$^n$ .
+divided by the number of states, where the number of states is 2$^n$.
 A block starts in state {\it S$_0$} when it is first brought to the cache. After every transition time (T),
 the counter of each block is incremented.
 When a block reaches  state {\it S$_{n-1}$}, it indicates that it is going to expire in time T.
@@ -38,45 +37,53 @@ Our experimental results show that a 2-bit counter, similar to the one used in \
 is sufficient enough to detect the expiration time of the blocks without significantly affecting the performance.
 With a 2-bit counter a block can be in one of the four states as shown in figure~\ref{fig:architecture} (b).
 A block moves from state {\it S$_0$} to state {\it S$_3$} in steps on 2.5ms and any time the block is refreshed, it
-goes back to the initial state.  The Counter bits are kept as a part of the SRAM tag array.
+goes back to the initial state.  The counter bits are kept as a part of the SRAM tag array.
 The overhead of the 2-bit counter is 0.4\% for one L2 cache bank.
 
-This scheme has negative impact on the performance for two reasons: (1) There will be  a large number of write
+This scheme has a negative impact on the performance for two reasons: (1) There will be  a large number of write
 backs to the main memory for all the dirty blocks at the end of the retention time.
 (2) The expired block could have been frequently read and losing it will incur additional read misses.
-We evaluate the results of this design in Section 7.
+We evaluate the results of this design in Section~\ref{sec:results}.
 
 % where to include gray encoding style?
 
 \subsection{{Revived STT-RAM Scheme}}
 In order to minimize the write back overhead of the expired blocks at the end of retention time, we propose
-a different technique, where we use a small buffer to hold a subset of expired blocks at the end of the retention
-time. We call this design the {\it revived STT-RAM} scheme. These dirty blocks are thus not written back to the main memory. They are simply written to the temporary buffer and
-written back to the cache to start another freash cycle.
-Figure~\ref{fig:architecture} a) shows the schematic diagram of the proposed scheme.
+a different technique, where we use a small buffer to hold a subset of diminished blocks at the end of the retention
+time. We call this design the {\it revived STT-RAM} scheme. These dirty blocks are, thus, not written back to the main memory. They are simply written to the temporary buffer and
+written back to the cache to start another fresh cycle.
+Figure~\ref{fig:architecture}(a) shows the schematic diagram of the proposed scheme.
 The main components of this design are a small buffer and a buffer controller.
 
 \noindent\textbf{Buffer:}
 It is a per bank small storage space with a fixed number of entries made up of low-retention time STT-RAM cells.
-We use these entries to temporarily store the diminished blocks. We estimate the optimal buffer size later in
-the section.
+We use these entries to temporarily store the diminished blocks. In order to calculate the optimal MRU slots for buffering, 
+we collected statistics of MRU positions of diminishing blocks by running various PARSEC and SPEC Benchmarks on the M5 Simulator.
+Figure ~\ref{fig:cdf} shows the average cumulative distribution of diminshed blocks per bank
+as a function of the number of ways in a set. We observe that the number of diminished blocks becomes stable
+after first eight MRU ways. The mean number of blocks corresponding to the first eight ways is 1900
+(3\% overhead over per L2 cache bank),
+which is a good initial choice for the buffer size. In sensitivity analysis, we will fine tune the buffer size
+to minimize buffer overflows.
 
 \noindent\textbf{Buffer Controller:}
 The buffer controller consists of a log$_2$N bit buffer overflow detector, where N is the buffer size.
-The buffer overflow detector is incremented when a diminishing block
-is copied to one of the buffer slots. The overflow detector is first checked to see the occupancy of the buffer,
-when a diminishing block is directed to the buffer.
+%The buffer overflow detector is incremented when a diminishing block
+%is copied to one of the buffer slots. 
+The overflow detector is first checked to see the occupancy of the buffer,
+when a diminishing block is directed to the buffer and the buffer overflow detector is incremented. 
 The block is copied to one of the empty buffer entries along with the set and way id, if there is
 buffer space.
 If the buffer is full, the dirty blocks are written back to the main memory; otherwise they are  invalidated.
 
 \noindent\textbf{Implementation Details:}
 Figure ~\ref{fig:architecture} (a) shows a 16-way set associative cache bank with the associated tag array.
-Counter bits are also placed in tag array. We show the working of
+We show the working of
 our scheme using a 2-bit counter.  One of the sets, is shown in detail to clarify the details of the scheme.
 All the blocks in a set are marked with their current state. Each bank is  associated with a buffer and the buffer controller.
-Let us consider that we are using the buffering scheme for eight MRU slots. Later in
-this section, we will justify this decision. In Section 7, we will vary the number of slots to see the effects on performance.
+Let us consider that we are using the buffering scheme for eight MRU slots, based on the cumulative distribution
+of MRU slots~\ref{fig:cdf}  
+In Section ~\ref{sec:results}, we will vary the number of slots to see the effects on performance.
 In Figure  ~\ref{fig:architecture} (a), \ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the buffer. \ding{183} checks
 the occupancy of the buffer and if it is not full, each of the diminishing blocks is copied to one of the entries
 of \ding{184} along with way and set id. Way and set id are again used by the \ding{183}  to copy back the blocks to
@@ -84,23 +91,22 @@ the same place in the L2 cache. \textcircled{\raisebox{-.9pt}{A}} shows the bloc
 but are diminishing. We check these blocks in \textcircled{\raisebox{-.9pt}{B}} to see whether they are dirty or not.
 If they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}}.  If they are not dirty, they are invalidated.
 
-\noindent\textbf{Choosing Optimal Buffer  Size and MRU Slots:}
-In order to calculate the optimal MRU slots for buffering, we collected statistics of MRU positions of diminishing blocks
-by running various PARSEC and SPEC Benchmarks on the M5 Simulator.
-Figure ~\ref{fig:cdf} shows the average cumulative distribution of expired blocks per bank
-as a function of the number of ways in a set. We observe that the number of diminished blocks becomes stable
-after first eight MRU ways. The mean number of blocks corresponding to the first eight ways is 2048
-(3.125\% overhead over per L2 cache bank),
-which is a good initial choice for the buffer size. In sensitivity analysis, we will fine tune the buffer size
-to minimize buffer overflows.
+%\noindent\textbf{Choosing Optimal Buffer  Size and MRU Slots:}
+%In order to calculate the optimal MRU slots for buffering, we collected statistics of MRU positions of diminishing blocks
+%by running various PARSEC and SPEC Benchmarks on the M5 Simulator.
+%Figure ~\ref{fig:cdf} shows the average cumulative distribution of expired blocks per bank
+%as a function of the number of ways in a set. We observe that the number of diminished blocks becomes stable
+%after first eight MRU ways. The mean number of blocks corresponding to the first eight ways is 1900
+%(3\% overhead over per L2 cache bank),
+%which is a good initial choice for the buffer size. In sensitivity analysis, we will fine tune the buffer size
+%to minimize buffer overflows.
 
 
 \begin{figure*} [t]
 %\begin{figure*} [t]
 \centering
  \psfig{figure=figures/cdf.eps, width=3.9in, height=2.5in}
- \hrule
- \caption{\label{fig:cdf} \scriptsize \bf Cumulative Distribution of Dead Blocks per Bank with number of ways.}
+  \caption{\label{fig:cdf} \scriptsize \bf Cumulative Distribution of Dead Blocks per Bank with number of ways.}
 %\end{figure*}
 \end{figure*}
 
