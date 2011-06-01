@@ -2,6 +2,16 @@ In this section, we provide a comparative analysis of the performance and energy
 We also discuss the sensitivity of of several architectural parameters.
 %experimental results associated with our design choices.
 
+\begin{figure*} [t]
+\centering
+\begin{tabular}{cc}
+ \psfig{figure=figures/writebacks.eps, width=3.2in, height=2.0in} &
+\psfig{figure=figures/spec-writebacks.eps, width=2.2in, height=2.0in} \\
+\scriptsize (a) PARSEC Applications  & \scriptsize (b) Average across Multiprogrammed Mixes.
+\end{tabular}
+ \caption{\scriptsize \bf Number of Write backs normalized to M-4MB}
+\label{fig:writebacks}
+\end{figure*}
 
 
 \begin{figure*} [t]
@@ -10,21 +20,21 @@ We also discuss the sensitivity of of several architectural parameters.
  \caption{\label{fig:parsec-new} \scriptsize \bf Normalized speedup for PARSEC Applications }
 \end{figure*}
 
-\begin{figure*} [t]
 %\begin{figure*} [t]
-\centering
- \psfig{figure=figures/writebacks.eps, width=4.9in, height=2.5in}
- \caption{\label{fig:writebacks} \scriptsize \bf Number of Write backs normalized to M-4MB for PARSEC applications}
+%%\begin{figure*} [t]
+%\centering
+% \psfig{figure=figures/writebacks.eps, width=4.9in, height=2.5in}
+% \caption{\label{fig:writebacks} \scriptsize \bf Number of Write backs normalized to M-4MB for PARSEC applications}
+%%\end{figure*}
 %\end{figure*}
-\end{figure*}
-
-\begin{figure*} [t]
+%
 %\begin{figure*} [t]
-\centering
- \psfig{figure=figures/spec-writebacks.eps, width=3.9in, height=2.5in}
- \caption{\label{fig:writebacks-spec} \scriptsize \bf Number of Write backs normalized to M-4MB for SPEC multiprogrammed mixes}
+%%\begin{figure*} [t]
+%\centering
+% \psfig{figure=figures/spec-writebacks.eps, width=3.9in, height=2.5in}
+% \caption{\label{fig:writebacks-spec} \scriptsize \bf Number of Write backs normalized to M-4MB for SPEC multiprogrammed mixes}
+%%\end{figure*}
 %\end{figure*}
-\end{figure*}
 
 
 \subsection {Performance comparison}
@@ -36,7 +46,7 @@ the average numbers are computed across the entire suite. All speedup numbers ar
 
 {\bf Speedup when replacing a SRAM with an ideal STT-RAM cache}: When aggregated across the entire PARSEC suite, we find that this hypothetical design has an average speedup of 23\% over the SRAM cache. This is the maximum performance that any scheme can provide.
 
-{\bf Speedup when replacing a SRAM with 4MB, 10 year retention time STT-RAM}: We find that, for the M-4MB design, all applications to the right of x264 (including x264) exhibit speedup improvements over S-1MB. Most of these applications are read intensive applications (details in Table~\ref{table:benchmark}) and thus, they not only benefit from the 4x capacity increase of STT-RAM, but also from the presence of a write buffer for the L2 cache. On an average, we find XX\% improvement in speedup for these applications. Although ferret and vips are write-intensive applications, they benefit with a 4x improvement in capacity when going from a 1MB-SRAM to a 4MB-STT-RAM. This is because, the write request to L2 cache banks in these two applications are staggered in time. Thus, a 10-entry write buffer proves to be sufficient to hide the long write latencies of a STT-RAM bank.
+{\bf Speedup when replacing a SRAM with 4MB, 10 year retention time STT-RAM}: We find that, for the M-4MB design, all applications to the right of x264 (including x264) exhibit speedup improvements over S-1MB. Most of these applications are read intensive applications (details in Table~\ref{table:benchmark}) and thus, they not only benefit from the 4x capacity increase of STT-RAM, but also from the presence of a write buffer for the L2 cache. On an average, we find 6\% improvement in speedup for these applications. Although ferret and vips are write-intensive applications, they benefit with a 4x improvement in capacity when going from a 1MB-SRAM to a 4MB-STT-RAM. This is because, the write request to L2 cache banks in these two applications are staggered in time. Thus, a 10-entry write buffer proves to be sufficient to hide the long write latencies of a STT-RAM bank.
 
 All applications to the left of x264 are write-intensive and have bursty requests arriving at L2 cache banks. For these applications, we observe significant degradation in speedup (on an average 11\% degradation ) because of the high write latency of STT-RAM.
 Overall, when averaged across the entire PARSEC suite, a traditional 10 year STT-RAM gives a minimal 5\% speedup improvement over S-1MB. However, a 10 year STT-RAM cache organization has 14\% lower performance when compared to the ideal design S-4MB and with write-intensive applications this difference is 21\%. It is this gap that our proposal seeks to bridge by tuning the retention time
@@ -50,7 +60,7 @@ This leads to significant performance degradation across most applications when 
 degradation over M-4MB. It is interesting to see the case of swaptions, where there is a slight improvement in speedup over M-4MB, although
 there is increase in number of write backs. The reason for this improvement is due to the fact that the majority of blocks that are not refreshed within 10ms interval, are not accessed in future as well leading to a low number of read misses. This helps in reaping benefits from the reduced write latency.
 
-{\bf Speedup when replacing a SRAM with 4MB, 10 ms retention time STT-RAM with refreshing}: This is our proposed scheme (annotated as Rrevived-M-4MB(10ms) in the figures), which incorporates refreshing of dirty blocks beyond the 10ms retention time.
+{\bf Speedup when replacing a SRAM with 4MB, 10 ms retention time STT-RAM with refreshing}: This is our proposed scheme (annotated as Revived-M-4MB(10ms) in the figures), which incorporates refreshing of dirty blocks beyond the 10ms retention time.
 Use of this scheme, significantly improves performance when compared to all realistic design scenarios evaluated. On an average, the proposed revived scheme is better than the conventional SRAM design (S-1MB) by 18\%, traditional 10yr STT-RAM by 15\% and over volatile STT-RAM (1sec)
 by 4.5\%. The write latency of this STT-RAM cache bank is 6 cycles and when compared to a 1 sec retention time STT-RAM, the difference of 6 cycles reduction in L2 cache bank access time helps in improving performance. This performance improvement is in spite of the increase in the number of write-backs (which increase by over 2x) compared to an SRAM cache. Fluidanimate is the only application we found that does not show a gain in performance with this type of STT-RAM device. With fluidanimate application, all the dirty blocks are almost equally distributed among all the ways, and hence, our scheme of considering only the first eight MRU slots is insufficient in reducing many writebacks (as shown in Figure~\ref{fig:writebacks} with fluidanimate the writebacks become 11x with this volatile STT-RAM).
 %Facesim shows the maximum benefit when compared to the volatile STT-RAM (1 sec) cache: 22.7\%
@@ -59,12 +69,12 @@ The revived-M-4MB(10ms) scheme is closest to the ideal S-4M case and is within 4
 
 \begin{figure*} [t]
 \centering
- \psfig{figure=figures/spec-ws.eps, width=3.9in, height=2.5in}
+ \psfig{figure=figures/spec-ws.eps, width=3in, height=1.8in}
  \caption{\label{fig:spec-new} \scriptsize \bf Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2006 multiprogrammed mixes. }
 \end{figure*}
 
 {\bf Analysis with SPEC 2006}: In general, the observations with SPEC benchmarks are consistent with those made with PARSEC applications. Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup with the  SPEC multiprogram
-mixes. Simply replacing a SRAM bank with 4MB-STT-RAM would lead to 11\% degradation in instruction throughput, and 4\% degradation in weighted speedup. However, employing our refreshing scheme on a 10 ms volatile STT-RAM can lead to an average 22\%, 11\%  and 10\% improvement over M-4MB, volatile STT-RAM(1 sec) and baseline SRAM cache respectively. With a very write intensive mix (bzip2, gcc, lbm and hmmer) this improvement can be as high as 35\% over the baseline SRAM design. Figure~\ref{fig:writebacks-spec} depicts the normalized write backs for 
+mixes. Simply replacing a SRAM bank with 4MB-STT-RAM would lead to 11\% degradation in instruction throughput, and 4\% degradation in weighted speedup. However, employing our refreshing scheme on a 10 ms volatile STT-RAM can lead to an average 22\%, 11\%  and 10\% improvement over M-4MB, volatile STT-RAM(1 sec) and baseline SRAM cache respectively. With a very write intensive mix (bzip2, gcc, lbm and hmmer) this improvement can be as high as 35\% over the baseline SRAM design. Figure~\ref{fig:writebacks}(b) depicts the normalized write backs for
 the SPEC benchmarks.
 
 %Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup for the  SPEC multiprogram
@@ -98,7 +108,7 @@ Weighted speedup also follows a similar trend as instruction throughput and we f
 Figure~\ref{fig:energy} shows normalized cache leakage, total of dynamic read and write energy, and total energy for a subset of PARSEC applications. While computing the energy numbers, we take into account the overheads of our proposed cache block refreshing (revived) schemes.
 %The number of reads and writes to L2 cache are only considered for the calculation of dynamic energy.
 We observe that on an average, there is 44\% improvement in total energy going from S-1MB to
-M-4MB designs. This improvement is mainly because of the drastic reduction in leakage energy (XX\%).
+M-4MB designs. This improvement is mainly because of the drastic reduction in leakage energy (43\%).
 In general all volatile STT-RAMs reduce the energy envelope of the last level cache. With 1 sec volatile STT-RAM,
 total energy is reduced because of reduction in leakage energy and also nominal performance improvement.
 However, when comparing
@@ -138,9 +148,16 @@ leads to more buffer overflows. With increasing the buffer size, leading to fewe
 the reduction comes at a cost of increase in buffer area and consequent revival overheads. Decreasing the buffer size, eventually
 leads to additional write backs (discussed in Section ~\ref{sec:implementation}).
 
+%\begin{wrapfigure}{l}{0.50\textwidth}
+%\centering
+% \psfig{figure=figures/confi.eps, width=1.6in, height=0.4\textwidth}
+% \caption{\label{fig:confi} \scriptsize \bf 95\% Confidence Intervals of Diminished Blocks for each Way}
+%\end{wrapfigure}
+
+
 \begin{figure*} [t]
 \centering
- \psfig{figure=figures/confi.eps, width=3.9in, height=2.5in}
+ \psfig{figure=figures/confi.eps, width=3in, height=2in}
  \caption{\label{fig:confi} \scriptsize \bf 95\% Confidence Intervals of Diminished Blocks for each Way}
 \end{figure*}
 
