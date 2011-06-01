@@ -19,7 +19,7 @@ a naive scheme of writing back
 all the dirty blocks to a more sophisticated scheme, where we minimize the number of refreshes and write backs.
 
 \subsection{{Volatile STT-RAM}}
-In this naive design, we write back all the unrefreshed dirty blocks which become volatile after the retention time.
+In this design, we write back all the unrefreshed dirty blocks which become volatile after the retention time.
 To identify these blocks,
 we maintain a counter per cache block.  To understand the working of the counter, let us consider an {\it n} bit
 counter. We assume the time between transitions (T) from one state to another equals to the retention time
