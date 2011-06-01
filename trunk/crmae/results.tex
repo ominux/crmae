@@ -128,33 +128,46 @@ M-4MB designs.
 \subsection{Sensitivity Analysis}
 
 \noindent\textbf{Sensitivity to number of Buffer entries:}
-For this analysis, we calculate 95\% confidence intervals for the cummulative distribution of 
-dead blocks per bank as shown in~\ref{fig:confi}. We observe that, for first 8 MRU slots, 
-mean value of the buffer entries is 1900 blocks. Upper limit corresponding to 8 MRU slots
-is 2500 blocks.
-Figure~\ref{fig:buf-mru} shows speedup of PARSEC applications by varying buffer number
-of buffer enteries. Going from 1900 to 2500 (3\% to 4\% overhead over L2 cache bank) is giving
-only less than 0.5\% speedup improvement. Hence we took 1900 as buffer size to minimize the
-overhead. 
+The number of buffer entries can tune the performance of Revived-M-4MB scheme. Increasing the 
+buffer size will accommodate more diminishing blocks at a particular instance, leading
+to fewer buffer overflows. This reduction in overflows, is at the cost of increase in 
+buffer area and energy overheads. Decreasing buffer size leads to more buffer overflows,
+which ultimately lead to additional write backs as discussed in~\ref{sec:implementation}
+
+To find the optimal buffer size, we calculate 95\% confidence intervals for the cumulative distribution of
+dead blocks per bank as shown in~\ref{fig:confi}. We observe that, for first 8 MRU slots,
+mean value of the buffer entries is 1900 blocks, which corresponds to 3\% area overhead over L2 cache bank.
+Upper limit to the 95\% confidence interval corresponds to 2500 blocks (4\% overhead over L2 cache bank). 
+and lower corresponds to 1300 blocks (2\% area overhead).
+
+Figure~\ref{fig:buf-mru} shows speedup of subset of PARSEC applications by varying the number
+of buffer entries. Going from 1900 to 2500 entries is giving only less than 0.5\% speedup improvement. 
+We assumed our buffer size to be 1900 entries for minimum area overhead giving best possible results. 
 
 \begin{figure*} [t]
 \centering
 \begin{tabular}{cc}
  \psfig{figure=figures/buffer.eps, width=3.4in, height=2.0in} &
 \psfig{figure=figures/slots.eps, width=3.4in, height=2.0in} \\
-\scriptsize (a) Buffer Slots & \scriptsize (b) MRU Slots
+\scriptsize (a) Buffer Entries & \scriptsize (b) MRU Slots
 \end{tabular}
  \hrule
- \caption{\scriptsize \bf Showing effects on speedup by varying number of Buffer and MRU Slots }
+ \caption{\scriptsize \bf Showing effects on speedup by varying number of Buffer Entries and MRU Slots }
 \label{fig:buf-mru}
 \end{figure*}
 
 
 \noindent\textbf{Sensitivity to number of MRU slots:}
-We observe from figure~\ref{fig:buf-mru} that decreasing MRU slots hampers the performance
-as  many frequently read blocks are not refreshed. Increasing MRU slots, will make the
-buffer overflow. 
-
+Choosing optimal number of MRU slots to buffer was discussed in~\ref{sec:implementation}. 
+Figure~\ref{sec:cdf} shows that mean cumulative distribution of diminishing blocks per 
+way across all PARSEC benchmarks. We see that after 8 MRU slots, the number of diminishing blocks 
+becomes negligible, which suggests that optimal number of MRU slots is 8. Figure~\ref{fig:buf-mru} shows
+speedup of subset of PARSEC applications, along with the average across 12 PARSEC applications, with varying
+number of MRU slots. Buffer size is kept constant at 1800 per bank. We see degradation in performance when we decrease
+slots from 8 to 4 because buffering 8 MRU slots would have covered more frequently used blocks and hence reducing
+write backs of useful blocks. We also see degradation in performance, by increasing slots from 8 to 12. Since buffer
+size is kept constant, considering 12 MRU slots for buffering instead of 8, increases the probability of buffer
+overflows, which increases the write backs leading to performance degradation. 
 
 
 \begin{figure*} [t]
@@ -169,7 +182,10 @@ buffer overflow.
 
 
 \noindent\textbf {Sensitivity to number of bits of the counter}
-There is no observable difference in performance and energy by increase in the number of bits of the counter.
+As discussed in~\ref{sec:implementation} increasing the number of bits of the counter decreases the
+left over time at the cost of incrementing counters at finer granularity. Our experiments showed that
+there is no observable difference in performance and energy by increase/decrease
+in the number of bits of the counter.
 
 
 
