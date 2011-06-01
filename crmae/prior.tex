@@ -4,8 +4,10 @@
 %L1 data cache and modeled the process variations as variations in data retention time.
 
 %Below, we discuss the prior works most relevant to our work.
- This section summarizes the prior work closely related to ours. It mainly summarizes the circuit and
- architectural techniques proposed for enhancing the SST-RAM write performance.
+
+%This section summarizes the prior work closely related to ours.
+This section summarizes the circuit and architectural techniques proposed for enhancing the STT-RAM
+write performance.
 
 The work that is most closely related to ours is~\cite{STTRAM:HPCA11}.
 Here, the authors relax retention time of STT-RAM from $10 years$ to $56 \mu s$ by
@@ -31,27 +33,29 @@ early write termination~\cite{mram-energy-reduction}, hybrid SRAM/STT-RAM
 architecture~\cite{gsun-hpca, Qureshi:2009:SHPMM} and read-preemptive write-buffer designs have been
 shown to mitigate write latency/energy. The circuit level techniques such as eliminating redundant
 bit-writes~\cite{mram-energy-reducton} and data inverting technique~\cite{gsun-hpca} have also been
-shown to be effective in hiding the long write latency. In a recent paper ~\cite{mram-noc}, the authors have proposed a
-network level solution to hide the write latency of STT-RAM banks.  In contrast to all these prior
-works that attempt to hide the write latency, our scheme investigates techniques to {\it actually}
-reduce the write latency of STT-RAM banks
-and make their write latency comparable to SRAM banks. When compared to Zhou et al.'s
-work~\cite{mram-energy-reduction} that require additional gates for detection and termination of
-writes inside {\it each STT-RAM subbank}, and proposals like \cite{mram-noc}, that require complex
-busy/idle bank detection followed by prioritization mechanisms in the network, our techniques are
-simpler to implement, since our proposal works at a much coarser granularity.
-On a qualitative basis, the network level solution to hide write latency in  \cite{mram-noc} was shown 
-as the most promising technique compared to other technique. The application level performance improvement
-with this scheme was about 2-4\% compared to the write write buffer technique ~\cite{gsun-hpca}.
-As shown in the results and discussed below, our scheme provides about 15\%/4\%(PARSEC IPC/SPEC weighted-speedup) 
-improvement over 10yr traditional STT-RAM, on top of the write buffering scheme, thereby making it more attractive compared to \cite{mram-noc}.
+shown to be effective in hiding the long write latency. In contrast to all these prior works that
+attempt to {\it hide} the write latency, our scheme investigates techniques to {\it actually} reduce
+the write latency of STT-RAM banks and make their write latency comparable to SRAM banks. When
+compared to Zhou et al.'s work~\cite{mram-energy-reduction} that require additional gates for
+detection and termination of writes inside {\it each STT-RAM sub-bank}, our techniques are simpler to
+implement since our proposal works at a much coarser granularity.
 
-A recent work by Sun et al.~\cite{gsun-hpca} showed that write buffers can be helpful in hiding the
-long write latencies of STT-RAM banks. Our analysis shows that, if an application is bursty,
-write-buffers fail to hide this latency and are rendered in-effective. Out of 25 applications, we
-found 11 applications to be write intensive and bursty and hence, write-buffering is ineffective for
-these applications. Moreover, all our results are conservative since we have already assumed a
-10-entry (as used in~\cite{gsun-hpca}) write-buffer at every STT-RAM bank and our results would be
-significantly better without the presence of write-buffers. Overall, we believe that no prior work
-makes a case for tuning the retention time of STT-RAM banks that is based on profiling retention
-duration of last-level cache blocks of applications, which our proposal does.
+Sun et al.~\cite{gsun-hpca} showed that write buffers can be helpful in hiding the long write
+latencies of STT-RAM banks. Our analysis shows that, if an application is bursty, write-buffers fail
+to hide this latency and are rendered in-effective. Out of 25 applications, we found 11 applications
+to be write intensive and bursty and hence, write-buffering is ineffective for these applications.
+Moreover, all our results are conservative since we have already assumed a 10-entry (as used
+in~\cite{gsun-hpca}) write-buffer at every STT-RAM bank and our results would be significantly better
+without the presence of write-buffers.
+
+In a recent work~\cite{mram-noc}, the authors have proposed a network level solution to hide the
+write latency of STT-RAM banks. This solution requires complex busy/idle bank detection followed by
+prioritization mechanisms in the network. On a qualitative basis, the network level solution to hide
+write latency in \cite{mram-noc} was shown as the most promising technique compared to any other
+techniques. The application level performance improvement with this scheme was about 2-4\% higher
+compared to the write buffering technique of Sun et al.~\cite{gsun-hpca}. Contrasting this to our
+work here, our scheme provides about 15\%/4\%(PARSEC IPC/SPEC weighted-speedup) improvement over 10yr
+traditional STT-RAM, on top of the write buffering scheme, thereby making it more attractive compared
+to \cite{mram-noc}. Overall, we believe that no prior work makes a case for tuning the retention time
+of STT-RAM banks that is based on profiling retention duration of last-level cache blocks of
+applications, which our proposal does.
