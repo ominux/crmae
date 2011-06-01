@@ -54,27 +54,21 @@ The retention time of a MTJ is largely determined by the thermal stability of th
   \centering
   \caption{16-way L2 Cache Simulation Results}
   \label{allcaches}
-  \begin{tabular}{| c | c | c  | c | c | c | c | c | c |}
+  \begin{tabular}{| c | c | c | c | c | c | c | c |}
   	\hline\hline
-  	\multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & Area  & Read Latency & Write Latency & Read Energy & Write Energy & Leakage Power\\
-  & & & ($mm^2$) & ($ns$) & ($ns$) & ($nJ$) & ($nJ$) & ($mW$) \\
+  	\multirow{2}{*}{} & & Area  & Read Latency & Write Latency & Read Energy & Write Energy & Leakage Power\\
+  & & ($mm^2$) & ($ns$) & ($ns$) & ($nJ$) & ($nJ$) & ($mW$) \\
   	\hline\hline
-  	\multicolumn{3}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $0.578$ & $0.578$ &$4542$ \\
+  	\multicolumn{2}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $0.578$ & $0.578$ & $4542$ \\
   	\hline
-  	\multirow{8}{*}{$4MB$ STT-RAM} & \multirow{2}{*}{$t=10yr$} & Leakage Opt.& $2.628$ & $2.434$ & $4.919$ & $0.635$ & $0.663$ & $1399$ \\
-  	\cline{3-3}\cline{4-9}
-  	& & Latency Opt. & $3.003$ & $0.998$ & $10.61$ & $1.035$ & $1.066$ & $2524$ \\
-  	\cline{2-3}\cline{4-9}
-  	& \multirow{2}{*}{$t=1s$} & Leakage Opt. & $2.203$ & $2.044$ & $3.552$ & $0.589$ & $0.616$ & $1388$ \\
-  	\cline{3-3}\cline{4-9}
-  	& & Latency Opt. & $2.904$ & $0.973$ & $5.571$ & $1.015$ & $1.036$ & $2235$ \\
-  	\cline{2-3}\cline{4-9}
-    & \multirow{2}{*}{$t=10ms$} & Leakage Opt. & $2.167$ & $1.956$ & $3.390$ & $0.571$ & $0.601$ & $1151$ \\
-  	\cline{3-3}\cline{4-9}
-  	& & Latency Opt. & $2.901$ & $0.959$ & $2.598$ & $1.002$ & $1.028$ & $2227$ \\	
+  	\multirow{3}{*}{$4MB$ STT-RAM} & $t=10yr$ & $3.003$ & $0.998$ & $10.61$ & $1.035$ & $1.066$ & $2524$ \\
+%  	\cline{2-2}\cline{3-8}
+  	& {$t=1s$} & $2.904$ & $0.973$ & $5.571$ & $1.015$ & $1.036$ & $2235$ \\
+%  	\cline{2-2}\cline{3-8}
+  	& {$t=10ms$} & $2.901$ & $0.959$ & $2.598$ & $1.002$ & $1.028$ & $2227$ \\	
   	\hline\hline
   \end{tabular}
 \end{table*}
 
-We simulate SRAM-based caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}, which is a circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile memories. All the models described in this Section has been integrated in NVsim. The simulation results are listed in Table~\ref{allcaches}. We can see that the leakage-optimized $4MB$ non-volatile STT-RAM cache has almost the same area with $1MB$ SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}. By relaxing retention time of STT-RAM with lower thermal barrier, the leakage-optimized STT-RAM cache can have smaller area, faster write latency and less leaky peripheral circuity. However, as retention time is exponentially related with thermal barrier and thermal barrier is highly sensitive to process variation and temperature, the benefit of decreasing write latency by relaxing the retention time in the same order of magnitude is so small that can be easily offset by slight variation in device geometry or environment temperature. For example, the difference of thermal barrier for $10ms$- and $50ms$- retention MTJ is only about $5\%$.
+We simulate SRAM-based caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}, which is a circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile memories. All the models described in this Section has been integrated in NVsim. The simulation results are listed in Table~\ref{allcaches}. We can see that the $4MB$ non-volatile STT-RAM cache occupies similar chip area with $1MB$ SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}. By relaxing retention time of STT-RAM with lower thermal barrier, the STT-RAM cache can have smaller area, faster write latency and less leaky peripheral circuity. However, as retention time is exponentially related with thermal barrier and thermal barrier is highly sensitive to process variation and temperature, the benefit of decreasing write latency by relaxing the retention time in the same order of magnitude is so small that can be easily offset by slight variation in device geometry or environment temperature. For example, the difference of thermal barrier for $10ms$- and $50ms$- retention MTJ is only about $5\%$.
 
