@@ -2,7 +2,7 @@
 \begin{figure*} [t]
 %\begin{figure*} [t]
 \center
- \psfig{figure=figures/arch.eps, width=4.5in, height=3.5in}
+ \psfig{figure=figures/arch.eps, width=3.5in, height=6.5in, angle=-90}
  \caption{\label{fig:architecture} \scriptsize \bf A modified 16-way L2 cache architecture with a 2-bit counter and a small buffer}
 %\end{figure*}
 \end{figure*}
@@ -57,7 +57,7 @@ The main components of this design are a small buffer and a buffer controller.
 
 \noindent\textbf{Buffer:}
 It is a per bank small storage space with a fixed number of entries made up of low-retention time STT-RAM cells.
-We use these entries to temporarily store the diminished blocks. In order to calculate the optimal MRU slots for buffering, 
+We use these entries to temporarily store the diminished blocks. In order to calculate the optimal MRU slots for buffering,
 we collected statistics of MRU positions of diminishing blocks by running various PARSEC and SPEC Benchmarks on the M5 Simulator.
 Figure ~\ref{fig:cdf} shows the average cumulative distribution of diminshed blocks per bank
 as a function of the number of ways in a set. We observe that the number of diminished blocks becomes stable
@@ -69,9 +69,9 @@ to minimize buffer overflows.
 \noindent\textbf{Buffer Controller:}
 The buffer controller consists of a log$_2$N bit buffer overflow detector, where N is the buffer size.
 %The buffer overflow detector is incremented when a diminishing block
-%is copied to one of the buffer slots. 
+%is copied to one of the buffer slots.
 The overflow detector is first checked to see the occupancy of the buffer,
-when a diminishing block is directed to the buffer and the buffer overflow detector is incremented. 
+when a diminishing block is directed to the buffer and the buffer overflow detector is incremented.
 The block is copied to one of the empty buffer entries along with the set and way id, if there is
 buffer space.
 If the buffer is full, the dirty blocks are written back to the main memory; otherwise they are  invalidated.
@@ -82,7 +82,7 @@ We show the working of
 our scheme using a 2-bit counter.  One of the sets, is shown in detail to clarify the details of the scheme.
 All the blocks in a set are marked with their current state. Each bank is  associated with a buffer and the buffer controller.
 Let us consider that we are using the buffering scheme for eight MRU slots, based on the cumulative distribution
-of MRU slots~\ref{fig:cdf}  
+of MRU slots~\ref{fig:cdf}
 In Section ~\ref{sec:results}, we will vary the number of slots to see the effects on performance.
 In Figure  ~\ref{fig:architecture} (a), \ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the buffer. \ding{183} checks
 the occupancy of the buffer and if it is not full, each of the diminishing blocks is copied to one of the entries
@@ -105,7 +105,7 @@ If they are dirty, we write back those blocks as shown in \textcircled{\raisebox
 \begin{figure*} [t]
 %\begin{figure*} [t]
 \centering
- \psfig{figure=figures/cdf.eps, width=3.9in, height=2.5in}
+ \psfig{figure=figures/cdf.eps, width=3in, height=2in}
   \caption{\label{fig:cdf} \scriptsize \bf Cumulative Distribution of Dead Blocks per Bank with number of ways.}
 %\end{figure*}
 \end{figure*}
