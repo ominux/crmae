@@ -1,4 +1,6 @@
-In this section, we will discuss all the experimental results associated with our design choices.
+In this section, we provide a comparative analysis of the performance and energy results of the six designs.
+We also discuss the sensitivity of of several architectural parameters.
+%experimental results associated with our design choices.
 
 
 
@@ -13,14 +15,21 @@ In this section, we will discuss all the experimental results associated with ou
 
 
 
-\noindent\textbf {Performance:} Figure \ref{fig:parsec-new} shows speedup improvements of a subset of PARSEC 
+\subsection {Performance comparison}
+Figure \ref{fig:parsec-new} shows speedup improvements of a subset of PARSEC 
 multithreaded applications along with the average (taken across 12 PARSEC applications listed in Table~\ref{}). 
-All speedup numbers are normalized to S-1MB. When M-4MB design is used, the applications to the right of x264 application (including x264) are
-showing speedup improvements over S-1MB. These applications are not only benefiting from 4x capacity increase but also 
-because of the presence of write buffer placed on top of L2 cache. To see the benefits of write buffer,  consider fluidanimate and vips applications.
+All speedup numbers are normalized to S-1MB.
+For the M-4MB design, the applications to the right of x264 (including x264) exhibit
+speedup improvements over S-1MB because these are read intensive applications as shown in Table 3.
+The read intensive applications not only benefit from the 4x capacity increase of STT-RAM, but also 
+because of the presence of a write buffer for the L2 cache.
+To see the benefits of write buffer,  let us consider fluidanimate and vips applications.
 Even though they have high number of writes to the L2 cache, the writes are staggered, which help the write buffer in amleirorating increased write latency.
-The applications to the left of x264 are write intensive applications. In all these applications we see degradation in speedup
-because of the high write latency.  On an average, traditional 10 year STT-RAM gives 3\% speedup improvement over S-1MB.
+The applications to the left of x264 are write intensive applications and thus, we see degradation in speedup
+because of the SST-RAM high write latency.
+On an average, traditional 10 year STT-RAM gives 3\% speedup improvement over S-1MB because most of the read
+intensive applications show considerable improvement in speedup (maximum speedup observed was YY\% for application
+XX).
 
 
 
@@ -34,36 +43,43 @@ because of the high write latency.  On an average, traditional 10 year STT-RAM g
 \end{figure*}
 
 
-Consider Volatile M-4MB(1sec) design. This design has no refreshing scheme, but since within 1 sec interval,
-almost all the blocks are refreshed inherently as per application characterstics discussed in Section ~\ref{}.
-We observe the benefits of this design over M-4MB in all the applications because of the reduced
-write latency. Volatile M-4MB(10ms) design also 
-doesn't have any refreshing scheme but the retention time of STT-RAM
+Next, let us consider Volatile M-4MB(1sec) design. This design has no refreshing scheme, but since within 1 sec interval,
+almost all the blocks are refreshed inherently as per application characterstics discussed in Section ~\ref{},
+we observe speedup improvements of this design over M-4MB in all the applications because of the reduced
+write latency (12 cycles compared to 22 cycles). 
+Again for a few of the write intensive application like swpts, M-4MB(1sec) has no speedup gain compared to
+the base case S-1MB SRAM cacche design.
+Volatile M-4MB(10ms) design also does not have any refreshing scheme, but the retention time of STT-RAM
 cells used is 10ms, which triggers large number of write backs. 
-Figure~\ref{fig:writebacks} shows number of writebacks of all the designs normalized to M-4MB. We observe that this design on an average has 21\% more 
-write backs then the traditional STT-RAM design. For this reason, in vips there is about 20\% speedup degradation over M-4MB.
-It is interesting to see the case of swaptions where there is slight improvement in speedup over M-4MB, although 
-there is increase in number of writebacks. The reason for this improvement is on the account of the fact that, 
-the majority of blocks which are not refreshed within 10ms interval, 
-are not accessed in future as well leading to low number of read misses. This helps in reaping benefits
- from the reduced write latency.  
+Figure~\ref{fig:writebacks} shows number of writebacks of all the designs normalized to M-4MB.
+We observe that this design, on an average, has 21\% more 
+write backs than the traditional STT-RAM design.
+For this reason, in vips, there is about 20\% speedup degradation over M-4MB.
+It is interesting to see the case of swaptions, where there is a slight improvement in speedup over M-4MB, although 
+there is increase in number of writebacks. The reason for this improvement is due to the fact that 
+the majority of blocks that are not refreshed within 10ms interval, 
+are not accessed in future as well leading to a low number of read misses.
+This helps in reaping benefits from the reduced write latency.  
 
-Our scheme revived M-4MB(10ms), which incorporates refreshing scheme is showing speedup improvments
-in almost all applications except fluidanimate, in which all the dirty blocks are almost equally distributed among
-all the ways, hence our scheme of using first eight MRU slots doesn't prevent in stopping writebacks. This
-observation can also be made from Figure~\ref{fig:writebacks}, where writebacks in our scheme are also
-very high. On an average our scheme is better than traditional 10yr STT-RAM by 15\% and over Volatile STT-RAM (1sec) 
+Our scheme revived-M-4MB(10ms), which incorporates refreshing of dirty blocks beyond the 10ms retention time,
+depicts speedup improvments
+in almost all applications except for fluid, in which all the dirty blocks are almost equally distributed among
+all the ways. Hence, our scheme of the considering only first eight MRU slots does not prevent in stopping 
+many writebacks. This observation can also be made from Figure~\ref{fig:writebacks}, where writebacks in our scheme are also
+very high. On an average,  the propsoed revived scheme is better than the conventional SRAM design (S-1MB) by 18\%,
+traditional 10yr STT-RAM by 15\% and over Volatile STT-RAM (1sec) 
 by 4.5\% (In case of facesim, our scheme is better than Volatile STT-RAM (1 sec) by 22.7\%). 
-Our scheme is closest to the ideal S-4M case with difference of only 4\%.
+The revived-M-4MB(10ms) scheme is closest to the ideal S-4M case with difference of only 4\%.
 
-Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup for multiprogram
-mixes. We observe that our scheme revived M-4MB gives 22\% improvement in instruction throughput 
-over M-4MB and 11\% improvement over Volatile STT-RAM (1 sec). (In case of the mix of bzip2, gcc, lbm, hmmer, 
-the improvement is 15\%). Weighted speedup improvement over M-4MB is 4\% 
-and over Volatile STT-RAM(1 sec) is 2\%. 
+Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup for the  SPEC multiprogram
+mixes. We observe that our scheme revived-M-4MB gives 22\% improvement in instruction throughput 
+over M-4MB, 11\% improvement over Volatile STT-RAM (1 sec), and 10\% improvemnet over
+the base line SRAM cache. (although not shown in the Figure due to barvity, in case of the mix of
+bzip2, gcc, lbm, hmmer, the improvement is 15\%). The weighted speedup improvement over M-4MB is 4\% 
+and over Volatile STT-RAM(1 sec) is 2\%. (NEED TO EXPLIAN WHY annd more insight).
 
 
-\noindent\textbf {Energy:}
+\subsection {Energy comparison}
 Figure~\ref{fig:energy} shows normalized leakage, total of dynamic read and write energy, and total energy.
 The number of reads and writes to L2 cache are only considered for the calculation of dynamic energy. 
 We observe that on an average there is 44\% improvement in total energy going from S-1MB to

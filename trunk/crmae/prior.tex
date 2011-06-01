@@ -1,3 +1,48 @@
-[ADWAIT, MORE STT-RAM RELATED WORK other than HPCA 2011 paper ESPECIALLY FOR STT-RAM CACHE DESIGN should be put here]
+%[ADWAIT, MORE STT-RAM RELATED WORK other than HPCA 2011 paper ESPECIALLY FOR STT-RAM CACHE DESIGN should be put here]
 
-Moreover, in~\cite{STTRAM:HPCA11} the authors relax retention time of STT-RAM from $10 years$ to $56 \mu s$ by reducing the planar area of MTJ from $32F^2$ to $10F^2$. However, the scope of their work is limited by addressing practical device parameters and their variabilities. First, the retention time of MTJ is exponentially proportional to the thermal barrier, which makes the retention time of individual STT-RAM device extremely sensitive to any factor that has impact on thermal barrier, particularly device geometry. Thus it's important to take practical values of device geometry such as MTJ planar area and take their process variations into consideration. We get these parameters and corresponding variabilities from fabricated STT-RAM published in recent years~\cite{PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}. These state-of-the-art MTJs has much smaller baseline planar area that is around $2F^2$. Therefore there is not too much room to reduce retention time by aggressively reduce MTJ planar area. In this paper, we focus on the MTJ with worst-case retention time larger than millisecond and optimize STT-RAM cache correspondingly. Our analysis in this paper reveals the granularity at which a device designer can reliably tune the data retention times. 
+%Liang et al.~\cite{3t1d-cache} studied the impact of process variation on a 3T1D
+%L1 data cache and modeled the process variations as variations in data retention time.
+
+%Below, we discuss the prior works most relevant to our work.
+
+In~\cite{STTRAM:HPCA11} the authors relax retention time of STT-RAM from $10 years$ to $56 \mu s$ by
+reducing the planar area of MTJ from $32F^2$ to $10F^2$. The scope of their work is limited by
+addressing practical device parameters and their variabilities. First, the retention time of MTJ is
+exponentially proportional to the thermal barrier, which makes the retention time of individual
+STT-RAM device extremely sensitive to any factor that has impact on thermal barrier, particularly
+device geometry. Thus it is important to take practical values of device geometry such as MTJ planar
+area and take their process variations into consideration. We get these parameters and corresponding
+variabilities from fabricated STT-RAM published in recent
+years~\cite{PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}. These state-of-the-art
+MTJs has much smaller baseline planar area that is around $2F^2$. Therefore there is not too much
+room to reduce retention time by aggressively reduce MTJ planar area. Thus, in this paper, we focus
+on the MTJ with worst-case retention time larger than millisecond and optimize STT-RAM cache
+correspondingly. Further, analysis of retention times of last level cache blocks of actual
+applications, show that the retention times are in the order of milliseconds, thus, making our
+proposal much more amenable to implement. Hence, compared to~\cite{STTRAM:HPCA11}, our scheme will
+provide significant better performance.
+
+Apart from this recent work, few other prior works have also proposed architectural and circuit level
+solutions to handle this long write latency problem in STT-RAMs. Architectural techniques such as
+early write termination~\cite{mram-energy-reduction}, hybrid SRAM/STT-RAM
+architecture~/cite{gsun-hpca, Qureshi:2009:SHPMM} and read-preemptive write-buffer designs have been
+shown to mitigate write latency/energy. The circuit level techniques such as eliminating redundant
+bit-writes~\cite{mram-energy-reducton} and data inverting technique~\cite{gsun-hpca} have also been
+shown to be effective in hiding the long write latency. In~\cite{mram-noc} authors have proposed a
+network level solution to hide the write latency of STT-RAM banks.  In contrast to all these prior
+works, our scheme investigates techniques to {\it actually} reduce the write latency of STT-RAM banks
+and make their write latency comparable to SRAM banks. When compared to Zhou et al.'s
+work~\cite{mram-energy-reduction} that require additional gates for detection and termination of
+writes inside {\it each STT-RAM subbank}, and proposals like \cite{mram-noc}, that require complex
+busy/idle bank detection followed by prioritization mechanisms in the network, our techniques are
+simpler to implement, since our proposal works at a much coarser granularity.
+
+A recent work by Sun et al.~\cite{gsun-hpca} showed that write buffers can be helpful in hiding the
+long write latencies of STT-RAM banks. Our analysis shows that, if an application is bursty,
+write-buffers fail to hide this latency and are rendered in-effective. Out of 25 applications, we
+found 11 applications to be write intensive and bursty and hence write-buffering is ineffective for
+these applications. Moreover, all our results are conservative since we have already assumed a
+10-entry (as used in~\cite{gsun-hpca}) write-buffer at every STT-RAM bank and our results would be
+significantly better without the presence of write-buffers. Overall, we believe that no prior work
+makes a case for tuning the retention time of STT-RAM banks that is based on profiling retention
+duration of last-level cache blocks of applications, which our proposal does.
