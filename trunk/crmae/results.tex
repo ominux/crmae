@@ -14,7 +14,15 @@ We also discuss the sensitivity of of several architectural parameters.
 %\begin{figure*} [t]
 \centering
  \psfig{figure=figures/writebacks.eps, width=4.9in, height=2.5in}
- \caption{\label{fig:writebacks} \scriptsize \bf Number of Write backs normalized to M-4MB}
+ \caption{\label{fig:writebacks} \scriptsize \bf Number of Write backs normalized to M-4MB for PARSEC applications}
+%\end{figure*}
+\end{figure*}
+
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/spec-writebacks.eps, width=3.9in, height=2.5in}
+ \caption{\label{fig:writebacks-spec} \scriptsize \bf Number of Write backs normalized to M-4MB for SPEC multiprogrammed mixes}
 %\end{figure*}
 \end{figure*}
 
@@ -28,23 +36,23 @@ the average numbers are computed across the entire suite. All speedup numbers ar
 
 {\bf Speedup when replacing a SRAM with an ideal STT-RAM cache}: When aggregated across the entire PARSEC suite, we find that this hypothetical design has an average speedup of 23\% over the SRAM cache. This is the maximum performance that any scheme can provide.
 
-{\bf Speedup when replacing a SRAM with 4MB, 10 year retention time STT-RAM}: We find that, for the M-4MB, 10 year retention time STT-RAM design, all applications to the right of x264 (including x264) exhibit speedup improvements over S-1MB. Most of these applications are read intensive applications (details in Table~\ref{table:benchmark}) and thus, they not only benefit from the 4x capacity increase of STT-RAM, but also from the presence of a write buffer for the L2 cache. On an average, we find XX\% improvement in weighted-speed for these applications. Although ferret and vips are write-intensive applications, they benefit with a 4x improvement in capacity when going from a 1MB-SRAM to a 4MB-STT-RAM. This is because, the write request to L2 cache banks in these two applications are staggered in time. Thus, a 10-entry write buffer proves to be sufficient to hide the long write latencies of a STT-RAM bank.
+{\bf Speedup when replacing a SRAM with 4MB, 10 year retention time STT-RAM}: We find that, for the M-4MB design, all applications to the right of x264 (including x264) exhibit speedup improvements over S-1MB. Most of these applications are read intensive applications (details in Table~\ref{table:benchmark}) and thus, they not only benefit from the 4x capacity increase of STT-RAM, but also from the presence of a write buffer for the L2 cache. On an average, we find XX\% improvement in speedup for these applications. Although ferret and vips are write-intensive applications, they benefit with a 4x improvement in capacity when going from a 1MB-SRAM to a 4MB-STT-RAM. This is because, the write request to L2 cache banks in these two applications are staggered in time. Thus, a 10-entry write buffer proves to be sufficient to hide the long write latencies of a STT-RAM bank.
 
-All applications to the left of x264 are write-intensive and have have bursty requests arriving at L2 cache banks. For these applications, we observe significant degradation in speedup (on an average 11\% degradation ) because of the high write latency of STT-RAM. 
-Overall, when averaged across the entire PARSEC suite, a traditional 10 year STT-RAM gives a minimal 5\% speedup improvement over S-1MB. However, a 10 year STT-RAM cache organization has 14\% lower performance when compared to the ideal design and with write-intensive applications this difference is 21\%. It is this gap that our proposal seeks to bridge by tuning the retention time
+All applications to the left of x264 are write-intensive and have bursty requests arriving at L2 cache banks. For these applications, we observe significant degradation in speedup (on an average 11\% degradation ) because of the high write latency of STT-RAM.
+Overall, when averaged across the entire PARSEC suite, a traditional 10 year STT-RAM gives a minimal 5\% speedup improvement over S-1MB. However, a 10 year STT-RAM cache organization has 14\% lower performance when compared to the ideal design S-4MB and with write-intensive applications this difference is 21\%. It is this gap that our proposal seeks to bridge by tuning the retention time
 
 {\bf Speedup when replacing a SRAM with 4MB, 1 sec retention time STT-RAM}: With such a STT-RAM cache bank, no refreshing schemes are employed. As shown earlier, almost all blocks get refreshed within a 1 sec time interval. Reducing the retention time from 10 year to 1 sec reduced the write latency of a cache bank by 10 cycles (from 22 cycles to 12 cycles). This leads to significant speedup improvements over a 10 year retention time STT-RAM cache organization. On an average, this reduction in 10 cycles lead to 6\% performance improvement (14\% for write intensive applications). However, this design is still 9\% (11\% for write intensive applications) lower in performance than the ideal case.
 Further, when compared to the baseline S-1MB SRAM design, most of the write intensive and bursty application have no speedup gain compared to
-with this kind of STT-RAM cell.
+Volatile-M-4MB(1sec).
 
-{\bf Speedup when replacing a SRAM with 4MB, 10 ms retention time STT-RAM without refreshing}: This volatile M-4MB(10ms) design also does not have any refreshing scheme, but the retention time of STT-RAM cells used is 10ms. Using this STT-RAM device, after 10 ms the STT-RAM device will lose its data and hence to keep the data integrity on the CMP, use of this device forces a large number of write-backs from the last-level cache to the main-memory. Figure~\ref{fig:writebacks} shows number of write backs of all the designs normalized to M-4MB. We observe that the 4MB, 10 ms retention time STT-RAM design, on an average, has 21\% more write backs than the traditional STT-RAM design.
+{\bf Speedup when replacing a SRAM with 4MB, 10 ms retention time STT-RAM without refreshing}: This volatile M-4MB(10ms) design also does not have any refreshing scheme, but the retention time of STT-RAM cells used is 10ms. Using this STT-RAM device, after 10 ms the STT-RAM device will lose its data and hence to keep the data integrity, thereby forcing a large number of write-backs from the last-level cache to the main-memory. Figure~\ref{fig:writebacks} shows number of write backs of all the designs normalized to M-4MB. We observe that the 4MB, 10 ms retention time STT-RAM design, on an average, has 21\% more write backs than the traditional STT-RAM design.
 This leads to significant performance degradation across most applications when compared to simply using a 10 year retention time STT-RAM cache (8\% performance degradation on average). For instance, in vips, there is about 20\% speedup
 degradation over M-4MB. It is interesting to see the case of swaptions, where there is a slight improvement in speedup over M-4MB, although
 there is increase in number of write backs. The reason for this improvement is due to the fact that the majority of blocks that are not refreshed within 10ms interval, are not accessed in future as well leading to a low number of read misses. This helps in reaping benefits from the reduced write latency.
 
 {\bf Speedup when replacing a SRAM with 4MB, 10 ms retention time STT-RAM with refreshing}: This is our proposed scheme (annotated as Rrevived-M-4MB(10ms) in the figures), which incorporates refreshing of dirty blocks beyond the 10ms retention time.
 Use of this scheme, significantly improves performance when compared to all realistic design scenarios evaluated. On an average, the proposed revived scheme is better than the conventional SRAM design (S-1MB) by 18\%, traditional 10yr STT-RAM by 15\% and over volatile STT-RAM (1sec)
-by 4.5\%. The write latency of this STT-RAM cache bank is 6 cycles and when compared to a 1 sec retention time STT-RAM, the difference of 6 cycles reduction in L2 cache bank access time significantly improves performance. This performance improvement is in spite of the increase in the number of write-backs (which increase by over 2x) compared to an SRAM cache. Fluidanimate is the only application we found that does not show a gain in performance with this type of STT-RAM device. With fluidanimate application, all the dirty blocks are almost equally distributed among all the ways, and hence our scheme of considering only the first eight MRU slots is insufficient in reducing many writebacks (as shown in Figure~\ref{fig:writebacks} with fluidanimate the writebacks become 11x with this volatile STT-RAM). 
+by 4.5\%. The write latency of this STT-RAM cache bank is 6 cycles and when compared to a 1 sec retention time STT-RAM, the difference of 6 cycles reduction in L2 cache bank access time helps in improving performance. This performance improvement is in spite of the increase in the number of write-backs (which increase by over 2x) compared to an SRAM cache. Fluidanimate is the only application we found that does not show a gain in performance with this type of STT-RAM device. With fluidanimate application, all the dirty blocks are almost equally distributed among all the ways, and hence, our scheme of considering only the first eight MRU slots is insufficient in reducing many writebacks (as shown in Figure~\ref{fig:writebacks} with fluidanimate the writebacks become 11x with this volatile STT-RAM).
 %Facesim shows the maximum benefit when compared to the volatile STT-RAM (1 sec) cache: 22.7\%
 
 The revived-M-4MB(10ms) scheme is closest to the ideal S-4M case and is within 4\% of it, showing the benefits of our scheme in making the STT-RAM device a choice for universal memory.
@@ -56,7 +64,8 @@ The revived-M-4MB(10ms) scheme is closest to the ideal S-4M case and is within 4
 \end{figure*}
 
 {\bf Analysis with SPEC 2006}: In general, the observations with SPEC benchmarks are consistent with those made with PARSEC applications. Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup with the  SPEC multiprogram
-mixes. Simply replacing a SRAM bank with 4MB-STT-RAM would lead to 11\% degradation in instruction throughput, and 4\% degradation in weighted speedup. However, employing our refreshing scheme on a 10 ms volatile STT-RAM can lead to an average 22\%, 11\%  and 10\% improvement over M-4MB, volatile STT-RAM(1 sec) and baseline SRAM cache respectively. With a very write intensive mix (bzip2, gcc, lbm and hmmer) this improvement can be as high as 35\% over the baseline SRAM design. 
+mixes. Simply replacing a SRAM bank with 4MB-STT-RAM would lead to 11\% degradation in instruction throughput, and 4\% degradation in weighted speedup. However, employing our refreshing scheme on a 10 ms volatile STT-RAM can lead to an average 22\%, 11\%  and 10\% improvement over M-4MB, volatile STT-RAM(1 sec) and baseline SRAM cache respectively. With a very write intensive mix (bzip2, gcc, lbm and hmmer) this improvement can be as high as 35\% over the baseline SRAM design. Figure~\ref{fig:writebacks-spec} depicts the normalized write backs for 
+the SPEC benchmarks.
 
 %Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup for the  SPEC multiprogram
 %mixes. We observe that our scheme revived-M-4MB gives 22\% improvement in instruction throughput
@@ -67,9 +76,9 @@ mixes. Simply replacing a SRAM bank with 4MB-STT-RAM would lead to 11\% degradat
 %The weighted speedup improvement over M-4MB is 4\%
 %and over Volatile STT-RAM(1 sec) is 2\%. (NEED TO EXPLIAN WHY annd more insight).
 
-Weighted speedup also follows a similar trend as instruction throughput and we find that our proposed refreshing scheme on a 10 ms retention time volatile STT-RAM shows the best results. Overall, our proposed design in within 9\% (2\%) of the ideal device in terms of instruction throughput(weighted speedup). 
+Weighted speedup also follows a similar trend as instruction throughput and we find that our proposed refreshing scheme on a 10 ms retention time volatile STT-RAM shows the best results. Overall, our proposed design in within 9\% (2\%) of the ideal device in terms of instruction throughput(weighted speedup).
 
-\subsection{Energy comparison}
+\subsection{Energy Usage Comparison}
 
 \begin{figure*} [t]
 \centering
@@ -88,16 +97,20 @@ Weighted speedup also follows a similar trend as instruction throughput and we f
 
 Figure~\ref{fig:energy} shows normalized cache leakage, total of dynamic read and write energy, and total energy for a subset of PARSEC applications. While computing the energy numbers, we take into account the overheads of our proposed cache block refreshing (revived) schemes.
 %The number of reads and writes to L2 cache are only considered for the calculation of dynamic energy.
-We observe that on an average there is 44\% improvement in total energy going from S-1MB to
+We observe that on an average, there is 44\% improvement in total energy going from S-1MB to
 M-4MB designs. This improvement is mainly because of the drastic reduction in leakage energy (XX\%).
-In general all volatile STT-RAMs reduce the energy envelope of the last level cache. With 1 sec volatile STT-RAM, 
-total energy is reduced because of reduction in leakage energy and also nominal performance improvement. However, when comparing
+In general all volatile STT-RAMs reduce the energy envelope of the last level cache. With 1 sec volatile STT-RAM,
+total energy is reduced because of reduction in leakage energy and also nominal performance improvement.
+However, when comparing
 volatile M-4MB(10ms) with volatile M-4MB(1s), because of larger number of write-backs with 10 ms retention time STT-RAMs, the performance degrades and thus, leakage energy increases.
 
-With our proposed cache block refreshment scheme, we consistently observe improvement in total energy (due to both reduction in leakage power and improvement in performance). on an average, we find 11\% energy benefits of using revived M-4MB design over Volatile-1sec and 30\% improvement over baseline STT-RAM design. 
+With our proposed cache block refreshment scheme, we consistently observe improvement in total energy
+(due to both reduction in leakage power and improvement in performance). On an average, we find 11\% energy benefits
+of using revived M-4MB design over Volatile-1sec and 30\% improvement over the baseline STT-RAM design.
 
-In conclusion, we find that our proposed revived scheme is significantly better in terms of performance and energy when compared to a traditional non-volatile STT-RAM and even a volatile STT-RAM with 1 sec retention time. Further, the proposed 10 ms retention time STT-RAM with revival schemes, is very close to the ideal last-level cache architecture. This makes our proposed STT-RAM device an attractive contender for the universal on-chip memory.
-
+In conclusion, we find that our proposed revived scheme is significantly better in terms of performance and energy
+when compared to a traditional non-volatile STT-RAM and even a volatile STT-RAM with 1 sec retention time.
+Further, the proposed 10 ms retention time STT-RAM with revival schemes, is very close to the ideal last-level cache architecture in performance and significantly better in energy conservation.
 
 %significantly improves performance of STT-RAM banks, and bridges the gap between traditional STT-RAMs and the maximum theoretical limit. We observe that our scheme is better in terms of both performance and energy over Volatile-4MB(1sec) and
 %M-4MB designs.
@@ -118,12 +131,12 @@ In conclusion, we find that our proposed revived scheme is significantly better 
 \subsection{Sensitivity Analysis}
 In this subsection, we study the sensitivity of various architectural parameters we chose in proposing the cache revival architecture.
 
-\noindent\textbf{Sensitivity to number of buffer entries:} 
-The number of buffer entries can affect the performance of Revived-M-4MB scheme in two ways: increasing the 
+\noindent\textbf{Sensitivity to number of buffer entries:}
+The number of buffer entries can affect the performance of the Revived-M-4MB scheme in two ways: increasing the
 buffer size will accommodate more diminishing blocks at a particular instance and decreasing the buffer size will
-leads to more buffer overflows. With increasing the buffer size, leading to fewer buffer overflows, 
+leads to more buffer overflows. With increasing the buffer size, leading to fewer buffer overflows,
 the reduction comes at a cost of increase in buffer area and consequent revival overheads. Decreasing the buffer size, eventually
-leads to additional write backs (discussed in~\ref{sec:implementation}).
+leads to additional write backs (discussed in Section ~\ref{sec:implementation}).
 
 \begin{figure*} [t]
 \centering
@@ -132,14 +145,15 @@ leads to additional write backs (discussed in~\ref{sec:implementation}).
 \end{figure*}
 
 To find the optimal buffer size, we calculate the 95\% confidence intervals (CIs) for the cumulative distribution of
-dead blocks per bank. This is shown in~\ref{fig:confi}. We observe that, for first 8 MRU slots,
+dead blocks per bank. This is shown in Figure~\ref{fig:confi}. We observe that, for the first 8 MRU slots, the
 mean value of the buffer entries is 1900 blocks, which corresponds to a 3\% area overhead per L2 cache bank.
-Upper limit of the 95\% CI corresponds to 2500 blocks,  which represents 4\% area overhead per L2 cache bank. 
-The lower limit of 95\% CI corresponds to 1300 blocks (2\% area overhead). 
+Upper limit of the 95\% CI corresponds to 2500 blocks,  which represents 4\% area overhead per L2 cache bank.
+The lower limit of 95\% CI corresponds to 1300 blocks (2\% area overhead).
 
 Figure~\ref{fig:buf-mru} shows the speedup with a subset of PARSEC applications by varying the number
-of buffer entries. Going from 1900 to 2500 entries results in only less than 0.5\% speedup improvement. 
-Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area overhead) resulting in the best possible performance per area-overhead.
+of buffer entries. By varying the number of buffer entries from 1900 to 2500,results in only less than
+0.5\% speedup improvement.
+Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area overhead)with the best possible performance per area-overhead.
 
 \begin{figure*} [t]
 \centering
@@ -154,19 +168,21 @@ Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area 
 
 
 \noindent\textbf{Sensitivity to number of MRU slots:}
-Choosing optimal number of MRU slots to buffer was discussed briefly in~\ref{sec:implementation}. 
-Figure~\ref{sec:cdf} shows that mean cumulative distribution of diminishing blocks per 
-way across all PARSEC benchmarks. We see that after 8 MRU slots, the number of diminishing blocks 
-becomes negligible, which suggests that optimal number of MRU slots is 8. Figure~\ref{fig:buf-mru} shows
-speedup of subset of PARSEC applications, along with the average across 12 PARSEC applications, with varying
+Choosing the optimal number of MRU slots to buffer was discussed briefly in Section~\ref{sec:implementation}.
+Figure~\ref{fig:cdf} shows that the mean cumulative distribution of diminishing blocks per
+way across all PARSEC benchmarks. We find that after 8 MRU slots, the number of diminishing blocks
+becomes negligible, which suggests that  the optimal number of MRU slots is 8. Figure~\ref{fig:buf-mru} shows
+speedup of a subset of PARSEC applications, along with the average across 12 PARSEC applications, with varying
 number of MRU slots. Buffer size is kept constant at 1900 per bank. We see degradation in performance when we decrease
-slots from 8 to 4 since, buffering 8 MRU slots would have covered more frequently used blocks and hence, reducing
-write backs of useful blocks. We also see degradation in performance by increasing slots from 8 to 12. This is because, with coonstant buffer
-size, 12 MRU slots increase the probability of buffer overflows, which increases the write backs leading to performance degradation. 
+slots from 8 to 4, since buffering 8 MRU slots would have covered more frequently used blocks and hence, reducing
+write backs of useful blocks.
+We also see degradation in performance by increasing the number of slots from 8 to 12.
+This is because, with a constant buffer
+size, 12 MRU slots increase the probability of buffer overflows, which increases the write backs leading to performance degradation.
 
 \noindent\textbf{Sensitivity to number of bits of the counter:}
-As discussed in~\ref{sec:implementation} increasing the number of bits of the counter decreases the
-left over time at the cost of incrementing counters at finer granularity. Our experiments showed that
+As discussed in Section ~\ref{sec:implementation} increasing the number of bits of the counter decreases the
+left over time at the cost of incrementing counters at a finer granularity. Our experiments showed that
 there is no observable difference in performance and energy by increasing/decreasing the number of bits of the counter.
 
 
