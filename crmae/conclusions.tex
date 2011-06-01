@@ -2,7 +2,26 @@ Spin-Transfer Torque RAM (STT-RAM) is a promising candidate for future
 on-chip cache design due to its high-density, low leakage, and immunity to 
 soft errors.  However, it's high write latency and dynamic
 write energy are the disadvantages compared to SRAM-based cache design.
-In this paper, we propose to trade off the non-volatility (data retention time)
-for better write performance/energy in STT-RAM cache design. We study two
-data-retention relaxation cases, one with data retention time of 1 second, which satisfies the lifetime requirement of typical cache blocks; and the other one with data retention time of 1ms, which is a more aggressive design for better performance/energy gains but a data refreshing mechanism is needed. Our 
-experimental results show that.....
+In this paper, we propose to trade-off the non-volatility (data retention time)
+for better write performance/energy in STT-RAM cache design.
+In this context, we conduct an application-driven study to characterize the
+life time of a second level cache with the intention of using this time as the ideal
+retention time for the STT-RAM. Execution-driven experiments with several PARASEC and SPEC benchmarks 
+indicate that at leat 50\% of the cache blocka are updated in 10ms and thus, choose 10ms
+as an optimal retention time by analyzing the SST-RAM retention time and write time trade-offs.
+We investigate two design alternatives for avoiding the data lossdue to the volatile nature of the
+STT-RAM. The first approach write backs all the dirty blocks in the cache at the end of the retention time
+and the second approach uses a limited buffering scheme to refresh the cache blocks that are not refreshed 
+during the retention time.
+
+We analyze three different scenarios for designing the L2 cache: one with 1 second retention time with write back, 
+second with 10ms retention time with write back and the third with 10ms retention time with buffering, called 
+revived-STT-RAM. Compared to a base case design of 1MB per core SRAM design, the traditional non-volatile STT-RAM 
+cache with 4 times the SRAM capqcity but high write latency, and the volatile STT-RAM with simple write back policy,
+the proposed revive scheme shows both performance and power benefits across the application benchmarks studied in
+this paper. The results not only indicate that it is possible to get up to XX\% improvement in instruction
+throughput and YY\I reduction in total energy consumption, the proposed design can be within 4\% of the ideal case
+with an equal capcity SRAM configuration, while being more energy efficient.
+Furthermore, compared to the prior schemes that are aimed at hiding the high write latwency of STT-RAMs,
+the approch to reduce its write latency seems a better solution for designing a performance and power efficient
+memory hierarchy for multicores.
