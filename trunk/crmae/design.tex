@@ -1,51 +1,150 @@
+In this section, we first discuss STT-RAM preliminaries. This is followed by a detailed discussion of
+STT-RAM models which we have developed to guide us in our exploration of suitable STT-RAM device for
+last-level cache hierarchies. Based on this, we show three stable/feasible STT-RAM cell designs
+suitable for the last-level cache hierarchies of multi-core architectures.
+
 \subsection{Preliminary on STT-RAM}
 
-\begin{wrapfigure}{l}{0.50\textwidth}
-%\begin{figure*} [t]
+%\begin{wrapfigure}{l}{0.50\textwidth}
+%%\begin{figure*} [t]
+%\centering
+% \psfig{figure=figures/stt-cell.eps, width=1.6in, height=0.4\textwidth, angle=-90}
+% \caption{\label{fig:mram_cell} (a) Structural view of an STT-RAM Cache Cell (b) Anti Space Parallel High Resistance, Indicating ``0" state (c) Parallel Low Resistance, Indicating ``1" state}
+%%\end{figure*}
+%\end{wrapfigure}
+
+\begin{figure*} [t]
 \centering
- \psfig{figure=figures/stt-cell.eps, width=1.6in, height=0.4\textwidth, angle=-90}
- \caption{\label{fig:mram_cell} \scriptsize \bf (a) Structural view of an STT-RAM Cache Cell (b) Anti Space Parallel (High Resistance, Indicating ``1" state (c) Parallel (Low Resistance, Indicating ``0" state}
-%\end{figure*}
-\end{wrapfigure}
+\begin{minipage}{0.575\textwidth}
+\centering
+ \psfig{figure=figures/stt-cell.eps, width=1.7in, height=0.85\textwidth, angle=-90}
+ \caption{\label{fig:mram_cell} (a) Structural view of an STT-RAM Cache Cell
+ (b) Anti Space Parallel High Resistance, Indicating ``0" state (c) Parallel Low Resistance, Indicating ``1" state}
+\end{minipage}
+\hfill
+\begin{minipage}{0.375\textwidth}
+\centering
+ \psfig{figure=figures/IcWt.eps, width=0.85\textwidth, height=1.65in}
+ \caption{\label{fig:IcWt} Demonstration of three switching phases:
+ thermal activation, dynamic reversal and precessional switching }
+\end{minipage}
+\end{figure*}
 
-STT-RAM uses Magnetic Tunnel Junction~(MTJ) as the memory storage and leverages the difference in magnetic directions to represent the memory bit.  As shown in Fig.~\ref{fig:mram_cell}, an MTJ contains two ferromagnetic layers.  One ferromagnetic layer has fixed magnetization direction and it is called the reference layer, while the other layer has a free magnetization direction that can be changed by passing write current, and it is called the free layer. The relative magnetization direction of two ferromagnetic layers determines the resistance of MTJ.  If two ferromagnetic layers have the same directions, the resistance of MTJ is low, indicating a ``1" state; if two layers have different directions, the resistance of MTJ is high, indicating a ``0" state.
-
-As shown in Fig.~\ref{fig:mram_cell}, when writing ``0" state into STT-RAM cells, positive voltage is applied on bitline; when writing ``1" state, vice versa.  The current amplitude required to reverse the direction of the free ferromagnetic layer is determined by the size and aspect ratio of MTJ and the write pulse duration.
+STT-RAM uses Magnetic Tunnel Junction~(MTJ) as the memory storage and leverages the difference in
+magnetic directions to represent a memory bit (``0"/``1" state). As shown in
+Figure~\ref{fig:mram_cell}, an MTJ contains two ferromagnetic layers. One ferromagnetic layer has a
+fixed magnetization direction and it is called the reference layer. The second layer's magnetic
+direction can be changed by passing a write current, and, thus it is called the free layer. The
+relative magnetization direction of two ferromagnetic layers determines the resistance of MTJ.  If
+two ferromagnetic layers have different directions, the resistance of MTJ is high, indicating a ``0"
+state; if two layers have the same directions, the resistance of MTJ is low, indicating a ``1"
+state. When writing a ``0" state into STT-RAM cells, positive voltage is applied on bitline and when
+writing a ``1" state a negative voltage is applied. The current amplitude required to reverse the
+direction of the free ferromagnetic layer is determined by the size and the aspect ratio of MTJ, and
+the write pulse duration~\cite{STTRAM:JAP07, STTRAM:Qualcomm09}.
 
 \subsection{Write current versus write pulse width trade-off} \label{subsec:ict}
 
-\begin{wrapfigure}{l}{0.50\textwidth}
-\centering
- \psfig{figure=figures/IcWt.eps, width=3in}
- \caption{\label{fig:IcWt} \scriptsize \bf Demonstration of three switching phases: thermal activation, dynamic reversal and precessional switching }
-\end{wrapfigure}
+%\begin{wrapfigure}{l}{0.40\textwidth}
+%\centering
+% \psfig{figure=figures/IcWt.eps, width=0.40\textwidth, height=1.45in}
+% \caption{\label{fig:IcWt} Demonstration of three switching phases: thermal activation, dynamic reversal and precessional switching }
+%\end{wrapfigure}
 
+The current amplitude required to reverse the direction of the free ferromagnetic layer is determined
+by many factors like material property, device geometry and most importantly the write pulse
+duration. Generally, the longer the write pulse is applied, the lesser the switching current is
+needed to switch the MTJ state. Three distinct switching modes were identified in~\cite{STTRAM:JAP07}
+according to the operating range of switching pulse width $\tau$: thermal activation ($\tau>20ns$),
+processional switching ($\tau<3ns$) and dynamic reversal ($3ns<\tau<20ns$).
 
-The current amplitude required to reverse the direction of the free ferromagnetic layer is determined by a many factors such as the material property, device geometry and importantly the write pulse duration. Generally, the longer the write pulse is applied, the less the switching current is needed to switch the MTJ state. Three distinct switching modes were identified~\cite{STTRAM:JAP07} according to the operating range of switching pulse width $\tau$: thermal activation ($\tau>20ns$), processional switching ($\tau<3ns$) and dynamic reversal ($3ns<\tau<20ns$).
+The relationship between switching current density, $J_{c}$, and write pulse width $\tau$ in the
+three operating ranges was characterized by an analytical model in~\cite{STTRAM:IEDM09}. The
+equations are listed as follows:
 
-The relationship between switching current density $J_{c}$ and write pulse width $\tau$ was characterized by an analytical model in~\cite{STTRAM:IEDM09}. The equations are listed as follows,
-\begin{eqnarray}
-J_{c,TA}(\tau) &=& J_{c0}\{1- (\frac{k_{B}T}{E_{b}})ln(\frac{\tau}{\tau_{0}})\} \label{eqn:jcta} \\
-J_{c,PS}(\tau) &=& J_{c0}+ \frac{C}{\tau^{\gamma}} \label{eqn:jcps} \\
-J_{c,DR}(\tau) &=& \frac{J_{c,TA}(\tau)+J_{c,PS}(\tau)e^{-k(\tau - \tau_{c})}}{1+e^{-k(\tau - \tau_{c})}} \label{eqn:jcdr}
-\end{eqnarray}
-where $J_{c,TA}$, $J_{c,PS}$, $J_{c,DR}$ are the switching current densities for thermal activation, precessional switching and dynamic reversal respectively. $J_{c0}$ is the critical switching current density, $k_{B}$ is the Boltzmann constant, $T$ is the temperature, $E_{b}$ is the thermal barrier, and $\tau_{0}$ is inverse of the attempt frequency. $C$, $\gamma$, $k$, and $\tau_{c}$ are fitting constants. Based on the observation from Fig.~\ref{fig:IcWt} and analysis of the analytical model,  we found very different switching characteristics in the three switching modes. For example, in the thermal activation mode, the required switching current increases very slowly if even we decrease the write pulse width by orders of magnitude, thus short write pulse width is more favorable in this regime because reducing write pulse can reduce both write latency and energy without much penalty on read latency and energy. In the processional switching mode, write current goes up rapidly if we further reduce write pulse width, therefore, minimum write energy of the MTJ is achieved at some particular write pulse width in this regime. Consequently, this paper will focus on the exploration of write pulse width in processional switching and dynamic reversal to optimize for different design goals.
+%\begin{eqnarray}
+ {
+ \small{
+\noindent $J_{c,TA}(\tau) = J_{c0}\{1- (\frac{k_{B}T}{E_{b}})ln(\frac{\tau}{\tau_{0}})\}$
+\hspace{1mm} \textbf{(1)} \hspace{1mm} $J_{c,PS}(\tau) = J_{c0}+ \frac{C}{\tau^{\gamma}}$
+\hspace{1mm} \textbf{(2)} \hspace{1mm} $J_{c,DR}(\tau) =
+\frac{J_{c,TA}(\tau)+J_{c,PS}(\tau)e^{-k(\tau - \tau_{c})}}{1+e^{-k(\tau - \tau_{c})}}$ \hspace{1mm}
+\textbf{(3)}
+ }
+ }
+%\end{eqnarray}
+
+where, $J_{c,TA}$, $J_{c,PS}$, $J_{c,DR}$ are the switching current densities for thermal activation,
+precessional switching and dynamic reversal respectively. $J_{c0}$ is the critical switching current
+density, $k_{B}$ is the Boltzmann constant, $T$ is the temperature, $E_{b}$ is the thermal barrier,
+and $\tau_{0}$ is inverse of the attempt frequency. $C$, $\gamma$, $k$, and $\tau_{c}$ are fitting
+constants. Based on Figure~\ref{fig:IcWt} and analysis of the analytical model, we found vastly
+different switching characteristics in the three switching modes. For example, in the thermal
+activation mode, the required switching current increases very slowly even if we decrease the write
+pulse width by orders of magnitude, and thus, short write pulse width is more favorable in this
+region because reducing write pulse can reduce both write latency and energy without much penalty on
+read latency and energy. In the processional switching mode, write current goes up rapidly if we
+further reduce the write pulse width, therefore, minimum write energy of the MTJ is achieved at some
+particular write pulse width in this region. Based on this analysis, this paper will focus on the
+exploration of write pulse width in processional switching and dynamic reversal to optimize for
+different design goals.
 
 \subsection{STT-RAM Modeling}
-To simulate the performance of STT-RAM cache, it is important to estimate its cell area first. As mentioned before, each 1T1J STT-RAM cell is composed of one NMOS and one MTJ. The NMOS access device is connected in series with the MTJ. The size of NMOS is constrained by both SET and RESET current, which are inversely proportional to the writing pulse width. In order to estimate the current driving ability of MOSFET devices, a small test circuit using HSPICE with PTM 45nm HP model~\cite{PTM} is simulated. The driving current is obtained by assuming typical TMR (120\%) and LRS ($3k\Omega$) value~\cite{STTRAM:Qualcomm09} and bursting wordline voltage to be 1.5V (the optimal value is extracted from~\cite{STTRAM:Gatech10}). And we over size the access transistor width to guarantee enough write current provided to MTJ using the methodology discussed in~\cite{STTRAM:RPI10}. To achieve high cell density, we model the STT-RAM cell area by referring to DRAM design rules~\cite{DRAM:6F2}.  As a result, the cell size of a STT-RAM cell is calculated as follows,
-\begin{equation}
-\mathrm{Area}_{\mathrm{cell}}={3\left(W/L+1\right)}(F^2)
-\end{equation}
-where $W$ and $L$ are the channel width and length of the access NMOS transistor respectively.
+
+Before simulating the performance characteristics of an STT-RAM cache, we first introduce models to
+determine the area of a STT-RAM cell. Area of each STT-RAM cell would determine the area of a cache
+bank composed of these cells and in turn influence the read/write latency of the bank. As shown
+earlier in Figure~\ref{fig:mram_cell}, each 1T1J STT-RAM cell is composed of an NMOS and one MTJ. The
+NMOS access device is connected in series with the MTJ. The size of NMOS is constrained by both SET
+and RESET current, which are inversely proportional to the writing pulse width. In order to estimate
+the current driving ability of MOSFET devices, a small test circuit using HSPICE with PTM 45nm HP
+model~\cite{PTM} is simulated. The driving current is obtained by assuming typical TMR (120\%) and
+LRS ($3k\Omega$) value~\cite{STTRAM:Qualcomm09} and wordline voltage to be 1.5V (the optimal value is
+extracted from~\cite{STTRAM:Gatech10}). Further, we oversize the access transistor width to guarantee
+enough write current is provided to MTJ using the methodology discussed in~\cite{STTRAM:RPI10}. To
+achieve high cell density, we model the STT-RAM cell area by referring to DRAM design
+rules~\cite{DRAM:6F2}.  As a result, the cell size of a STT-RAM cell is given as:
+
+%\begin{equation}
+ {
+ \small{
+ \hspace{55mm} $\mathrm{Area}_{\mathrm{cell}}={3\left(W/L+1\right)}(F^2)$ \hspace{3mm} \textbf{(4)}
+ }
+ }
+%\end{equation}
+
+where, $W$ and $L$ are the channel width and length of the access NMOS transistor respectively.
 
 \subsection{Impact of MTJ Retention Time on STT-RAM} \label{subsec:retention}
+
 \begin{wrapfigure}{l}{0.50\textwidth}
 \centering
  \psfig{figure=figures/RT_TB.eps, width=3in}
-  \caption{\label{fig:retention} \scriptsize \bf MTJ thermal stability requirement for different retention time}
+  \caption{\label{fig:retention} MTJ thermal stability requirement for different retention time}
 \end{wrapfigure}
 
-The retention time of a MTJ is largely determined by the thermal stability of the MTJ. The relation between retention time and thermal barrier is captured in Figure~\ref{fig:retention}, which can be modeled as $t=C\times e^{k\Delta}$, where $t$ is the retention time and $\Delta$ is the thermal barrier, while $C$ and $k$ are fitting constants. Thermal stability of the free layer in an MTJ does not only have impact on retention time of STT-RAM memory cell but also on the write current. It was found in~\cite{PMTJ:Toshiba08} that the switching current of MTJ increases almost linearly with thermal barrier when thermal barrier is $<70k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is temperature. Here, we combine this observation with the write current versus write time trade-off described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ is lowered, we are able to achieve faster write speed or/and smaller write current/energy. Starting with a baseline $2F^2$-planar-area MTJ, our device uses three concurrent optimizations for modulating data retention times. Combining reduced planar area, reduced thickness of free layer and tuning of material property, the thermal barrier can be reduced by as much as $50\%$, which corresponds to a data retention time reduction from $10years$ to $10ms$ as seen in Figure~\ref{fig:retention}. Unlike~\cite{STTRAM:HPCA11}, the optimized $2F^2$ cell does not have much room (minimum MTJ planar area is $1F^2$) for only reducing planar area. Hence achieving the microsecond range is challenging. This challenge is further compounded by device variations where data retention times are a distribution (varying by few milliseconds).
+The retention time of a MTJ is largely determined by the thermal stability of the MTJ. The relation
+between retention time and thermal barrier is shown in Figure~\ref{fig:retention}, which can be
+modeled as $t=C\times e^{k\Delta}$, where $t$ is the retention time and $\Delta$ is the thermal
+barrier, while $C$ and $k$ are fitting constants. Thermal stability of the free layer in an MTJ not
+only has impact on retention time of STT-RAM memory cell, but also on the write current. It was found
+in~\cite{PMTJ:Toshiba08} that the switching current of MTJ increases almost linearly with thermal
+barrier when thermal barrier is $<70k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is
+temperature. Here, we combine this observation with the write current versus write time trade-off
+described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ
+is lowered, we are able to achieve faster write speed or/and smaller write current/energy. Starting
+with a baseline $2F^2$-planar-area MTJ, our device uses three concurrent optimizations for modulating
+data retention times: reduced planar area, reduced thickness of free layer, and tuning of material
+property. Combining these three optimizations, the thermal barrier can be reduced by as much as
+$50\%$, which corresponds to a data retention time reduction from $10years$ to $10ms$ as shown in
+Figure~\ref{fig:retention}. Unlike~\cite{STTRAM:HPCA11}, the optimized $2F^2$ cell does not have much
+room (minimum MTJ planar area is $1F^2$) for only reducing planar area. Hence, achieving the
+microsecond range is challenging in {\it actual implementations}. Further, device variations at
+microsecond range retention times can critically affect the device stability~\cite{STTRAM:Qualcomm09}
+(data retention times follows a distribution and devices are usually binned at the lower/most stable
+retention time in order to make a device stable).
+%This challenge is further compounded by device variations, where data retention times follows a
+%distribution.
 
 \subsection{STT-RAM Cache Simulation Setup}
 
@@ -55,20 +154,40 @@ The retention time of a MTJ is largely determined by the thermal stability of th
   \caption{16-way L2 Cache Simulation Results}
   \label{allcaches}
   \begin{tabular}{| c | c | c | c | c | c | c | c |}
-  	\hline\hline
-  	\multirow{2}{*}{} & & Area  & Read Latency & Write Latency & Read Energy & Write Energy & Leakage Power\\
+    \hline\hline
+    \multirow{2}{*}{} & & Area  & Read Latency & Write Latency & Read Energy & Write Energy & Leakage Power\\
   & & ($mm^2$) & ($ns$) & ($ns$) & ($nJ$) & ($nJ$) & ($mW$) \\
-  	\hline\hline
-  	\multicolumn{2}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $0.578$ & $0.578$ & $4542$ \\
-  	\hline
-  	\multirow{3}{*}{$4MB$ STT-RAM} & $t=10yr$ & $3.003$ & $0.998$ & $10.61$ & $1.035$ & $1.066$ & $2524$ \\
-%  	\cline{2-2}\cline{3-8}
-  	& {$t=1s$} & $2.904$ & $0.973$ & $5.571$ & $1.015$ & $1.036$ & $2235$ \\
-%  	\cline{2-2}\cline{3-8}
-  	& {$t=10ms$} & $2.901$ & $0.959$ & $2.598$ & $1.002$ & $1.028$ & $2227$ \\	
-  	\hline\hline
+    \hline\hline
+    \multicolumn{2}{|c|}{$1MB$ SRAM} & $2.612$ & $1.012$ & $1.012$ & $0.578$ & $0.578$ & $4542$ \\
+    \hline
+    \multirow{3}{*}{$4MB$ STT-RAM} & $t=10yr$ & $3.003$ & $0.998$ & $10.61$ & $1.035$ & $1.066$ & $2524$ \\
+%   \cline{2-2}\cline{3-8}
+    & {$t=1s$} & $2.904$ & $0.973$ & $5.571$ & $1.015$ & $1.036$ & $2235$ \\
+%   \cline{2-2}\cline{3-8}
+    & {$t=10ms$} & $2.901$ & $0.959$ & $2.598$ & $1.002$ & $1.028$ & $2227$ \\
+    \hline\hline
   \end{tabular}
 \end{table*}
 
-We simulate SRAM-based caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}, which is a circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile memories. All the models described in this Section has been integrated in NVsim. The simulation results are listed in Table~\ref{allcaches}. We can see that the $4MB$ non-volatile STT-RAM cache occupies similar chip area with $1MB$ SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}. By relaxing retention time of STT-RAM with lower thermal barrier, the STT-RAM cache can have smaller area, faster write latency and less leaky peripheral circuity. However, as retention time is exponentially related with thermal barrier and thermal barrier is highly sensitive to process variation and temperature, the benefit of decreasing write latency by relaxing the retention time in the same order of magnitude is so small that can be easily offset by slight variation in device geometry or environment temperature. For example, the difference of thermal barrier for $10ms$- and $50ms$- retention MTJ is only about $5\%$.
+Based on the above device level characterizations and analytical models, we simulate SRAM-based
+caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}. NVsim which is a
+circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile
+memories. We integrated all the models described in the previous sub-sections in NVsim.
+Table~\ref{allcaches} shows the architectural parameters based on our STT-RAM models. It shows the
+read, write times and energy numbers for three different retention times at which an STT-RAM can
+operate with stability. The SRAM models are based on CACTI. We find that, a 4MB NVM
+STT-RAM cache occupies similar chip area as 1MB SRAM. This is consistent with previous
+work~\cite{CACTI:DAC08:Dong}.
 
+By relaxing retention time of STT-RAM with lower thermal barrier, the STT-RAM cache can have smaller
+area, lower write latency and less leaky peripheral circuitry. However, since retention time is
+exponentially related with thermal barrier, and thermal barrier is highly sensitive to process
+variation and temperature, the benefit of decreasing write latency by relaxing the retention time in
+the same order of magnitude is so small that it can be easily offset by slight variation in device
+geometry or environment temperature. For example, the difference of thermal barrier for 10{\it ms} and
+50{\it ms} retention MTJ is only about $5\%$.
+%The simulation results are listed in Table~\ref{allcaches}
+%which shows the read, write times and energy numbers for three different retention times. The SRAM
+%numbers are also given in the table for reference.
+Based on this analysis, we propose to use 10 year, 1{\it sec} and 10{\it ms} STT-RAM devices in our
+cache banks.

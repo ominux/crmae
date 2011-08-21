@@ -1,7 +1,7 @@
 \begin {table}[t]
  \centering
   \singlespacing
- \caption{{\bf Application characteristics}: {\it Read\%}:Denotes the percentage of reads to the L2 cache out of the total L2 accesses,
+ \caption{{Application characteristics}: {\it Read\%}:Denotes the percentage of reads to the L2 cache out of the total L2 accesses,
  {\it Write\%}:Denotes the percentage of writes to the L2 cache out of the total L2 accesses, {\it Intensity}: Read/Write intensive based on read\%/write\%.}
  \label{table:benchmark}
  \scriptsize
@@ -43,7 +43,7 @@
 \begin {table*} [t]
  \scriptsize
   \centering
- \caption {{\bf Baseline processor, cache, memory and network configuration}} \label{table:sim_config}
+ \caption {{Baseline processor, cache, memory and network configuration}} \label{table:sim_config}
  \begin{tabular}{|l|l|}
  \hline
 Processor Pipeline & 2 GHz processor, 64-entry instruction window, Fetch/Exec/Commit width 8 \\
@@ -117,17 +117,15 @@ For the multiprogrammed SPEC applications, we report Instruction Throughput and 
 We define instruction throughput (IT) to be the sum of all the number of instructions committed
 per cycle in the entire CMP (Eq. (5)).  The weighted speedup (WS) is defined as the slowdown experienced
 by each application in a multiprogram mix, compared to its run under the same
-configuration when no other application is running on the other cores(Eq.(6)).
+configuration when no other application is running on the other cores(Eq.(6)). For analyzing the energy behavior, we measure the leakage energy, dynamic energy and total energy for all designs.
 
 {
 %\scriptsize{
- $Instruction$ $throughput$ $=$ $\displaystyle\sum_{i} IPC_{i}$ \hspace{1mm} \textbf{(5)}
-
+ $Instruction$ $throughput$ $=$ $\displaystyle\sum_{i} IPC_{i}$ \hspace{1mm} \textbf{(5)} \hspace{4mm}
  $Weighted$ $speedup$ $=$ $\displaystyle\sum_{i}
 \frac{IPC_{i}^{shared}}{IPC_{i}^{alone}}$ \hspace{1mm} \textbf{(6)}
-
 }
 
-For analyzing the energy behavior, we measure the leakage energy, dynamic energy and total energy for all designs.
+
 
 

@@ -4,20 +4,24 @@ We also discuss the sensitivity of several architectural parameters.
 
 \begin{figure*} [t]
 \centering
-\begin{tabular}{cc}
- \psfig{figure=figures/writebacks.eps, width=3.2in, height=2.0in} &
-\psfig{figure=figures/spec-writebacks.eps, width=2.2in, height=2.0in} \\
-\scriptsize (a) PARSEC Applications  & \scriptsize (b) Average across Multiprogrammed Mixes.
+\begin{tabular}{c}
+\psfig{figure=figures/legend-spec.eps, width=5.5in, height=0.15in}
 \end{tabular}
- \caption{\scriptsize \bf Number of Write backs normalized to M-4MB}
+\\
+\begin{tabular}{cc}
+ \psfig{figure=figures/writebacks.eps, width=3.5in, height=1.5in} &
+\psfig{figure=figures/spec-writebacks.eps, width=1.5in, height=1.48in} \\
+ (a) PARSEC Applications  & (b) Average across Multiprogrammed Mixes.
+\end{tabular}
+ \caption{Number of Write backs normalized to M-4MB.}
 \label{fig:writebacks}
 \end{figure*}
 
 
 \begin{figure*} [t]
 \centering
- \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.5in}
- \caption{\label{fig:parsec-new} \scriptsize \bf Normalized speedup for PARSEC Applications }
+ \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.4in}
+ \caption{\label{fig:parsec-new} Normalized Speedup for PARSEC Applications. }
 \end{figure*}
 
 %\begin{figure*} [t]
@@ -46,7 +50,7 @@ the average numbers are computed across the entire suite. All speedup numbers ar
 
 {\bf Speedup when replacing a SRAM with an ideal STT-RAM cache}: When aggregated across the entire PARSEC suite, we find that this hypothetical design has an average speedup of 23\% over the SRAM cache. This is the maximum performance that any scheme can provide.
 
-{\bf Speedup when replacing a SRAM with 4MB, 10 year retention time STT-RAM}: We find that, for the M-4MB design, all applications to the right of x264 (including x264) exhibit speedup improvements over S-1MB. Most of these applications are read intensive applications (details in Table~\ref{table:benchmark}) and thus, they benefit from not only the 4x capacity increase of STT-RAM, but also from the presence of a write buffer for the L2 cache. On an average, we find 6\% improvement in speedup for these applications. Although ferret and vips are write-intensive applications, they benefit with a 4x improvement in capacity when going from a 1MB-SRAM to a 4MB-STT-RAM. This is because, the write request to L2 cache banks in these two applications are staggered in time. Thus, a 10-entry write buffer proves to be sufficient to hide the long write latencies of a STT-RAM bank.
+{\bf Speedup when replacing a SRAM with 4MB, 10 year retention time STT-RAM}: We find that, for the M-4MB design, all applications to the right of x264 (including x264) exhibit speedup improvements over S-1MB. Most of these applications are read intensive applications (details in Table~\ref{table:benchmark}) and thus, they benefit from not only the 4x capacity increase of STT-RAM, but also from the presence of a write buffer for the L2 cache. On an average, we find 6\% improvement in speedup for these applications. Although ferret and vips are write-intensive applications, they benefit with a 4x improvement in capacity when going from a S-1MB to a M-4MB. This is because, the write request to L2 cache banks in these two applications are staggered in time. Thus, a 10-entry write buffer proves to be sufficient to hide the long write latencies of a STT-RAM bank.
 
 All applications to the left of x264 are write-intensive and have bursty requests arriving at L2 cache banks. For these applications, we observe significant degradation in speedup (on an average 11\% degradation ) because of the high write latency of STT-RAM.
 Overall, when averaged across the entire PARSEC suite, a traditional 10 year STT-RAM gives a minimal 5\% speedup improvement over S-1MB. However, a 10 year STT-RAM cache organization has 14\% lower performance when compared to the ideal design S-4MB and with write-intensive applications this difference is 21\%. It is this gap that our proposal seeks to bridge by tuning the retention time.
@@ -70,7 +74,7 @@ The revived-M-4MB(10ms) scheme is closest to the ideal S-4M case and is within 4
 \begin{figure*} [t]
 \centering
  \psfig{figure=figures/spec-ws.eps, width=3in, height=1.8in}
- \caption{\label{fig:spec-new} \scriptsize \bf Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2006 multiprogrammed mixes. }
+ \caption{\label{fig:spec-new} Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2006 multiprogrammed mixes. }
 \end{figure*}
 
 {\bf Analysis with SPEC 2006}: In general, the observations with SPEC benchmarks are consistent with those made with PARSEC applications. Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup with the  SPEC multiprogram
@@ -96,12 +100,12 @@ Weighted speedup also follows a similar trend as instruction throughput and we f
 \psfig{figure=figures/legend.eps, width=5.5in, height=0.15in}
 \end{tabular}
 \begin{tabular}{ccc}
- \psfig{figure=figures/leak-eng.eps, width=2.1in, height=2.0in} &
-\psfig{figure=figures/dyn-eng.eps, width=2.1in, height=2.0in} &
-\psfig{figure=figures/tot-eng.eps, width=2.1in, height=2.0in} \\
-\scriptsize (a) Leakage Energy  & \scriptsize (b) Dynamic Energy & \scriptsize (c) Total Energy
+ \psfig{figure=figures/leak-eng.eps, width=2.1in, height=1.9in} &
+\psfig{figure=figures/dyn-eng.eps, width=2.1in, height=1.9in} &
+\psfig{figure=figures/tot-eng.eps, width=2.1in, height=1.9in} \\
+ (a) Leakage Energy  & (b) Dynamic Energy & (c) Total Energy
 \end{tabular}
- \caption{\scriptsize \bf Energy of Applications Normalized to that of S-1MB}
+ \caption{Energy of Applications Normalized to that of S-1MB.}
 \label{fig:energy}
 \end{figure*}
 
@@ -114,9 +118,7 @@ total energy is reduced because of reduction in leakage energy and also nominal 
 However, when comparing
 volatile M-4MB(10ms) with volatile M-4MB(1s), because of larger number of write-backs with 10 ms retention time STT-RAMs, the performance degrades and thus, leakage energy increases.
 
-With our proposed cache block refreshment scheme, we consistently observe improvement in total energy
-(due to both reduction in leakage power and improvement in performance). On an average, we find 11\% energy benefits
-of using revived M-4MB design over Volatile-1sec and 30\% improvement over the baseline STT-RAM design.
+With our proposed cache block refreshment scheme, although there is an increase in the dynamic energy on account of additional back and forth writes to the buffer and cache lines, we consistently observe improvement in total energy (due to both reduction in leakage power and improvement in performance). On an average, we find 11\% energy benefits of using revived M-4MB design over Volatile-1sec and 30\% improvement over the baseline STT-RAM design. We observe similar benefits with SPEC 2K6 multiprogrammed applications, but for the sake of brevity we are not showing them.
 
 In conclusion, we find that our proposed revived scheme is significantly better in terms of performance and energy
 when compared to a traditional non-volatile STT-RAM and even a volatile STT-RAM with 1 sec retention time.
@@ -157,8 +159,8 @@ leads to additional write backs (discussed in Section ~\ref{sec:implementation})
 
 \begin{figure*} [t]
 \centering
- \psfig{figure=figures/confi.eps, width=3in, height=2in}
- \caption{\label{fig:confi} \scriptsize \bf 95\% Confidence Intervals of Diminished Blocks for each Way}
+ \psfig{figure=figures/confi.eps, width=3in, height=1.9in}
+ \caption{\label{fig:confi} 95\% Confidence Intervals of Diminished Blocks for each Way}
 \end{figure*}
 
 To find the optimal buffer size, we calculate the 95\% confidence intervals (CIs) for the cumulative distribution of
@@ -175,11 +177,11 @@ Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area 
 \begin{figure*} [t]
 \centering
 \begin{tabular}{cc}
- \psfig{figure=figures/buffer.eps, width=3.4in, height=2.0in} &
-\psfig{figure=figures/slots.eps, width=3.4in, height=2.0in} \\
-\scriptsize (a) Buffer Entries & \scriptsize (b) MRU Slots
+ \psfig{figure=figures/buffer.eps, width=3.4in, height=1.9in} &
+\psfig{figure=figures/slots.eps, width=3.4in, height=1.9in} \\
+(a) Buffer Entries & (b) MRU Slots.
 \end{tabular}
- \caption{\scriptsize \bf Showing effects on speedup by varying number of Buffer Entries and MRU Slots }
+ \caption{Showing effects on speedup by varying number of Buffer Entries and MRU Slots }
 \label{fig:buf-mru}
 \end{figure*}
 
@@ -201,11 +203,3 @@ size, 12 MRU slots increase the probability of buffer overflows, which increases
 As discussed in Section ~\ref{sec:implementation}, increasing the number of bits of the counter decreases the
 left over time at the cost of incrementing counters at a finer granularity. Our experiments showed that
 there is no observable difference in performance and energy by increasing/decreasing the number of bits of the counter.
-
-
-
-
-
-
-
-

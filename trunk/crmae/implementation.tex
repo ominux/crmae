@@ -3,7 +3,7 @@
 %\begin{figure*} [t]
 \center
  \psfig{figure=figures/arch.eps, width=3.5in, height=6.5in, angle=-90}
- \caption{\label{fig:architecture} \scriptsize \bf A modified 16-way L2 cache architecture with a 2-bit counter and a small buffer}
+ \caption{\label{fig:architecture}  A modified 16-way L2 cache architecture with a 2-bit counter and a small buffer}
 %\end{figure*}
 \end{figure*}
 
@@ -18,32 +18,34 @@ a naive scheme of writing back
 all the dirty blocks to a more sophisticated scheme, where we minimize the number of refreshes and write backs.
 
 \subsection{{Volatile STT-RAM}}
-In this design, we write back all the unrefreshed dirty blocks which become volatile after the retention time.
-To identify these blocks,
-we maintain a counter per cache block.  To understand the working of the counter, let us consider an {\it n}-bit
-counter. We assume the time between transitions (T) from one state to another equals to the retention time
-divided by the number of states, where the number of states is 2$^n$.
-A block starts in state {\it S$_0$} when it is first brought to the cache. After every transition time (T),
-the counter of each block is incremented.
-When a block reaches  state {\it S$_{n-1}$}, it indicates that it is going to expire in time T.
-We define this time as the {\it leftover time} and the block in state {\it S$_{n-1}$} as  the diminishing block.
-Increasing the value of {\it n} will decrease the leftover time at the cost of increased overhead of checking
-the blocks at a finer granularity.
-For example, if we use a 2-bit counter, the {\it leftover time} is 2.5{\it ms} and for a 3-bit it is 1.25{\it ms}.
-A large counter decreases the {\it leftover time} and allows more time for a block to stay in the cache
-before applying any refreshing techniques. The down side is the overhead of designing and maintaining a large counter.
+In this design, we write back all the unrefreshed dirty blocks which become volatile after the
+retention time. To identify these blocks, we maintain a counter per cache block. Each cache block
+uses an {\it n}-bit counter (shown in Figure~\ref{fig:architecture}(b)(i)).
+%To understand the working of the counter, let us consider an {\it n}-bit counter as shown in Figure
+%~\ref{fig:architecture}(b)(i).
+We assume the time between transitions (T) from one state to another
+equals to the retention time divided by the number of states, where the number of states is 2$^n$. A
+block starts in state {\it S$_0$} when it is first brought to the cache. After every transition time
+(T), the counter of each block is incremented. When a block reaches  state {\it S$_{n-1}$}, it
+indicates that it is going to expire in time T. We define this time as the {\it leftover time} and
+the block in state {\it S$_{n-1}$} as  the diminishing block. Increasing the value of {\it n} will
+decrease the leftover time at the cost of increased overhead of checking the blocks at a finer
+granularity. For example, if we use a 2-bit counter, the {\it leftover time} is 2.5{\it ms} and for a
+3-bit counter it is 1.25{\it ms}. A large bit counter decreases the {\it leftover time} and allows
+more time for a block to stay in the cache before applying any refreshing techniques. This gives the
+block more opportunity to stay in the cache. The down side is the overhead of designing and
+maintaining a large bit counter.
 
-Our experimental results show that a 2-bit counter, similar to the one used in \cite{cache-decay-2001},
-is sufficient enough to detect the expiration time of the blocks without significantly affecting the performance.
-With a 2-bit counter, a block can be in one of the four states as shown in Figure~\ref{fig:architecture} (b).
-A block moves from state {\it S$_0$} to state {\it S$_3$} in steps of 2.5{\it ms} and any time the block is written/invalidated, it
-goes back to the initial state.  The counter bits are kept as a part of the SRAM tag array.
-The overhead of the 2-bit counter is 0.4\% for one L2 cache bank.
-
-This scheme has a negative impact on the performance for two reasons: (1) There will be  a large number of write
-backs to the main memory for all the dirty blocks at the end of the retention time.
-(2) The expired block could have been frequently read and losing it will incur additional read misses.
-We evaluate the results of this design in Section~\ref{sec:results}.
+Our experimental results show that a 2-bit counter, similar to the one used in
+\cite{cache-decay-2001}, suffices to detect the expiration time of the blocks without significantly
+affecting the performance. With a 2-bit counter, a block can be in one of the four states as shown in
+Figure~\ref{fig:architecture} (b)(ii). A block moves from state {\it S$_0$} to state {\it S$_3$} in
+steps of 2.5{\it ms} and at any time the block is written/invalidated, it goes back to the initial
+state.  The counter bits are kept as a part of the SRAM tag array. The overhead of the 2-bit counter
+is 0.4\% for one L2 cache bank. This scheme has a negative impact on the performance for two reasons:
+(1) There will be  a large number of write backs to the main memory for all the dirty blocks at the
+end of the retention time. (2) The expired block could have been frequently read and losing it will
+incur additional read misses. We evaluate the results of this design in Section~\ref{sec:results}.
 
 % where to include gray encoding style?
 
@@ -76,20 +78,21 @@ The block is copied to one of the empty buffer entries along with the set and wa
 buffer space.
 If the buffer is full, the dirty blocks are written back to the main memory; otherwise they are  invalidated.
 
-\noindent\textbf{Implementation Details:}
-Figure ~\ref{fig:architecture} (a) shows a 16-way set associative cache bank with the associated tag array.
-We show the working of
-our scheme using a 2-bit counter.  One of the sets is shown in detail to clarify the details of the scheme.
-All the blocks in a set are marked with their current state. Each bank is  associated with a buffer and the buffer controller.
-Let us consider that we are using the buffering scheme for eight MRU slots, based on the cumulative distribution
-of MRU slots~\ref{fig:cdf}
-In Section ~\ref{sec:results}, we will vary the number of slots to see the effects on performance.
-In Figure  ~\ref{fig:architecture} (a), \ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the buffer. \ding{183} checks
-the occupancy of the buffer and if it is not full, each of the diminishing blocks is copied to one of the entries
-of \ding{184} along with way and set id. Way and set id are again used by the \ding{183}  to copy back the blocks to
-the same place in the L2 cache. \textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots,
-but are diminishing. We check these blocks in \textcircled{\raisebox{-.9pt}{B}} to see whether they are dirty or not.
-If they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}}.  If they are not dirty, they are invalidated.
+\noindent\textbf{Implementation Details:} Figure ~\ref{fig:architecture} (a) shows a 16-way set
+associative cache bank with the associated tag array. We show the working of our scheme using a 2-bit
+counter.  One of the sets is shown in detail to clarify the details of the scheme. All the blocks in
+a set are marked with their current state. Each bank is  associated with a buffer and the buffer
+controller. Let us consider that the buffering scheme incorporates eight MRU slots, based on the
+cumulative distribution of MRU slots shown in Figure~\ref{fig:cdf}. In Section ~\ref{sec:results}, we
+will vary the number of slots to see the effects on performance. In Figure~\ref{fig:architecture}(a),
+\ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the
+buffer. \ding{183} checks the occupancy of the buffer and if it is not full, each of the diminishing
+blocks is copied to one of the entries of \ding{184} along with way and set id. Way and set id are
+again used by  \ding{183}  to copy back the blocks to the same place in the L2 cache.
+\textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots, but are diminishing.
+We check these blocks in \textcircled{\raisebox{-.9pt}{B}} to see whether they are dirty or not. If
+they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}}.  If they
+are not dirty, they are invalidated.
 
 %\noindent\textbf{Choosing Optimal Buffer  Size and MRU Slots:}
 %In order to calculate the optimal MRU slots for buffering, we collected statistics of MRU positions of diminishing blocks
@@ -105,9 +108,7 @@ If they are dirty, we write back those blocks as shown in \textcircled{\raisebox
 \begin{figure*} [t]
 %\begin{figure*} [t]
 \centering
- \psfig{figure=figures/cdf.eps, width=3in, height=2in}
-  \caption{\label{fig:cdf} \scriptsize \bf Cumulative Distribution of Dead Blocks per Bank with number of ways.}
+ \psfig{figure=figures/cdf.eps, width=3in, height=1.9in}
+  \caption{\label{fig:cdf} Cumulative Distribution of Dead Blocks per Bank with number of ways.}
 %\end{figure*}
 \end{figure*}
-
-

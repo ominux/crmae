@@ -44,6 +44,8 @@
 % egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
 % run, let it finish, and you should be clear).
 \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+% ASIT Added for coloring references
 \hypersetup{
   colorlinks,
   citecolor=blue,
@@ -52,7 +54,7 @@
 
 % \iccvfinalcopy % *** Uncomment this line for the final submission
 
-\def\iccvPaperID{761} % *** Enter the MICRO Paper ID here
+\def\iccvPaperID{58} % *** Enter the HPCA Paper ID here
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
@@ -96,7 +98,8 @@ First line of institution2 address\\
 \section{STT-RAM Design} \label{sec:design}
 \input{design}
 %-------------------------------------------------------------------------
-\section{An Application-driven Approach to Determining Retention Time} \label{sec:motivation}
+\vspace{-2mm}
+\section{An Application-driven Approach to Determine Retention Time} \label{sec:motivation}
 \input{motivation}
 %-------------------------------------------------------------------------
 \section{Architecting Volatile STT-RAM} \label{sec:implementation}

@@ -42,7 +42,7 @@ implement since our proposal works at a much coarser granularity.
 
 Sun et al.~\cite{gsun-hpca} showed that write buffers can be helpful in hiding the long write
 latencies of STT-RAM banks. Our analysis shows that, if an application is bursty, write-buffers fail
-to hide this latency and are rendered in-effective. Out of 25 applications, we found 11 applications
+to hide this latency and are rendered in-effective. Out of 25 applications, we found 12 applications
 to be write intensive and bursty and hence, write-buffering is ineffective for these applications.
 Moreover, all our results are conservative since we have already assumed a 10-entry (as used
 in~\cite{gsun-hpca}) write-buffer at every STT-RAM bank and our results would be significantly better
