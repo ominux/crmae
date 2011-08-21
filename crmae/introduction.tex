@@ -13,6 +13,7 @@ the memory wall problem for many core systems.
 %compared to SRAM.
 
 
+
 Spin-Transfer Torque RAM (STT-RAM) is a promising memory technology that delivers on many aspects,
 desirable of a universal memory. It has the potential to replace the conventional on-chip SRAM
 caches because of its higher density, competitive read times, and lower leakage power consumption
@@ -24,7 +25,7 @@ these architectural approaches, a recent  work explored the {\it feasibility} of
 data retention times to reduce both write latencies and write energy~\cite{STTRAM:HPCA11}. This
 adaptable feature of tuning the data retention time can be exploited in several dimensions. The focus
 of this paper is to tune this data retention time to closely match the required refresh time of the last
-level cache blocks to achieve significant performance and energy gains. In this context, the paper
+level cache (LLC) blocks to achieve significant performance and energy gains. In this context, the paper
 addresses several design issues such as how to decide an appropriate retention time for the last
 level caches, what the relationship between retention time and write latency is, and how we
 architect the cache hierarchy with a volatile STT-RAM.
@@ -32,7 +33,7 @@ architect the cache hierarchy with a volatile STT-RAM.
 The non-volatile nature and non-destructive read ability of STT-RAM provides a key difference with
 regard to traditional on-chip cache design with SRAM technology. However, as our analysis will show,
 for many applications, it is sufficient if the data stored in the last level of a cache hierarchy
-remains valid for a few tens of {\it ms} in contrast to {\it $\mu$} for the L1 cache~\cite{3t1d-cache}.
+remains valid for a few tens of {\it ms} in contrast to {\it $\mu$s} for the L1 cache~\cite{3t1d-cache}.
 Consequently, the duration of data retention in STT-RAM
 is an obvious candidate for device optimization for the cache design. We, therefore, conduct an
 application-driven study to analyze the inter-write times (refresh times) of the L2 cache blocks to decide a suitable
@@ -68,31 +69,46 @@ for avoiding any data loss. This includes a simple 2-bit counter (similar to one
 in~\cite{cache-decay-2001}) to keep track of the inter-write times of all the cache blocks and a small buffer
 to temporarily store the blocks whose inter-write time has exceeded the retention time. We conduct
 execution-driven analysis of our proposed techniques using the M5 simulator and a suite of PARSEC and
-SPEC 2006 benchmarks. The main contributions of this work are the following:
+SPEC 2006 benchmarks. 
+
+%b) [Application Level] Our exhaustive application-level analysis with 25 benchmarks from SPEC and PARSEC suites (compared to only 5 applications in [19]) shows that μs retention time proposed in [19], is not suitable for last level cache because of too much refresh overhead.
+ 
+%c) [Architecture Level] We feel that analyzing this broad spectrum of applications and architecting the whole cache hierarchy is a non-trivial task. Our refresh scheme is simple with less area/power/performance overhead compared to costly DRAM style refreshing.%
+
+The main {\bf contributions} of this paper and the {\bf differences} from the closest work [19] are following:
 
 \noindent\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
 device characterization of data-retention tunability in STT-RAM Cells providing insight to the
-underlying principles enabling these tradeoffs. We believe the design in~\cite{STTRAM:HPCA11} is very
-aggressive and may not be feasible considering the state-of-the-art in device technology. Moreover,
-as our analysis shows, a very aggressive {\it $\mu$s} level retention time is unsuitable for the last
-level cache block.
+underlying principles enabling these tradeoffs. The cell sizes (10 - 32$F^2$) used in~\cite{STTRAM:HPCA11}  are not realistic
+and give an inaccurate picture of the current technology. We feel that there is not much scope to
+further reduce the state-of-the-art MTJ planar area of 2-3$F^2$~\cite{STTRAM:Grandis11} and hence, we focus
+on other optimization parameters to get optimal operating points. 
 %On the other hand, if the microsecond level retention time is feasible, then our proposed
 %architectural solution would be even more beneficial.
 
 \noindent\textbf{An application-driven study to determine retention time:}
-We analyze the time between writes or replacements to a cache line for
-various multi-threaded and multi-programmed workloads. Our characterization
+Our characterization of the time between writes or replacements to a LLC block
 augments the prior body of work that analyzes cache lifetimes mainly in
-single processor and single program configurations. Based on the L2 cache
-behavior, we propose to design STT-RAMs with retention time in the range of 10{\it ms}.
+single processor and single program configurations. This exhaustive application-level analysis is done with
+25 multi-threaded and multi-programmed applications, as compared to only 5 applications in~\cite{STTRAM:HPCA11},
+shows that a very aggressive {\it $\mu$s} level retention time advocated in~\cite{STTRAM:HPCA11} is
+unsuitable for the LLC block and we propose to be in the range of 10{\it ms}.
+We feel that analyzing this broad spectrum of applications and architecting the 
+whole cache hierarchy is a non-trivial task.
+
 
 \noindent\textbf{Architectural solution to handle STT-RAM volatility:} We present a simple buffering
 mechanism to ensure the integrity of programs given the volatile nature of our tuned STT-RAM cells.
+Our refresh scheme is simple with very less area/power/performance overhead compared to the 
+DRAM style refreshing proposed in ~\cite{STTRAM:HPCA11}.
+%This scheme is 26x less power consuming than DRAM-style refreshing proposed ~\cite{STTRAM:HPCA11}  
+%in addition to the 25x area and 22x performance benefits. 
 Experimental results with PARSEC and SPEC benchmarks on a four-core platform
 compared to a base case 1MB SRAM per core and the ideal 4MB SRAM per core indicate that the proposed
 solution is attractive both from performance and power perspectives. On an average, we find 18\% speedup
 improvement with PARSEC benchmarks, 10\%/4\% instruction throughput/weighted speedup improvement
 with SPEC 2K6 benchmarks, and an average energy saving of 60\%, over 1MB SRAM across our entire application suite.
+
 
 %\noindent\textbf{Comparison with prior architectural proposals:} We show that our scheme is better by
 %XX\% when compared to a recent write latency hiding scheme proposed in~\cite{}. Additionally, all our

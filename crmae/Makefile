@@ -7,4 +7,4 @@ latex_part:
 mram.pdf:
 	ps2pdf mram.ps mram.pdf
 clean:
-	rm -f mram.aux   mram.bbl   mram.blg  mram.brf   mram.dvi   mram.log  mram.ps  mram.pdf
+	rm -f mram.aux   mram.bbl   mram.blg  mram.brf   mram.dvi   mram.log  mram.ps  
