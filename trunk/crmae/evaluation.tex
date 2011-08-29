@@ -7,7 +7,7 @@
  \scriptsize
 \begin{tabular}{||c|c|c|c|c||c|c|c|c|c||}
 \hline
-\# & PARSEC & Read\% & Write\% & Intensity & \# & SPEC-2K6 & Read\% & Write\% & Intensity \\
+\# & PARSEC 2.1 & Read\% & Write\% & Intensity & \# & SPEC 2K6 & Read\% & Write\% & Intensity \\
 \hline \hline
 1 & blackscholes  &  91.9 &  8.1 &   Read &  13 &  bzip2 & 86.2 & 13.8 & Read \\
 \hline
@@ -61,18 +61,17 @@ Main Memory & 4GB DRAM, 400 cycle access \\
 
 %\noindent\textbf{Experimental Setup:}
 We evaluate our designs using a modified ALPHA M5 Simulator \cite{M5} .
-We operate the M5 Simulator in Full System (FS) mode for PARSEC applications and in the System Emulation (SE) Mode
+We operate the M5 Simulator in Full System (FS) mode for PARSEC 2.1 applications and in the System Emulation (SE) Mode
 for the SPEC 2K6 multiprogammed mixes. We model a 2GHz processor with four out-of order cores.
 The memory instructions are modeled through M5 detailed memory hierarchy. We modified the M5 simulator to model
 L2 cache banks composed of tunable retention time STT-RAM cells. A fixed 400 cycles main memory latency is used for all our simulations. Table~\ref{table:sim_config} details our experimental system configuration.
 
 %\noindent\textbf{Collection of Results:}
-We report results of 12 multithreaded PARSEC applications and 14 multiprogrammed mixes of 4 SPEC 2K6 applications.
+We report results of 12 multithreaded PARSEC 2.1 applications and 14 multiprogrammed mixes of 4 SPEC 2K6 applications.
 Multiprogrammed mixes are chosen randomly from the set of 13 SPEC 2K6 applications.
-Table ~\ref{table:benchmark} shows the properties of PARSEC and SPEC 2K6 applications.
-We use sim-small input for PARSEC applications and report the results of only Region of Interest (ROI)
-after warming up the caches for 500M instructions and skipping the initialization and termination phases
-(except facesim, where we report results for only 2B instructions of ROI). For the SPEC multiprogrammed mixes,
+Table ~\ref{table:benchmark} shows the properties of PARSEC 2.1 and SPEC 2K6 applications.
+We use sim-small input for PARSEC 2.1 applications and report the results of only Region of Interest,(ROI)(except facesim, where we report results for only 2B instructions of ROI)
+after warming up the caches for 500M instructions and skipping the initialization and termination phases. For the SPEC multiprogrammed mixes,
 we fast forward 1B Instructions, warm up caches for 500M instructions and then report
 results for 1B instructions.
 
@@ -110,7 +109,7 @@ All 4MB STT-RAM banks occupy the same area as that of a 1MB SRAM bank (because S
 %\squishend
 
 \noindent\textbf{ Evaluation Metrics:}
-For the multithreaded PARSEC applications, we assume 4 threads are mapped to our modeled
+For the multithreaded PARSEC 2.1 applications, we assume 4 threads are mapped to our modeled
 processor with four cores. We report normalized speedup for these applications,
 which is defined as the improvement over the slowest thread.
 For the multiprogrammed SPEC applications, we report Instruction Throughput and Weighted Speedup.
