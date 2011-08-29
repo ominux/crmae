@@ -168,7 +168,7 @@ caches and STT-RAM-based caches with a tool called NVsim~\cite{CACTI:PCRAMsim}. 
 circuit-level performance, energy, and area simulator based on CACTI for emerging non-volatile
 memories. We integrated all the models described in the previous sub-sections in NVsim.
 Table~\ref{allcaches} shows the architectural parameters based on our STT-RAM models. It shows the
-read, write times and energy numbers of three stable operating points A, B', and C' for MTJs with different retention times. We find that a 4MB NVM STT-RAM cache occupies similar chip area as 1MB SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}.
+read, write times and energy numbers of three stable operating points A, B', and C' for MTJs with different retention times. We find that a 4MB NVM STT-RAM cache occupies similar chip area as 1MB SRAM. This is consistent with previous work~\cite{CACTI:DAC08:Dong}. For the leakage simulation, we assume there is no power gating techniques for all cache banks. The results show that STT-RAM consume almost half leakage power of SRAM. That is basically because half of STT-RAM die area is occupied by peripheral circuitry which means half of the chip are leaky.
 
 By relaxing retention time of STT-RAM with lower thermal barrier, the STT-RAM cache can have smaller
 area, lower write latency and less leaky peripheral circuitry. However, since retention time is
