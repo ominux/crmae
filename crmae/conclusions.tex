@@ -1,21 +1,21 @@
 Spin-Transfer Torque RAM (STT-RAM) is a promising candidate for future
 on-chip cache design due to its high-density, low leakage, and immunity to
 soft errors.  However, its high write latency and dynamic
-write energy are the disadvantages compared to SRAM-based cache design.
+write energy are the disadvantages compared to SRAM based cache design.
 In this paper, we propose to trade-off the non-volatility (data-retention time)
 for better write performance/energy in STT-RAM cache design.
 In this context, we conduct an application-driven study to characterize the
-life time of a second level cache with the intention of using this time as the ideal
+life time of LLC with the intention of using this time as the ideal
 retention time for the STT-RAM. Execution-driven experiments with several PARSEC and SPEC benchmarks
-indicate that at least 50\% of the cache blocks are updated in 10{\it ms} and thus, chose 10{\it ms}
+indicate that at least 50\% of the cache blocks are updated in $10ms$ and thus, chose $10ms$
 as an optimal retention time by analyzing the STT-RAM retention time and write time trade-offs.
 We investigate two design alternatives for avoiding the data loss due to the volatile nature of the
 STT-RAM. The first approach writes back all the dirty blocks in the cache at the end of the retention time
 and the second approach uses a buffering scheme to refresh the cache blocks that are not refreshed
 during the retention time.
 
-We analyze three different scenarios for designing the L2 cache: one with 1{\it sec} retention time with write back,
-second with 10{\it ms} retention time with write back and the third with 10{\it ms} retention time with buffering, called
+We analyze three different scenarios for designing the L2 cache: one with $1sec$ retention time with write back,
+second with $10ms$ retention time with write back and the third with $10ms$ retention time with buffering, called
 Revived-M-4MB. Compared to a base case design of 1MB per core SRAM design, the traditional non-volatile STT-RAM
 cache with 4 times the SRAM capacity but high write latency, and the volatile STT-RAM with simple write back policy,
 the proposed revive scheme shows both performance and power benefits across the application benchmarks studied in

@@ -1,13 +1,13 @@
 
-In order to leverage the volatile STT-RAM properties at the last level cache hierarchy, we need to
+In order to leverage the volatile STT-RAM properties at the LLC hierarchy, we need to
 know what the ideal/feasible retention time should be. Ideally, the STT-RAM write latency should be
 competitive to SRAM latency and the cache retention time should be high. However, as discussed in the
 previous section, since the write latency is inversely proportional to the retention time, we need
 to find a feasible trade-off based on the STT-RAM device characteristics. Thus, we attempt to decide
-an ideal retention time by analyzing the retention times of last level cache blocks in a
-multithreaded PARSEC~\cite{bienia11benchmarking} and multiprogrammed SPEC 2006~\cite{spec}
-environment. The idea is to understand the distribution of the inter-write intervals to a last level
-cache and use average of these intervals as the STT-RAM retention time. The next sub-section
+an ideal retention time by analyzing the retention times of LLC blocks in a
+multithreaded PARSEC 2.1~\cite{bienia11benchmarking} and multiprogrammed SPEC2K6~\cite{spec}
+environment. The idea is to understand the distribution of the inter-write intervals to a LLC
+and use average of these intervals as the STT-RAM retention time. The next sub-section
 describes our application-driven study to estimate the retention time.
 
 \subsection{Relating Application Characteristics to Retention Time}
@@ -17,9 +17,9 @@ describes our application-driven study to estimate the retention time.
 \begin{tabular}{cc}
  \psfig{figure=figures/parsec-hist.eps, width=3.4in, height=2.1in} &
 \psfig{figure=figures/spec-hist.eps, width=3.4in, height=2.1in} \\
-      (a) PARSEC  &  (b) SPEC 2006
+      (a) PARSEC 2.1  &  (b) SPEC 2K6
 \end{tabular}
- \caption{Distribution of Blocks Showing Different Revival Times. Values on the Top of the Bar shows
+ \caption{Distribution of blocks showing different revival times. Values on the top of the bar shows
  maximum revival time for that distribution.}
 \label{fig:distribution}
 \end{figure*}
@@ -28,24 +28,25 @@ Application characterization gives the basis for evaluating the impact of retent
 overall system performance. In order to do this characterization, the first step is to investigate
 the duration for which the cache block should retain the data.  A cache block is only refreshed when
 the block is written. Thus, we record intervals between two successive writes (refreshes) to the same
-L2 cache block. We define this interval to be {\it revival time}. While collecting these results, we
+L2 cache block. We define this interval to be $revival$ $time$. While collecting these results, we
 ensure that if a block gets invalidated in between two consecutive writes, we do not consider the
 time in between the invalidation and the next write. Previous work ~\cite{3t1d-cache} has done
 similar type of revival time analysis, but it was for the L1 cache. Figure~\ref{fig:distribution}
 shows the distribution of L2 cache blocks having different revival time intervals. These results are
-obtained by running multithreaded (PARSEC~\cite{PARSEC}) and multiprogrammed (SPEC 2006~\cite{spec})
+obtained by running multithreaded(PARSEC 2.1) and multiprogrammed (SPEC 2K6)
 applications on the M5 Simulator~\cite{M5} that models a 2GHz processor consisting of 4 cores, with
 4MB L2 cache. Table~\ref{table:sim_config} contains additional details of the system configuration.
-Figures~\ref{fig:distribution} (a) and (b) show the results of three PARSEC and SPEC benchmarks along
-with the averages across 12 PARSEC  and 14 SPEC benchmarks, respectively. We observe from the figures
-that, on an average, approximately 50\% of the cache blocks get refreshed within 10{\it ms}, this is
+Figures~\ref{fig:distribution} (a) and (b) show the results of three PARSEC 2.1
+and SPEC 2K6 benchmarks along
+with the averages across 12 PARSEC 2.1  and 14 SPEC 2K6 benchmarks, respectively. We observe from the figures
+that, on an average, approximately 50\% of the cache blocks get refreshed within $10ms$, this is
 in contrast to the microsecond reuse for L1 case~\cite{3t1d-cache}. About 20\% of blocks remain in
-the cache for more than 40{\it ms} and rest of the blocks have intermediate revival times. Blocks
+the cache for more than $40ms$ and rest of the blocks have intermediate revival times. Blocks
 which stay longer than the retention time in the cache without being refreshed are assumed to be
 expired, and would affect the application performance the most. This distribution also gives us the
 basis on which we can choose the optimal retention time. Reducing the retention time too much will
 make the cache highly volatile leading to degraded performance, while increasing the retention time
-would affect the write latency.
+would negatively affect the write latency.
 %In the next subsection, we will see how increasing the retention time, has negative impacts on write latency.
 
 
@@ -55,7 +56,7 @@ Table~\ref{table:rt-wt} summarizes the retention time and write latency tradeoff
 for a 2GHz processor.
 The results indicate that there is significant reduction in write latency with reduction in retention time.
 %Section 4 explains how these numbers originate.
-Note that one can possibly lower the retention time further beyond the {\it ms} ranges, but it becomes much harder to control the variations and the benefits of performance/energy diminish. For the sake of correctness and preciseness, we discuss these designs only in the paper.
+Note that one can possibly lower the retention time further beyond the $ms$ ranges, but it becomes much harder to control the variations and the benefits of performance/energy diminish. For the sake of correctness and preciseness, we discuss these designs only in the paper.
 
 %We want to clarify from device fabrication perspective that these retention times are the most stable designs possible.
 %As we lower the retention times of these STT-RAM cells in the range of {\it ms}, it becomes much harder
@@ -77,11 +78,11 @@ Note that one can possibly lower the retention time further beyond the {\it ms} 
 \end{table*}
 
 To analyze the tradeoffs between retention time and overall system performance, let us consider an utopian cache
-with 10 year retention time having minimum write latency and energy.  To bridge the gap between a
+with $10year$ retention time having minimum write latency and energy.  To bridge the gap between a
 feasible state-of-the-art design and the utopian cache, we need to reap the benefits of both application
 characteristics and emerging device technology. From the application side, it is best to choose a retention time
 which minimizes the number of unrefreshed blocks and from the technology side, it is ideal to choose the
-STT-RAM with minimum write latency and energy. From Table 2, we choose 10{\it ms} as the optimal retention time that
+STT-RAM with minimum write latency and energy. From Table 2, we choose $10ms$ as the optimal retention time that
 balances both the sides.
 %Note that we are using only 10{\it ms}, since results for 50{\it ms} were not stable.
 %In Section 7, we do a sensitivity analysis by choosing retention times 100 ms, 500 ms and 1sec. In Section 5, we propose micro-architecture techniques to deal with blocks having revival time greater than 10ms.
