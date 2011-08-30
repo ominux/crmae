@@ -74,7 +74,7 @@ The buffer controller consists of a log$_2$N bit buffer overflow detector, where
 %is copied to one of the buffer slots.
 The overflow detector is first checked to see the occupancy of the buffer,
 when a diminishing block is directed to the buffer and the buffer overflow detector is incremented.
-The block is copied to one of the empty buffer entries along with the set and way id, if there is
+The block is copied to one of the empty buffer entries along with the set and way ID, if there is
 buffer space.
 If the buffer is full, the dirty blocks are written back to the main memory; otherwise they are  invalidated.
 
@@ -87,13 +87,13 @@ cumulative distribution of MRU slots shown in Figure~\ref{fig:cdf}. In Section ~
 will vary the number of slots to see the effects on performance. In Figure~\ref{fig:architecture}(a),
 \ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the
 buffer. Please note that we apply our scheme only to the diminshing (to-be-expired) blocks, which gives enough time for the scheme to be completed before actual data loss happens. \ding{183} checks the occupancy of the buffer and if it is not full, each of the diminishing
-blocks is copied to one of the entries of \ding{184} along with way and set id. Way and set id are
+blocks is copied to one of the entries of \ding{184} along with way and set ID. Way and set ID are
 again used by  \ding{183}  to copy back the blocks to the same place in the L2 cache. 
 \textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots, but are diminishing.
 We check these blocks in \textcircled{\raisebox{-.9pt}{B}} to see whether they are dirty or not. If
 they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}} and then 
 invalidate.  If they are not dirty, they are just invalidated. During this whole refresh process, if a read request for the cache block comes, it will be sucessfully completed as the data is still valid during that time. If a write/invalidate request comes, the cache blocks goes back to its original state. To make sure we don't copy the stale data
-from the buffer, we do perform state check before copying back as shown in \ding{185}. Moreover, our implementation assumes the worst-case temperature of (125C) and hence there is no possibility of early expiration of block because of sudden reduction in retention time of STT-RAM cells. 
+from the buffer, we do perform state check before copying back as shown in \ding{185}. Moreover, our implementation assumes the worst-case temperature of $125\,^{\circ}\mathrm{C}$ and hence there is no possibility of early expiration of block because of sudden reduction in retention time of STT-RAM cells. 
 
 
 %\noindent\textbf{Choosing Optimal Buffer  Size and MRU Slots:}
@@ -111,6 +111,6 @@ from the buffer, we do perform state check before copying back as shown in \ding
 %\begin{figure*} [t]
 \centering
  \psfig{figure=figures/cdf.eps, width=3in, height=1.9in}
-  \caption{\label{fig:cdf} Cumulative distribution of diminishing blocks per bank with number of ways.}
+  \caption{\label{fig:cdf} Cumulative distribution of diminishing blocks per bank with number of ways}
 %\end{figure*}
 \end{figure*}
