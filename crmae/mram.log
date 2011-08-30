@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2011.4.6)  30 AUG 2011 15:54
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2011.4.6)  30 AUG 2011 18:42
 entering extended mode
  %&-line parsing enabled.
 **mram
@@ -436,12 +436,12 @@ Underfull \hbox (badness 2326) in paragraph at lines 29--29
 
 [5]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 69.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
  [6]
 File: figures/RT_TB.eps Graphic file (type eps)
- <figures/RT_TB.eps> [7] [8]
+ <figures/RT_TB.eps> [7]
 File: figures/i_vs_t.eps Graphic file (type eps)
- <figures/i_vs_t.eps> [9]) (./motivation.tex
+ <figures/i_vs_t.eps> [8]) [9] (./motivation.tex
 File: figures/parsec-hist.eps Graphic file (type eps)
 <figures/parsec-hist.eps>
 File: figures/spec-hist.eps Graphic file (type eps)
@@ -512,10 +512,10 @@ File: figures/slots.eps Graphic file (type eps)
 Here is how much of TeX's memory you used:
  5030 strings out of 256217
  70066 string characters out of 1917096
- 139527 words of memory out of 1500000
+ 140527 words of memory out of 1500000
  8159 multiletter control sequences out of 10000+200000
  21893 words of font info for 69 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  35i,11n,38p,2193b,477s stack positions out of 5000i,500n,6000p,200000b,15000s
 
-Output written on mram.dvi (29 pages, 182816 bytes).
+Output written on mram.dvi (29 pages, 182928 bytes).
