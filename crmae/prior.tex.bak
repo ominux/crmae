@@ -22,8 +22,7 @@ retention times of LLC blocks with 25 multi-threaded and multi-programmed applic
 as compared to only 5 applications in~\cite{STTRAM:HPCA11}, shows that 
 the ideal retention time of LLC should be in the order of $ms$, which also makes
 the case for our device level modeling. Moreover, {\it $\mu$s} retention time proposed
-in their work, may be theoretically possible, but is extremely challenging to 
-fabricate and also prone to process variations. 
+in their work, may be theoretical possible, 
 
 
 The 3T1D designs proposed in
@@ -33,7 +32,7 @@ very performance and energy efficient compared to the DRAM-style refreshing
 proposed in~\cite{STTRAM:HPCA11}. 
 
 We recently came across the work which explores the possibility of designing LLC with STT-RAM banks of varying 
-retention times and moving dying blocks from lowest retention time ({\it $\mu$s}) bank to the higher ones. First of all, fabricating STT-RAM cell with microsecond retention time is not practical. Moreover, including different types of STT-RAM cells corresponding to different retention times in the same hierarchy will impose greater challenge and incur higher die cost. The energy numbers in their work also seem to be too optimistic and doesn't correlate with our NVsim simulation results.
+retention times and moving dying blocks from lowest retention time ({\it $\mu$s}) bank to the higher ones. First of all fabricating STT-RAM cell with microsecond retention time is extremely challenging and prone to process variations. Moreover, including different types of STT-RAM cells corresponding to different retention times in the same hierarchy will impose greater challenge and incur higher die cost. The energy numbers in their work also seem to be too optimistic and doesn't correlate with our NVsim simulation results.
 
 Apart from this recent work, few other prior works have also proposed architectural and circuit level
 solutions to handle this long write latency problem in STT-RAMs. Architectural techniques such as
@@ -62,7 +61,7 @@ prioritization mechanisms in the network. On a qualitative basis, the network le
 write latency in \cite{mram-noc} was shown as the most promising technique compared to any other
 techniques. The application level performance improvement with this scheme was about 2-4\% higher
 compared to the write buffering technique of Sun et al.~\cite{gsun-hpca}. Contrasting this to our
-work here, our scheme provides about 15\%/4\%(PARSEC IPC/SPEC weighted-speedup) improvement over $10years$
+work here, our scheme provides about 15\%/4\%(PARSEC IPC/SPEC weighted-speedup) improvement over $10year$
 traditional STT-RAM, on top of the write buffering scheme, thereby making it more attractive compared
 to \cite{mram-noc}. Overall, we believe that no prior work makes a case for tuning the retention time
 of STT-RAM banks that is based on profiling retention duration of last-level cache blocks of

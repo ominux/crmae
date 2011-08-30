@@ -1,7 +1,7 @@
 In this section, we first discuss STT-RAM preliminaries. This is followed by a detailed discussion of
 STT-RAM models which we have developed to guide us in our exploration of suitable STT-RAM device for
-LLC hierarchies. Based on this, we show three stable/feasible STT-RAM cell designs
-suitable for the LLC hierarchies of multi-core architectures.
+LLC. Based on this, we show three stable/feasible STT-RAM cell designs
+suitable for our design of LLC for multi-core architectures.
 
 \subsection{Preliminary on STT-RAM}
 
@@ -43,7 +43,7 @@ writing a ``1" state a negative voltage is applied. The current amplitude requir
 direction of the free ferromagnetic layer is determined by the size and the aspect ratio of MTJ, and
 the write pulse duration~\cite{STTRAM:JAP07, STTRAM:Qualcomm09}.
 
-\subsection{Write current versus write pulse width trade-off} \label{subsec:ict}
+\subsection{Write current Vs. Write pulse width trade-off} \label{subsec:ict}
 
 %\begin{wrapfigure}{l}{0.40\textwidth}
 %\centering
@@ -128,7 +128,7 @@ between retention time and thermal barrier is shown in Figure~\ref{fig:retention
 modeled as $t=C\times e^{k\Delta}$, where $t$ is the retention time and $\Delta$ is the thermal
 barrier, while $C$ and $k$ are fitting constants. Thermal stability of the free layer in an MTJ not
 only has impact on retention time of STT-RAM memory cell, but also on the write current. It was found
-in~\cite{PMTJ:Toshiba08} that the switching current of MTJ decreases as thermal barrier is reduced. Here, we combine this observation with the write current versus write time trade-off described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ is lowered, we are able to achieve faster write speed or/and smaller write current/energy. The baseline MTJ in our study is a $2F^2$ in-plane MTJ with a thermal barrier of $72k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is the temperature. The non-volatile MTJ can hold data more than 10 years under a worst-case temperature of 125 celsius degree. Unlike~\cite{STTRAM:HPCA11}, the optimized $2F^2$ cell does not have much room for only reducing planar area. Hence, reduction in thermal barrier was obtained by decreasing the thickness of free layer and lowering the saturation magnetization. For example, we are able to get two volatile MTJs with reduced thermal barriers of $46k_{B}T$ and $40k_{B}T$, which are corresponding for retention times of 1 second and 10 millisecond under 125 celsius degree separately. Raw experimental data were obtained from our device collaborator and we further did curve fitting by using the equations (1)-(3). The results are plotted in Figure~\ref{fig:currentVStime}. Next we are going to show how the volatile MTJs are optimized for both latency and energy. The $10ns$ write pulse width is used as the practical operating point A($10ns$, $114\mu A$) in our baseline MTJ similar to previous work~\cite{CACTI:DAC08:Dong}. Simply by fixing the write pulse width at $10ns$, we are able to lower the write currents of the two volatile MTJs which operate at B($10ns$, $73\mu A$) and C($10ns$, $40\mu A$). Then we apply the write current versus write time trade-off on the operating points of the volatile MTJs to reduce the write latency. Particularly, we operate the MTJ with 1sec-retention at point B'($5ns$, $82\mu A$) and the write current is 20\% lower than that of baseline A. Moreover, we operate the MTJ with 10ms-retention at C'($2ns$, $61\mu A$) and the write current is 20\% lower than that of B'.
+in~\cite{PMTJ:Toshiba08} that the switching current of MTJ decreases as thermal barrier is reduced. Here, we combine this observation with the write current versus write time trade-off described in Section~\ref{subsec:ict}, which essentially means that once the thermal barrier of a MTJ is lowered, we are able to achieve faster write speed or/and smaller write current/energy. The baseline MTJ in our study is a $2F^2$ in-plane MTJ with a thermal barrier of $72k_{B}T$, where $k_{B}$ is the Boltzman constant and $T$ is the temperature. The non-volatile MTJ can hold data more than 10 years under a worst-case temperature of $125\,^{\circ}\mathrm{C}$. Unlike~\cite{STTRAM:HPCA11}, the optimized $2F^2$ cell does not have much room for only reducing planar area. Hence, reduction in thermal barrier was obtained by decreasing the thickness of free layer and lowering the saturation magnetization. For example, we are able to get two volatile MTJs with reduced thermal barriers of $46k_{B}T$ and $40k_{B}T$, which are corresponding for retention times of 1 second and 10 millisecond under $125\,^{\circ}\mathrm{C}$ separately. Raw experimental data were obtained from our device collaborator and we further did curve fitting by using the equations (1)-(3). The results are plotted in Figure~\ref{fig:currentVStime}. Next we are going to show how the volatile MTJs are optimized for both latency and energy. The $10ns$ write pulse width is used as the practical operating point A($10ns$, $114\mu A$) in our baseline MTJ similar to previous work~\cite{CACTI:DAC08:Dong}. Simply by fixing the write pulse width at $10ns$, we are able to lower the write currents of the two volatile MTJs which operate at B($10ns$, $73\mu A$) and C($10ns$, $40\mu A$). Then we apply the write current versus write time trade-off on the operating points of the volatile MTJs to reduce the write latency. Particularly, we operate the MTJ with 1sec-retention at point B'($5ns$, $82\mu A$) and the write current is 20\% lower than that of baseline A. Moreover, we operate the MTJ with 10ms-retention at C'($2ns$, $61\mu A$) and the write current is 20\% lower than that of B'.
 
 %This challenge is further compounded by device variations, where data retention times follows a
 %distribution.
@@ -139,7 +139,7 @@ in~\cite{PMTJ:Toshiba08} that the switching current of MTJ decreases as thermal 
 \centering
 \centering
  \psfig{figure=figures/i_vs_t.eps, width=0.6\textwidth}
- \caption{\label{fig:currentVStime} Write current versus write pulse width for three MTJs with 10yr-, 1s, and 10ms- retention at 125 celsius degree}
+ \caption{\label{fig:currentVStime} Write current versus write pulse width for three MTJs with $10years$-, $1sec$, and $10ms$ retention at $125\,^{\circ}\mathrm{C}$}
 \end{figure*}
 
 \begin{table*}[t]
@@ -175,10 +175,11 @@ area, lower write latency and less leaky peripheral circuitry. However, since re
 exponentially related with thermal barrier, and thermal barrier is highly sensitive to process
 variation and temperature, the benefit of decreasing write latency by relaxing the retention time in
 the same order of magnitude is so small that it can be easily offset by slight variation in device
-geometry or environment temperature. For example, the difference of thermal barrier for 10{\it ms} and
-50{\it ms} retention MTJ is only about $5\%$.
+geometry or environment temperature. For example, the difference of thermal barrier for $10ms$ and
+$50ms$ retention MTJ is only about 5\%.
 %The simulation results are listed in Table~\ref{allcaches}
 %which shows the read, write times and energy numbers for three different retention times. The SRAM
 %numbers are also given in the table for reference.
-Based on this analysis, we propose to use 10 year, 1{\it sec} and 10{\it ms} STT-RAM devices in our
-cache banks.
+Based on this analysis, we propose $10years$, $1sec$ and $10ms$ STT-RAM devices for our
+LLC design. In later sections, we will analyse these designs and will propose that $10ms$ is ideal
+both from device as well as application side. 
