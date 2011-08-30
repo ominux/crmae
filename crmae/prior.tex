@@ -10,22 +10,30 @@ This section summarizes the circuit and architectural techniques proposed for en
 write performance.
 
 The work that is most closely related to ours is~\cite{STTRAM:HPCA11}.
-Here, the authors relax retention time of STT-RAM from $10 years$ to $56 \mu s$ by
+Here, the authors relax the retention time of STT-RAM from $10 years$ to $56 \mu s$ by
 reducing the planar area of MTJ from $32F^2$ to $10F^2$. The scope of their work is limited by
-addressing practical device parameters and their variabilities. First, the retention time of MTJ is
-exponentially proportional to the thermal barrier, which makes the retention time of individual
-STT-RAM device extremely sensitive to any factor that has impact on thermal barrier, particularly
-device geometry. Thus, it is important to take practical values of device geometry such as MTJ planar
-area and take their process variations into consideration. We get these parameters and corresponding
-variabilities from fabricated STT-RAM published in recent
-years~\cite{PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}. These state-of-the-art
-MTJs have much smaller baseline planar area that is around 2-3$F^2$. Therefore, there is not too much
-room to reduce the retention time by aggressively reducing MTJ planar area. Thus, in this paper, we focus
-on the MTJ with worst-case retention time larger than $ms$ and optimize STT-RAM cache
-correspondingly. Further, analysis of retention times of LLC blocks of actual
-applications show that the retention times are in the order of $ms$, thus making our
-proposal much more amenable to implement. Hence, compared to~\cite{STTRAM:HPCA11}, our scheme will
-provide significant performance improvement.
+addressing reasonable device parameters and their variabilities. Recently published work related to 
+STT-RAM~\cite{PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11} 
+uses state-of-the-art MTJ designs in the range of 2-3$F^2$. Since, these designs don't give the
+leeway of reducing the retention time by aggressively reducing the MTJ planar area, we reduce the
+retention time by focusing on the material property and the thickness of the MTJ. 
+Analysis of
+retention times of LLC blocks with 25 multi-threaded and multi-programmed applications, 
+as compared to only 5 applications in~\cite{STTRAM:HPCA11}, shows that 
+the ideal retention time of LLC should be in the order of $ms$, which also makes
+the case for our device level modeling. Moreover, {\it $\mu$s} retention time proposed
+in their work, may be theoretically possible, but is extremely challenging to 
+fabricate and also prone to process variations. 
+
+
+The 3T1D designs proposed in
+~\cite{3T-brooks} has typical worst-case retention time in {\it $\mu$s} region,
+which makes it unsuitable for our LLC design. Also, our proposed refresh scheme is simple, yet 
+very performance and energy efficient compared to the DRAM-style refreshing 
+proposed in~\cite{STTRAM:HPCA11}. 
+
+We recently came across the work which explores the possibility of designing LLC with STT-RAM banks of varying 
+retention times and moving dying blocks from lowest retention time ({\it $\mu$s}) bank to the higher ones. First of all, fabricating STT-RAM cell with microsecond retention time is not practical. Moreover, including different types of STT-RAM cells corresponding to different retention times in the same hierarchy will impose greater challenge and incur higher die cost. The energy numbers in their work also seem to be too optimistic and doesn't correlate with our NVsim simulation results.
 
 Apart from this recent work, few other prior works have also proposed architectural and circuit level
 solutions to handle this long write latency problem in STT-RAMs. Architectural techniques such as
@@ -54,7 +62,7 @@ prioritization mechanisms in the network. On a qualitative basis, the network le
 write latency in \cite{mram-noc} was shown as the most promising technique compared to any other
 techniques. The application level performance improvement with this scheme was about 2-4\% higher
 compared to the write buffering technique of Sun et al.~\cite{gsun-hpca}. Contrasting this to our
-work here, our scheme provides about 15\%/4\%(PARSEC IPC/SPEC weighted-speedup) improvement over 10yr
+work here, our scheme provides about 15\%/4\%(PARSEC IPC/SPEC weighted-speedup) improvement over $10year$
 traditional STT-RAM, on top of the write buffering scheme, thereby making it more attractive compared
 to \cite{mram-noc}. Overall, we believe that no prior work makes a case for tuning the retention time
 of STT-RAM banks that is based on profiling retention duration of last-level cache blocks of

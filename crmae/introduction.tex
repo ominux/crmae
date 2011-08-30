@@ -70,37 +70,28 @@ for avoiding any data loss. This includes a simple 2-bit counter (similar to one
 in~\cite{cache-decay-2001}) to keep track of the inter-write times of all the cache blocks and a small buffer
 to temporarily store the blocks whose inter-write time has exceeded the retention time. We conduct
 execution-driven analysis of our proposed techniques using the M5 simulator and
-a suite of PARSEC 2.1 and
-SPEC 2K6 benchmarks. 
+a suite of PARSEC 2.1 and SPEC 2K6 benchmarks. 
 
-The main {\bf contributions} of this paper and the {\bf differences} from the closest work [19] are following:
-
+The closest work~\cite{STTRAM:HPCA11} to our paper, varied MTJ cell size from 32$F^2$ to 10$F^2$ to reduce
+the retention time of STT-RAM. Since, the state-of-the-art MTJ design is in the range of 2-3$F^2$~\cite{STTRAM:Grandis11}, we cannot use the prior approach for varying the retention time. Thus, we focus on
+the material property and the thickness of MTJ to reduce the retention time. The main {\bf contributions} of this paper are: \\
 \noindent\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
 device characterization of data-retention tunability in STT-RAM Cells providing insight to the
-underlying principles enabling these tradeoffs. The MTJ designs (10-32$F^2$) used in~\cite{STTRAM:HPCA11}  are not realistic
-and give an inaccurate picture of the current technology. We feel that there is not much scope to
-further reduce the baseline area of the state-of-the-art MTJ designs of 2-3$F^2$~\cite{STTRAM:Grandis11} and hence, we focus
-on other optimization parameters to get optimal operating points. 
+underlying principles enabling these tradeoffs. 
 
 \noindent\textbf{An application-driven study to determine retention time:}
-Our characterization of the time between writes or replacements to a LLC block
-augments the prior body of work that analyzes cache lifetimes mainly in
-single processor and single program configurations. This exhaustive application-level analysis is done with
-25 multi-threaded and multi-programmed applications, as compared to only 5 applications in~\cite{STTRAM:HPCA11},
-shows that a very aggressive {\it $\mu$s} level retention time advocated in~\cite{STTRAM:HPCA11} is
-unsuitable for the LLC and we propose to be in the range of $10ms$.
-We feel that analyzing this broad spectrum of applications and architecting the 
-whole cache hierarchy with single retention time STT-RAM cells is a non-trivial task.
-We do acknowledge the fact that there could be a possibility of designing LLC with STT-RAM banks of varying 
-retention times and moving dying blocks from lowest retention time bank to the highest one, but fabricating 
-such LLC is extremely challenging as it requires different types of STT-RAM cells with different retention times 
-to be part a of cache hierarchy.
- 
+Our application level characterization of the time between writes or replacements to a 
+LLC block augments the prior body of work that analyzes cache lifetimes mainly
+in single processor and single program configurations. Based on the L2 cache behavior, 
+we propose to design STT-RAMs with retention time in the range of $10ms$.
+We feel that analyzing this broad spectrum of applications
+and architecting the whole cache hierarchy with single retention time STT-RAM
+cells is a non-trivial task. Also, such design 
+makes the LLC design homogenous which leads to lower die cost and ease in fabrication.
 
 \noindent\textbf{Architectural solution to handle STT-RAM volatility:} We present a simple buffering
 mechanism to ensure the integrity of the programs given the volatile nature of our tuned STT-RAM cells.
-Our refresh scheme is simple, yet very area/power/performance efficient compared to the 
-DRAM style refreshing proposed in ~\cite{STTRAM:HPCA11}.
+This scheme is simple, yet very energy and performance efficient compared to the DRAM-style refresh.
 %This scheme is 26x less power consuming than DRAM-style refreshing proposed ~\cite{STTRAM:HPCA11}  
 %in addition to the 25x area and 22x performance benefits. 
 Experimental results with PARSEC 2.1 and SPEC 2K6 benchmarks on a four-core platform
