@@ -67,7 +67,7 @@ Use of this scheme significantly improves performance when compared to all reali
 by 4.5\%. The write latency of this STT-RAM cache bank is 6 cycles and when compared to a $1sec$ retention time STT-RAM, the difference of 6 cycles reduction in L2 cache bank access time helps in improving performance. This performance improvement is in spite of the increase in the number of write-backs (which increase by over 2x) compared to an SRAM cache. $Fluidanimate$ is the only application we found that does not show a gain in performance with this type of STT-RAM device. With $fluidanimate$ application, all the dirty blocks are almost equally distributed among all the ways, and hence, our scheme of considering only the first eight MRU slots is insufficient in reducing many writebacks (as shown in Figure~\ref{fig:writebacks}, with $fluidanimate$, the write-backs become 11x with this volatile STT-RAM).
 %Facesim shows the maximum benefit when compared to the volatile STT-RAM (1 sec) cache: 22.7\%
 
-The Revived-M-4MB(10ms) scheme is closest to the ideal S-4M case and is within 4\% of it, showing the benefits of our scheme in making the STT-RAM device a choice for universal memory.
+The Revived-M-4MB(10ms) scheme is closest to the ideal S-4MB case and is within 4\% of it, showing the benefits of our scheme in making the STT-RAM device a choice for universal memory.
 
 \begin{figure*} [t]
 \centering
@@ -137,7 +137,27 @@ Further, the proposed $10ms$ retention time STT-RAM with revival schemes, is ver
 %We observe that our scheme is better in terms of both performance and energy over Volatile-4MB(1sec) and
 %M-4MB designs.
 
+\begin{figure*} %[t]
+\begin{minipage}{0.580\textwidth}
+\centering
+ \psfig{figure=figures/energy-impact.eps, width=3.2in, height=1.9in}
+ \caption{\label{fig:revive-dram} Figure showing the Energy impacts of Revive\newline refresh as a percentage of DRAM-style refresh}
+\end{minipage}
+\hfill %\vfill
+\begin{minipage}{0.38\textwidth}
+ \centering
+ \psfig{figure=figures/confi.eps, width=3in, height=1.9in}
+ \caption{\label{fig:confi} 95\% Confidence Intervals of diminishing blocks for each way}
+\end{minipage}
+\end{figure*}
 
+
+
+Figure~\ref{fig:revive-dram} shows the energy comparisons of our revive refresh scheme as a percentage of
+DRAM-style refresh scheme proposed in~\cite{STTRAM:HPCA11}. Since, our scheme only refreshes a small
+number of required blocks as opposed to all the LLC blocks, on an average, it consumes only 3.8\% of energy compared
+to DRAM-style refresh. Refreshing benefits will diminish radically if it is done at {\it $\mu$s} level, and hence our $ms$ proposal help in sustaining the energy benefits. Our scheme has 4\% more area overhead and 
+has 90\% less performance penalty compared to DRAM-style refresh scheme.
 
 
 \subsection{Sensitivity Analysis}
@@ -146,7 +166,7 @@ In this subsection, we study the sensitivity of various architectural parameters
 \noindent\textbf{Sensitivity to number of buffer entries:}
 The number of buffer entries can affect the performance of the Revived-M-4MB scheme in two ways: increasing the
 buffer size will accommodate more diminishing blocks at a particular instance and decreasing the buffer size will
-leads to more buffer overflows. With increasing the buffer size, leading to fewer buffer overflows,
+lead to more buffer overflows. With increasing the buffer size, leading to fewer buffer overflows,
 the reduction comes at a cost of increase in buffer area and consequent revival overheads. Decreasing the buffer size, eventually
 leads to additional write backs (discussed in Section ~\ref{sec:implementation}).
 
@@ -157,11 +177,7 @@ leads to additional write backs (discussed in Section ~\ref{sec:implementation})
 %\end{wrapfigure}
 
 
-\begin{figure*} [t]
-\centering
- \psfig{figure=figures/confi.eps, width=3in, height=1.9in}
- \caption{\label{fig:confi} 95\% Confidence Intervals of diminishing blocks for each way}
-\end{figure*}
+
 
 To find the optimal buffer size, we calculate the 95\% Confidence Intervals (CIs) for the cumulative distribution of
 diminishing blocks per bank. This is shown in Figure~\ref{fig:confi}. We observe that, for the first 8 MRU slots, the

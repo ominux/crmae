@@ -10,9 +10,6 @@
 \backcite {cache-decay-2001}{{4}{1}{section.1}}
 \backcite {STTRAM:HPCA11}{{4}{1}{section.1}}
 \backcite {STTRAM:Grandis11}{{4}{1}{section.1}}
-\backcite {STTRAM:HPCA11}{{4}{1}{section.1}}
-\backcite {STTRAM:HPCA11}{{4}{1}{section.1}}
-\backcite {STTRAM:HPCA11}{{5}{1}{section.1}}
 \backcite {STTRAM:JAP07, STTRAM:Qualcomm09}{{6}{2.1}{figure.2}}
 \backcite {STTRAM:JAP07}{{6}{2.2}{subsection.2.2}}
 \backcite {STTRAM:IEDM09}{{6}{2.2}{subsection.2.2}}
@@ -32,18 +29,21 @@
 \backcite {M5}{{11}{3.1}{figure.5}}
 \backcite {3t1d-cache}{{11}{3.1}{figure.5}}
 \backcite {cache-decay-2001}{{13}{4.1}{subsection.4.1}}
-\backcite {M5}{{15}{5}{table.4}}
+\backcite {M5}{{16}{5}{table.4}}
+\backcite {STTRAM:HPCA11}{{23}{6.2}{figure.13}}
 \backcite {STTRAM:HPCA11}{{25}{7}{section.7}}
 \backcite {PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}{{25}{7}{section.7}}
 \backcite {STTRAM:HPCA11}{{25}{7}{section.7}}
-\backcite {mram-energy-reduction}{{25}{7}{section.7}}
-\backcite {gsun-hpca, Qureshi:2009:SHPMM}{{25}{7}{section.7}}
-\backcite {mram-energy-reduction}{{25}{7}{section.7}}
-\backcite {gsun-hpca}{{25}{7}{section.7}}
-\backcite {mram-energy-reduction}{{25}{7}{section.7}}
+\backcite {3T-brooks}{{25}{7}{section.7}}
+\backcite {STTRAM:HPCA11}{{25}{7}{section.7}}
+\backcite {mram-energy-reduction}{{26}{7}{section.7}}
+\backcite {gsun-hpca, Qureshi:2009:SHPMM}{{26}{7}{section.7}}
+\backcite {mram-energy-reduction}{{26}{7}{section.7}}
+\backcite {gsun-hpca}{{26}{7}{section.7}}
+\backcite {mram-energy-reduction}{{26}{7}{section.7}}
 \backcite {gsun-hpca}{{26}{7}{section.7}}
 \backcite {gsun-hpca}{{26}{7}{section.7}}
 \backcite {mram-noc}{{26}{7}{section.7}}
 \backcite {mram-noc}{{26}{7}{section.7}}
-\backcite {gsun-hpca}{{26}{7}{section.7}}
-\backcite {mram-noc}{{26}{7}{section.7}}
+\backcite {gsun-hpca}{{27}{7}{section.7}}
+\backcite {mram-noc}{{27}{7}{section.7}}

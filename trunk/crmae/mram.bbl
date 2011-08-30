@@ -1,7 +1,7 @@
 \begin{thebibliography}{10}\itemsep=-1pt
 
 \bibitem{spec}
-Systems Performance Evaluation Cooperation,SPEC Benchmarks, www.spec.org/.
+{Systems Performance Evaluation Corp.,SPEC Benchmarks, www.spec.org/}.
 
 \bibitem{STTRAM:EDL11}
 P.~Amiri, Z.~Zeng, P.~Upadhyaya, G.~Rowlands, H.~Zhao, I.~Krivorotov, J.-P.
@@ -30,8 +30,7 @@ D.~Burger, J.~R. Goodman, and A.~K{\"a}gi.
 S.~Chatterjee, M.~Rasquinha, S.~Yalamanchili, and S.~Mukhopadhyay.
 \newblock {A scalable design methodology for energy minimization of STTRAM: a
   circuit and architecture perspective}.
-\newblock {\em IEEE Transactions on Very Large Scale Integration}, PP(99):1
-  --9, 2010.
+\newblock {\em IEEE TVLSI}, PP(99):1 --9, 2010.
 
 \bibitem{STTRAM:JAP07}
 Z.~Diao, Z.~Li, S.~Wang, Y.~Ding, A.~Panchula, E.~Chen, L.-C. Wang, and
@@ -44,15 +43,13 @@ Z.~Diao, Z.~Li, S.~Wang, Y.~Ding, A.~Panchula, E.~Chen, L.-C. Wang, and
 X.~Dong, N.~P. Jouppi, and Y.~Xie.
 \newblock {PCRAMsim: System-level performance, energy, and area modeling for
   phase-change RAM}.
-\newblock In {\em Proceedings of the International Conference on Computer-Aided
-  Design}, pages 269--275, 2009.
+\newblock In {\em ICCAD}, 2009.
 
 \bibitem{CACTI:DAC08:Dong}
 X.~Dong, X.~Wu, G.~Sun, Y.~Xie, H.~Li, et~al.
 \newblock {Circuit and Microarchitecture Evaluation of 3D Stacking Magnetic RAM
   (MRAM) as a Universal Memory Replacement}.
-\newblock In {\em Proceedings of the Design Automation Conference}, pages
-  554--559, 2008.
+\newblock In {\em DAC}, 2008.
 
 \bibitem{STTRAM:Grandis11}
 A.~Driskill-Smith.
@@ -62,24 +59,13 @@ A.~Driskill-Smith.
 \bibitem{DRAM:6F2}
 F.~Fishburn, B.~Busch, J.~Dale, D.~Hwang, et~al.
 \newblock A 78nm {6F}$^2$ {DRAM} technology for multigigabit densities.
-\newblock In {\em Proceedings of the Symposium on VLSI Technology}, pages
-  28--29, 2004.
+\newblock In {\em Proceedings of the Symposium on VLSI Technology}, 2004.
 
 \bibitem{cache-decay-2001}
 S.~Kaxiras, Z.~Hu, and M.~Martonosi.
 \newblock Cache decay: exploiting generational behavior to reduce cache leakage
   power.
 \newblock In {\em ISCA}, 2001.
-
-\bibitem{PMTJ:Toshiba08}
-T.~Kishi, H.~Yoda, T.~Kai, T.~Nagase, E.~Kitagawa, M.~Yoshikawa, K.~Nishiyama,
-  T.~Daibou, M.~Nagamine, M.~Amano, S.~Takahashi, M.~Nakayama, N.~Shimomura,
-  H.~Aikawa, S.~Ikegawa, S.~Yuasa, K.~Yakushiji, H.~Kubota, A.~Fukushima,
-  M.~Oogane, T.~Miyazaki, and K.~Ando.
-\newblock {Lower-current and fast switching of a perpendicular TMR for high
-  speed and high density spin-transfer-torque MRAM}.
-\newblock In {\em Proceedings of International Electron Devices Meeting}, pages
-  1 --4, 2008.
 
 \bibitem{3t1d-cache}
 X.~Liang, R.~Canal, G.~yeon Wei, and D.~Brooks.
@@ -91,8 +77,7 @@ C.~Lin, S.~Kang, Y.~Wang, K.~Lee, X.~Zhu, W.~Chen, X.~Li, W.~Hsu, Y.~Kao,
   M.~Liu, Y.~Lin, M.~Nowak, N.~Yu, and L.~Tran.
 \newblock {45nm low power CMOS logic compatible embedded STT MRAM utilizing a
   reverse-connection 1T/1MTJ cell}.
-\newblock In {\em Proceedings of International Electron Devices Meeting}, pages
-  57 --59, 2009.
+\newblock In {\em Proceedings of International Electron Devices Meeting}, 2009.
 
 \bibitem{mram-noc}
 A.~K. Mishra, X.~Dong, G.~Sun, Y.~Xie, N.~Vijaykrishnan, and C.~R. Das.
@@ -104,40 +89,49 @@ A.~K. Mishra, X.~Dong, G.~Sun, Y.~Xie, N.~Vijaykrishnan, and C.~R. Das.
 M.~K. Qureshi, V.~Srinivasan, and J.~A. Rivers.
 \newblock {Scalable High Performance Main Memory System Using Phase-Change
   Memory Technology}.
-\newblock In {\em 36th ISCA}, 2009.
+\newblock In {\em ISCA}, 2009.
 
 \bibitem{STTRAM:IEDM09}
 A.~Raychowdhury, D.~Somasekhar, T.~Karnik, and V.~De.
 \newblock {Design space and scalability exploration of 1T-1STT MTJ memory
   arrays in the presence of variability and disturbances}.
-\newblock In {\em Proceedings of International Electron Devices Meeting}, pages
-  707--710, 2009.
+\newblock In {\em Proceedings of International Electron Devices Meeting}, 2009.
 
 \bibitem{STTRAM:HPCA11}
 C.~W. Smullen, V.~Mohan, A.~Nigam, S.~Gurumurthi, and M.~R. Stan.
 \newblock {Relaxing non-volatility for fast and energy-efficient STT-RAM
   caches}.
-\newblock In {\em Proceedings of the International Symposium on High
-  Performance Computer Architecture}, pages 50--61, 2011.
+\newblock In {\em HPCA}, 2011.
 
 \bibitem{gsun-hpca}
 G.~Sun, X.~Dong, Y.~Xie, J.~Li, and Y.~Chen.
 \newblock {A Novel Architecture of the 3D Stacked MRAM L2 Cache for CMPs}.
-\newblock In {\em 15th HPCA}, 2009.
+\newblock In {\em HPCA}, 2009.
+
+\bibitem{PMTJ:Toshiba08}
+{T. Kishi, H. Yoda, et al.}
+\newblock {Lower-current and fast switching of a perpendicular TMR for high
+  speed and high density spin-transfer-torque MRAM}.
+\newblock In {\em Proceedings of International Electron Devices Meeting}, pages
+  1 --4, 2008.
+
+\bibitem{3T-brooks}
+L.~Xiaoyao, C.~Ramon, W.~Gu-Yeon, and B.~David.
+\newblock {Replacing 6T SRAMs with 3T1D DRAMs in the L1 Data Cache to Combat
+  Process Variability}.
+\newblock 2008.
 
 \bibitem{STTRAM:RPI10}
 W.~Xu, H.~Sun, X.~Wang, Y.~Chen, and T.~Zhang.
 \newblock {Design of last-level on-chip cache using spin-torque transfer RAM
   (STT RAM)}.
-\newblock {\em IEEE Transactions on Very Large Scale Integration}, 19(3):483
-  --493, 2011.
+\newblock {\em IEEE TVLSI}, 19(3), 2011.
 
 \bibitem{PTM}
 W.~Zhao and Y.~Cao.
 \newblock New generation of predictive technology model for sub-45 nm early
   design exploration.
-\newblock {\em IEEE Transactions on Electron Devices}, 53(11):2816 --2823, nov.
-  2006.
+\newblock {\em IEEE TED}, 53(11), nov. 2006.
 
 \bibitem{mram-energy-reduction}
 P.~Zhou, B.~Zhao, J.~Yang, and Y.~Zhang.
