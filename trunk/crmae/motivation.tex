@@ -41,7 +41,7 @@ that, on an average, approximately 50\% of the cache blocks get refreshed within
 in contrast to the microsecond reuse for L1 case~\cite{3t1d-cache}. About 20\% of blocks remain in
 the cache for more than $40ms$ and rest of the blocks have intermediate revival times. Blocks
 which stay longer than the retention time in the cache without being refreshed are assumed to be
-expired, and would most affect the application performance. This distribution also gives us the
+expired, and would affect the application performance. This distribution also gives us the
 basis on which we can choose the optimal retention time. Reducing the retention time too much will
 make the cache highly volatile leading to degraded performance, while increasing the retention time
 would negatively affect the write latency.
@@ -54,7 +54,7 @@ Table~\ref{table:rt-wt} summarizes the retention time and write latency tradeoff
 for a 2GHz processor.
 The results indicate that there is significant reduction in write latency with reduction in retention time.
 %Section 4 explains how these numbers originate.
-Note that one can possibly lower the retention time further beyond the $ms$ ranges, but it becomes much harder to control the variations and the benefits of performance/energy diminish. For the sake of correctness and preciseness, we discuss these designs only in the paper.
+Note that one can possibly lower the retention time further beyond the $ms$ ranges, but it becomes much harder to control the variations and the benefits of performance/energy diminish, since the number of blocks to be refreshed increases as per~\ref{fig:distribution}. For the sake of correctness and preciseness, we discuss these designs only in the paper.
 
 %We want to clarify from device fabrication perspective that these retention times are the most stable designs possible.
 %As we lower the retention times of these STT-RAM cells in the range of {\it ms}, it becomes much harder
@@ -79,10 +79,10 @@ Note that one can possibly lower the retention time further beyond the $ms$ rang
 
 To analyze the tradeoffs between retention time and overall system performance, let us consider an utopian cache
 with $10years$ retention time having minimum write latency and energy.  To bridge the gap between a
-feasible state-of-the-art design and the utopian cache, we need to reap the benefits of both application
+feasible state-of-the-art design and the utopian cache, we need to exploit the benefits of both application
 characteristics and emerging device technology. From the application side, it is best to choose a retention time
 which minimizes the number of unrefreshed blocks and from the technology side, it is ideal to choose the
 STT-RAM with minimum write latency and energy. From Table 2, we choose $10ms$ as the optimal retention time that
-balances both the sides.
+balances both the criteria.
 %Note that we are using only 10{\it ms}, since results for 50{\it ms} were not stable.
 %In Section 7, we do a sensitivity analysis by choosing retention times 100 ms, 500 ms and 1sec. In Section 5, we propose micro-architecture techniques to deal with blocks having revival time greater than 10ms.

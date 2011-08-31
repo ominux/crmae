@@ -99,8 +99,8 @@ again used by  \ding{183}  to copy back the blocks to the same place in the L2 c
 \textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots, but are diminishing.
 We check these blocks in \textcircled{\raisebox{-.9pt}{B}} to see whether they are dirty or not. If
 they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}} and then
-invalidate.  If they are not dirty, they are just invalidated. During this whole refresh process, if a read request for the cache block comes, it will be successfully completed as the data is still valid during that time. If a write/invalidate request comes, the cache blocks goes back to its original state. To make sure we don't copy the stale data
-from the buffer, we do perform state check before copying back as shown in \ding{185}. Moreover, our implementation assumes the worst-case temperature of $125\,^{\circ}\mathrm{C}$ and hence there is no possibility of early expiration of block because of sudden reduction in retention time of STT-RAM cells.
+invalidate.  If they are not dirty, they are just invalidated. During this whole refresh process, if a read request for the cache block arrives, it will be successfully completed as the data is still valid during that time. If a write/invalidate request arrives, the cache blocks goes back to its original state. To make sure we don't copy the stale data
+from the buffer, we do perform a state check before copying back as shown in \ding{185}. Moreover, our implementation assumes the worst-case temperature of $125\,^{\circ}\mathrm{C}$, and hence,  there is no possibility of early expiration of block because of sudden reduction in retention time of STT-RAM cells.
 
 
 %\noindent\textbf{Choosing Optimal Buffer  Size and MRU Slots:}
