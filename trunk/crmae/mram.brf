@@ -35,7 +35,7 @@
 \backcite {PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}{{25}{7}{section.7}}
 \backcite {STTRAM:HPCA11}{{25}{7}{section.7}}
 \backcite {3T-brooks}{{25}{7}{section.7}}
-\backcite {STTRAM:HPCA11}{{25}{7}{section.7}}
+\backcite {STTRAM:HPCA11}{{26}{7}{section.7}}
 \backcite {mram-energy-reduction}{{26}{7}{section.7}}
 \backcite {gsun-hpca, Qureshi:2009:SHPMM}{{26}{7}{section.7}}
 \backcite {mram-energy-reduction}{{26}{7}{section.7}}
@@ -44,6 +44,6 @@
 \backcite {gsun-hpca}{{26}{7}{section.7}}
 \backcite {gsun-hpca}{{26}{7}{section.7}}
 \backcite {mram-noc}{{26}{7}{section.7}}
-\backcite {mram-noc}{{26}{7}{section.7}}
+\backcite {mram-noc}{{27}{7}{section.7}}
 \backcite {gsun-hpca}{{27}{7}{section.7}}
 \backcite {mram-noc}{{27}{7}{section.7}}

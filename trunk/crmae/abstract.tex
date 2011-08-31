@@ -14,7 +14,7 @@ and how we architect the cache hierarchy with a volatile STT-RAM.
 %observe that retention time in the order of 10-40 ms is a good design point to handle most of the
 %writes.
 We study two
-data-retention time relaxation cases, one with data-retention time of  $1sec$, which satisfies the refresh time requirement of typical cache blocks; and the other one with data-retention time of $10ms$, which is a more aggressive design for better performance/energy gains, but a data refreshing mechanism is needed.
+data-retention time relaxation cases, one with data-retention time of  $1sec$, which satisfies the refresh time requirement of typical cache blocks; and the other one with data-retention time of $10ms$, which is a more aggressive design for better performance/energy gains, but requires a data refreshing mechanism.
 In the aggressive $10ms$ retention time design, for the rest of the cache blocks that have a higher refresh time
 than the STT-RAM retention time, we propose an architectural solution to identify these blocks
 with a per block $2$-$bit$ counter, temporarily save a limited number of MRU blocks in a buffer,
