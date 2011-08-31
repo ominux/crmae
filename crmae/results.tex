@@ -2,20 +2,6 @@ In this section, we provide a comparative analysis of the performance and energy
 We also discuss the sensitivity of several architectural parameters.
 %experimental results associated with our design choices.
 
-\begin{figure*} [t]
-\centering
-\begin{tabular}{c}
-\psfig{figure=figures/legend-spec.eps, width=5.5in, height=0.15in}
-\end{tabular}
-\\
-\begin{tabular}{cc}
- \psfig{figure=figures/writebacks.eps, width=3.5in, height=1.5in} &
-\psfig{figure=figures/spec-writebacks.eps, width=1.5in, height=1.5in} \\
- (a) PARSEC 2.1 Applications  & (b) Average across Multiprogrammed Mixes.
-\end{tabular}
- \caption{Number of Write backs normalized to M-4MB.}
-\label{fig:writebacks}
-\end{figure*}
 
 
 
@@ -74,6 +60,23 @@ Use of this scheme significantly improves performance when compared to all reali
 by 4.5\%. The write latency of this STT-RAM cache bank is 6 cycles and when compared to a $1sec$ retention time STT-RAM, the difference of 6 cycles reduction in L2 cache bank access time helps in improving performance. This performance improvement is in spite of the increase in the number of write-backs (which increase by over 2x) compared to an SRAM cache. $Fluidanimate$ is the only application we found that does not show a gain in performance with this type of STT-RAM device. With $fluidanimate$ application, all the dirty blocks are almost equally distributed among all the ways, and hence, our scheme of considering only the first eight MRU slots is insufficient in reducing many writebacks (as shown in Figure~\ref{fig:writebacks}, with $fluidanimate$, the write-backs become 11x with this volatile STT-RAM).
 %Facesim shows the maximum benefit when compared to the volatile STT-RAM (1 sec) cache: 22.7\%
 
+\begin{figure*} [t]
+\centering
+\begin{tabular}{c}
+\psfig{figure=figures/legend-spec.eps, width=5.5in, height=0.15in}
+\end{tabular}
+\\
+\begin{tabular}{cc}
+ \psfig{figure=figures/writebacks.eps, width=3.5in, height=1.5in} &
+\psfig{figure=figures/spec-writebacks.eps, width=1.5in, height=1.5in} \\
+ (a) PARSEC 2.1 Applications  & (b) Average across Multiprogrammed Mixes.
+\end{tabular}
+ \caption{Number of Write backs normalized to M-4MB.}
+\label{fig:writebacks}
+\end{figure*}
+
+
+
 The Revived-M-4MB(10ms) scheme is closest to the ideal S-4MB case and is within 4\% of it, showing the benefits of our scheme in making the STT-RAM device a choice for universal memory.
 
 {\bf Analysis with SPEC 2K6}: In general, the observations with SPEC benchmarks are consistent with those made with PARSEC 2.1 applications. Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup with the  SPEC 2K6 multiprogrammed
@@ -95,7 +98,7 @@ the SPEC 2.1 benchmarks.
 Weighted speedup also follows a similar trend as instruction throughput and we find that our proposed refreshing scheme on a $10ms$ retention time volatile STT-RAM shows the best results. Overall, our proposed design is within 9\% (2\%) of the ideal device in terms of instruction throughput (weighted speedup).
 
 \subsection{Energy Usage Comparison}
-
+\vspace{0.1in}
 \begin{figure*} [t]
 \centering
 \begin{tabular}{c}
@@ -160,16 +163,15 @@ Further, the proposed $10ms$ retention time STT-RAM with revival schemes, is ver
 Figure~\ref{fig:revive-dram} shows the energy comparisons of our revive refresh scheme as a percentage of
 DRAM-style refresh scheme proposed in~\cite{STTRAM:HPCA11}. Since, our scheme only refreshes a small
 number of required blocks as opposed to all the LLC blocks, on an average, it consumes only 4\% of energy compared
-to the DRAM-style refresh. For the same reason, our scheme results in less than 90\% of performance penalty taking into our observation that about 10\% of the total diminishing blocks need to written back to the main memory. Although our scheme has 4\% more area overhead, the large refreshing benefits obtained justifies our design. Moreover, refreshing benefits will diminish radically if it is done at {\it $\mu$s} level, and hence our $ms$ proposal help in sustaining the energy benefits.
+to the DRAM-style refresh. For the same reason, our scheme results in less than 90\% of performance penalty taking into our observation that about 10\% of the total diminishing blocks need to written back to the main memory. Although our scheme has 4\% buffer area overhead, the significant refreshing benefits obtained justifies our design. Moreover, refreshing benefits will diminish radically if it is done at {\it $\mu$s} level~\cite{STTRAM:HPCA11}, and hence our $ms$ proposal help in sustaining the energy benefits.
 
 
 \subsection{Sensitivity Analysis}
 \noindent\textbf{Sensitivity to number of buffer entries:}
 The number of buffer entries can affect the performance of the Revived-M-4MB scheme in two ways: increasing the
 buffer size will accommodate more diminishing blocks at a particular instance and decreasing the buffer size will
-lead to more buffer overflows. With increasing the buffer size, leading to fewer buffer overflows,
-the reduction comes at a cost of increase in buffer area and consequent revival overheads. Decreasing the buffer size, eventually
-leads to additional write backs (discussed in Section ~\ref{sec:implementation}).
+lead to more buffer overflows. Increasing the buffer size, leads to fewer buffer overflows,
+but this reduction comes at a cost of increase in buffer area and consequent revival overheads. Decreasing the buffer size, eventually leads to additional write backs (discussed in Section ~\ref{sec:implementation}).
 
 %\begin{wrapfigure}{l}{0.50\textwidth}
 %\centering
@@ -186,7 +188,7 @@ mean value of the buffer entries is 1900 blocks, which corresponds to a 3\% area
 Upper limit of the 95\% CI corresponds to 2500 blocks,  which represents 4\% area overhead per L2 cache bank.
 The lower limit of 95\% CI corresponds to 1300 blocks (2\% area overhead).
 
-Figure~\ref{fig:buf-mru} shows the normalized speedup to 1300 blocks, with a subset of PARSEC applications by varying the number of buffer entries. On an average, varying the number of buffer entries from 1900 to 2500,results in only 1\% speedup improvement.
+Figure~\ref{fig:buf-mru}(a) shows the normalized speedup to 1300 blocks, with a subset of PARSEC applications by varying the number of buffer entries. On an average, varying the number of buffer entries from 1900 to 2500,results in only 1\% speedup improvement.
 Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area overhead)with the best possible performance per area-overhead.
 
 \begin{figure*} [t]
@@ -196,7 +198,7 @@ Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area 
 \psfig{figure=figures/slots.eps, width=3.2in, height=1.5in} \\
 (a) Buffer Entries & (b) MRU Slots.
 \end{tabular}
- \caption{Showing effects on speedup by varying number of Buffer Entries and MRU Slots }
+ \caption{Speedup as a function of number of Buffer Entries and MRU Slots }
 \label{fig:buf-mru}
 \end{figure*}
 
@@ -205,17 +207,13 @@ Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area 
 Choosing the optimal number of MRU slots to buffer was discussed briefly in Section~\ref{sec:implementation}.
 Figure~\ref{fig:cdf} shows the mean cumulative distribution of diminishing blocks per
 way across all PARSEC benchmarks. We find that after 8 MRU slots, the number of diminishing blocks
-saturates, which suggests that  the optimal number of MRU slots is 8. Figure~\ref{fig:buf-mru} shows
+saturates, which suggests that  the optimal number of MRU slots is 8. Figure~\ref{fig:buf-mru}(b) shows
 speedup of a subset of PARSEC applications along with the average across 12 PARSEC applications, with varying
 number of MRU slots. Buffer size is kept constant at 1900 per bank. We see degradation in performance when we decrease
-slots from 8 to 4, since buffering 8 MRU slots would have covered more frequently used blocks and hence, reducing
+the number of slots from 8 to 4, since buffering 8 MRU slots would have covered more frequently used blocks and hence, reducing
 write backs of useful blocks.
 We also see degradation in performance by increasing the number of slots from 8 to 12.
 This is because, with a constant buffer
 size, 12 MRU slots increase the probability of buffer overflows, which increases the write backs leading to performance degradation.
 
 
-\noindent\textbf{Sensitivity to number of bits of the counter:}
-As discussed in Section ~\ref{sec:implementation}, increasing the number of bits of the counter decreases the
-left over time at the cost of incrementing counters at a finer granularity. Our experiments showed that
-there is no observable difference in performance and energy by increasing/decreasing the number of bits of the counter.
