@@ -2,7 +2,7 @@
 \begin{figure*} [t]
 %\begin{figure*} [t]
 \center
- \psfig{figure=figures/arch.eps, width=3.5in, height=6.5in, angle=90}
+ \psfig{figure=figures/arch.eps, width=3.1in, height=6.5in, angle=90}
  \caption{\label{fig:architecture}  A modified 16-way L2 cache architecture with a 2-bit counter and a small buffer}
 %\end{figure*}
 \end{figure*}
@@ -77,6 +77,14 @@ The block is copied to one of the empty buffer entries along with the set and wa
 buffer space.
 If the buffer is full, the dirty blocks are written back to the main memory; otherwise they are  invalidated.
 
+\begin{figure*} [t]
+%\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/cdf.eps, width=3.5in, height=1.5in}
+  \caption{\label{fig:cdf} Cumulative distribution of diminishing blocks per bank with number of ways}
+%\end{figure*}
+\end{figure*}
+
 \noindent\textbf{Implementation Details:} Figure ~\ref{fig:architecture} (a) shows a 16-way set
 associative cache bank with the associated tag array. We show the working of our scheme using a 2-bit
 counter.  One of the sets is shown in detail to clarify the details of the scheme. All the blocks in
@@ -105,11 +113,13 @@ from the buffer, we do perform state check before copying back as shown in \ding
 %which is a good initial choice for the buffer size. In sensitivity analysis, we will fine tune the buffer size
 %to minimize buffer overflows.
 
-
-\begin{figure*} [t]
+% \begin{wrapfigure}{l}{0.50\textwidth}
 %\begin{figure*} [t]
-\centering
- \psfig{figure=figures/cdf.eps, width=3in, height=1.9in}
-  \caption{\label{fig:cdf} Cumulative distribution of diminishing blocks per bank with number of ways}
+% \centering
+% \psfig{figure=figures/cdf.eps, width=2.5in, height=1.5in}
+% \caption{\label{fig:cdf} Cumulative distribution of diminishing blocks per bank with number of ways}
 %\end{figure*}
-\end{figure*}
+% \end{wrapfigure}
+
+
+

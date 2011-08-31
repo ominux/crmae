@@ -10,7 +10,7 @@ We also discuss the sensitivity of several architectural parameters.
 \\
 \begin{tabular}{cc}
  \psfig{figure=figures/writebacks.eps, width=3.5in, height=1.5in} &
-\psfig{figure=figures/spec-writebacks.eps, width=1.5in, height=1.48in} \\
+\psfig{figure=figures/spec-writebacks.eps, width=1.5in, height=1.5in} \\
  (a) PARSEC 2.1 Applications  & (b) Average across Multiprogrammed Mixes.
 \end{tabular}
  \caption{Number of Write backs normalized to M-4MB.}
@@ -18,11 +18,6 @@ We also discuss the sensitivity of several architectural parameters.
 \end{figure*}
 
 
-\begin{figure*} [t]
-\centering
- \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.4in}
- \caption{\label{fig:parsec-new} Normalized speedup for PARSEC 2.1 applications. }
-\end{figure*}
 
 %\begin{figure*} [t]
 %%\begin{figure*} [t]
@@ -61,6 +56,18 @@ Volatile-M-4MB(1sec).
 
 {\bf Speedup when replacing a SRAM with 4MB, $10ms$ retention time STT-RAM without refreshing}: This volatile M-4MB(10ms) design also does not have any refreshing scheme, but the retention time of STT-RAM cells used is $10ms$. Using this STT-RAM device, after $10ms$ the STT-RAM device will lose its data and hence to keep the data integrity forces a large number of write-backs from the last-level cache to the main-memory before the actual expiration happens. Figure~\ref{fig:writebacks} shows number of write backs of all the designs normalized to M-4MB. We observe that the 4MB, $10ms$ retention time STT-RAM design, on an average, has 21\% more write backs than the traditional STT-RAM design.
 This leads to significant performance degradation across most applications when compared to simply using a $10years$ retention time STT-RAM cache (8\% performance degradation on average). For instance, in $vips$, there is about 20\% speedup degradation over M-4MB. It is interesting to see the case of $swaptions$, where there is a slight improvement in speedup over M-4MB, although there is an increase in the number of write backs. The reason for this improvement is due to the fact that the majority of blocks that are not refreshed within $10ms$ interval, are not accessed in future as well leading to a low number of read misses. This helps in reaping benefits from the reduced write latency.
+\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/spec-ws.eps, width=0.5\textwidth, height=1.7in}
+ \caption{\label{fig:spec-new} Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2K6 multiprogrammed mixes. }
+\end{figure*}
+
+
+\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.2in}
+ \caption{\label{fig:parsec-new} Normalized speedup for PARSEC 2.1 applications. }
+\end{figure*}
 
 {\bf Speedup when replacing a SRAM with 4MB, $10ms$ retention time STT-RAM with refreshing}: This is our proposed scheme (annotated as Revived-M-4MB(10ms) in the figures), which incorporates refreshing of dirty blocks beyond the $10ms$ retention time.
 Use of this scheme significantly improves performance when compared to all realistic design scenarios evaluated. On an average, the proposed revived scheme is better than the conventional SRAM design (S-1MB) by 18\%, traditional $10years$ STT-RAM by 15\% and over Volatile M-4MB(1sec)
@@ -69,15 +76,12 @@ by 4.5\%. The write latency of this STT-RAM cache bank is 6 cycles and when comp
 
 The Revived-M-4MB(10ms) scheme is closest to the ideal S-4MB case and is within 4\% of it, showing the benefits of our scheme in making the STT-RAM device a choice for universal memory.
 
-\begin{figure*} [t]
-\centering
- \psfig{figure=figures/spec-ws.eps, width=3in, height=1.8in}
- \caption{\label{fig:spec-new} Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2K6 multiprogrammed mixes. }
-\end{figure*}
-
 {\bf Analysis with SPEC 2K6}: In general, the observations with SPEC benchmarks are consistent with those made with PARSEC 2.1 applications. Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup with the  SPEC 2K6 multiprogrammed
 mixes. Simply replacing a SRAM bank with 4MB STT-RAM would lead to 11\% degradation in instruction throughput, and 4\% degradation in weighted speedup. However, employing our refreshing scheme on a $10ms$ volatile STT-RAM can lead to an average 22\%, 11\%  and 10\% improvement over M-4MB, Volatile M-4MB(1sec) and S-1MB, respectively. With a very write intensive mix ($bzip2$, $gcc$, $lbm$ and $hmmer$) this improvement can be as high as 35\% over the baseline SRAM design. Figure~\ref{fig:writebacks}(b) depicts the normalized write backs for
 the SPEC 2.1 benchmarks.
+
+
+
 
 %Figure~\ref{fig:spec-new} shows instruction throughput and weighted speedup for the  SPEC multiprogram
 %mixes. We observe that our scheme revived-M-4MB gives 22\% improvement in instruction throughput
@@ -98,9 +102,9 @@ Weighted speedup also follows a similar trend as instruction throughput and we f
 \psfig{figure=figures/legend.eps, width=5.5in, height=0.15in}
 \end{tabular}
 \begin{tabular}{ccc}
- \psfig{figure=figures/leak-eng.eps, width=2.1in, height=1.9in} &
-\psfig{figure=figures/dyn-eng.eps, width=2.1in, height=1.9in} &
-\psfig{figure=figures/tot-eng.eps, width=2.1in, height=1.9in} \\
+ \psfig{figure=figures/leak-eng.eps, width=2.1in, height=1.5in} &
+\psfig{figure=figures/dyn-eng.eps, width=2.1in, height=1.5in} &
+\psfig{figure=figures/tot-eng.eps, width=2.1in, height=1.5in} \\
  (a) Leakage Energy  & (b) Dynamic Energy & (c) Total Energy
 \end{tabular}
  \caption{Energy of applications normalized to that of S-1MB.}
@@ -138,15 +142,15 @@ Further, the proposed $10ms$ retention time STT-RAM with revival schemes, is ver
 %M-4MB designs.
 
 \begin{figure*} %[t]
-\begin{minipage}{0.580\textwidth}
+\begin{minipage}{0.45\textwidth}
 \centering
- \psfig{figure=figures/energy-impact.eps, width=3.2in, height=1.9in}
- \caption{\label{fig:revive-dram} Energy impacts of Revive refresh scheme \newline as a percentage of DRAM-style refresh}
+ \psfig{figure=figures/energy-impact.eps, width=3in, height=1.3in}
+ \caption{\label{fig:revive-dram} Energy impacts of Revive refresh scheme as a percentage of DRAM-style refresh}
 \end{minipage}
 \hfill %\vfill
-\begin{minipage}{0.38\textwidth}
+\begin{minipage}{0.48\textwidth}
  \centering
- \psfig{figure=figures/confi.eps, width=3in, height=1.9in}
+ \psfig{figure=figures/confi.eps, width=3in, height=1.3in}
  \caption{\label{fig:confi} 95\% Confidence Intervals of diminishing blocks for each way}
 \end{minipage}
 \end{figure*}
@@ -155,14 +159,11 @@ Further, the proposed $10ms$ retention time STT-RAM with revival schemes, is ver
 
 Figure~\ref{fig:revive-dram} shows the energy comparisons of our revive refresh scheme as a percentage of
 DRAM-style refresh scheme proposed in~\cite{STTRAM:HPCA11}. Since, our scheme only refreshes a small
-number of required blocks as opposed to all the LLC blocks, on an average, it consumes only 3.8\% of energy compared
-to DRAM-style refresh. Refreshing benefits will diminish radically if it is done at {\it $\mu$s} level, and hence our $ms$ proposal help in sustaining the energy benefits. Our scheme has 4\% more area overhead and
-has 90\% less performance penalty compared to DRAM-style refresh scheme.
+number of required blocks as opposed to all the LLC blocks, on an average, it consumes only 4\% of energy compared
+to the DRAM-style refresh. For the same reason, our scheme results in less than 90\% of performance penalty taking into our observation that about 10\% of the total diminishing blocks need to written back to the main memory. Although our scheme has 4\% more area overhead, the large refreshing benefits obtained justifies our design. Moreover, refreshing benefits will diminish radically if it is done at {\it $\mu$s} level, and hence our $ms$ proposal help in sustaining the energy benefits.
 
 
 \subsection{Sensitivity Analysis}
-In this subsection, we study the sensitivity of various architectural parameters we chose in proposing the cache revival architecture.
-
 \noindent\textbf{Sensitivity to number of buffer entries:}
 The number of buffer entries can affect the performance of the Revived-M-4MB scheme in two ways: increasing the
 buffer size will accommodate more diminishing blocks at a particular instance and decreasing the buffer size will
@@ -191,8 +192,8 @@ Hence, in all our results, we used 1900 buffer entries (resulting in a 3\% area 
 \begin{figure*} [t]
 \centering
 \begin{tabular}{cc}
- \psfig{figure=figures/buffer.eps, width=3.2in, height=1.9in} &
-\psfig{figure=figures/slots.eps, width=3.2in, height=1.9in} \\
+ \psfig{figure=figures/buffer.eps, width=3.2in, height=1.5in} &
+\psfig{figure=figures/slots.eps, width=3.2in, height=1.5in} \\
 (a) Buffer Entries & (b) MRU Slots.
 \end{tabular}
  \caption{Showing effects on speedup by varying number of Buffer Entries and MRU Slots }

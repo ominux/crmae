@@ -1,4 +1,3 @@
-
 In order to leverage the volatile STT-RAM properties at the LLC hierarchy, we need to
 know what the ideal/feasible retention time should be. Ideally, the STT-RAM write latency should be
 competitive to SRAM latency and the cache retention time should be high. However, as discussed in the
@@ -9,14 +8,13 @@ multithreaded PARSEC 2.1~\cite{bienia11benchmarking} and multiprogrammed SPEC2K6
 environment. The idea is to understand the distribution of the inter-write intervals to a LLC
 and use average of these intervals as the STT-RAM retention time. The next sub-section
 describes our application-driven study to estimate the retention time.
-
+ 
 \subsection{Relating Application Characteristics to Retention Time}
-
 \begin{figure*} [t]
 \centering
 \begin{tabular}{cc}
- \psfig{figure=figures/parsec-hist.eps, width=3.4in, height=2.1in} &
-\psfig{figure=figures/spec-hist.eps, width=3.4in, height=2.1in} \\
+ \psfig{figure=figures/parsec-hist.eps, width=3.4in, height=1.9in} &
+\psfig{figure=figures/spec-hist.eps, width=3.4in, height=1.9in} \\
       (a) PARSEC 2.1  &  (b) SPEC 2K6
 \end{tabular}
  \caption{Distribution of blocks showing different revival times. Values on the top of the bar shows
@@ -64,10 +62,12 @@ Note that one can possibly lower the retention time further beyond the $ms$ rang
 %we discuss these designs only in the paper.
 
 
-\begin{table*}[t]
+\begin{table}[t]
   \centering
+   \singlespacing
   \caption{Retention and Write Latencies for STT-RAM L2 Cache}
   \label{table:rt-wt}
+  
   \begin{tabular}{| c | c | c | c | c | c |}
     \hline
      Retention Time & 10years & 1sec &10ms \\
@@ -75,7 +75,7 @@ Note that one can possibly lower the retention time further beyond the $ms$ rang
     Write Latency @2GHz & 22 cycles & 12 cycles & 6 cycles \\
     \hline
   \end{tabular}
-\end{table*}
+\end{table}
 
 To analyze the tradeoffs between retention time and overall system performance, let us consider an utopian cache
 with $10years$ retention time having minimum write latency and energy.  To bridge the gap between a
