@@ -11,26 +11,23 @@ write performance.
 
 The work that is most closely related to ours is~\cite{STTRAM:HPCA11}.
 Here, the authors relax the retention time of STT-RAM from $10 years$ to $56 \mu s$ by
-reducing the planar area of MTJ from $32F^2$ to $10F^2$. The scope of their work is limited by
-addressing reasonable device parameters and their variabilities. Recently published work related to
+reducing the planar area of MTJ from $32F^2$ to $10F^2$. However this methodology is limited by 
+technology challenges in newer scaled MTJs. Recently published work related to
 STT-RAM~\cite{PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}
 uses state-of-the-art MTJ designs in the range of 2-3$F^2$. Since, these designs don't give the
-leeway of reducing the retention time by aggressively reducing the MTJ planar area, we reduce the
-retention time by lowering the saturation magnetization and the thickness of the free layer.
-Analysis of retention times of LLC blocks with 25 multi-threaded and multi-programmed applications,
+leeway of reducing the retention time by aggressively reducing the MTJ planar area as in~\cite{STTRAM:HPCA11} , we reduce the retention time by lowering the saturation magnetization and the thickness of the free layer. Analysis of retention times of LLC blocks with 25 multi-threaded and multi-programmed applications,
 as compared to only 5 applications in~\cite{STTRAM:HPCA11}, shows that
 the ideal retention time of LLC should be in the order of $ms$ and not in {\it $\mu$s} as proposed
-in their work. Moreover, the thickness of the free layer
-for the MTJs in our work is around $2nm$, and reducing the thickness further
-to get {\it $\mu$s} retention time, will cause MTJ reliability issues
-and make it more vulnerable to process variations.
+in their work. Moreover, the thickness of the free layer for the MTJs in our work is 
+around $2nm$, and reducing the thickness further
+to get {\it $\mu$s} retention time, will lead into MTJ reliability issues
+and make it more vulnerable to process variations. Also, our proposed refresh scheme is simple, yet very performance and energy efficient compared to the DRAM-style refreshing proposed in~\cite{STTRAM:HPCA11}.
 
-The 3T1D designs proposed in ~\cite{3T-brooks} has typical worst-case retention time in {\it $\mu$s} region, which makes it unsuitable for our LLC design. Increasing the retention time of 3T1D cell to $ms$ region will enlarge the sizing up of the gated-diode or will boost the threshold voltage of the access transistor. Either choice will incur unacceptable area overhead or performance degradation for our cache design. Also, our proposed refresh scheme is simple, yet very performance and energy efficient compared to the DRAM-style refreshing proposed in~\cite{STTRAM:HPCA11}.
+The 3T1D designs proposed in ~\cite{3T-brooks} has typical worst-case retention time in {\it $\mu$s} region, which makes it incompatible for our LLC design that needs $ms$ retention time. Increasing the retention time of 3T1D cell to $ms$ region will enlarge the size of the gated-diode or will increase the threshold voltage of the access transistor. These choices will incur significant area overhead or performance degradation for our cache design, respectively. 
 
-We recently came across the work which explores the possibility of designing LLC with STT-RAM banks of varying
-retention times and moving dying blocks from lowest retention time ({\it $\mu$s}) bank to the higher ones. First of all, fabricating STT-RAM cell with {\it $\mu$s} retention time has same issues as described before. Moreover, including different types of STT-RAM cells corresponding to different retention times in the same hierarchy will impose greater challenge and incur higher die cost. The energy numbers in their work also seem to be too optimistic and doesn't correlate with our NVsim simulation results.
+Before submitting this paper, we came across a new work that explores the possibility of designing LLC with STT-RAM banks of varying retention times and moving dying blocks from lowest retention time ({\it $\mu$s}) bank to the higher ones~\cite{multi-level-retention}. As described before, fabricating STT-RAM cells with {\it $\mu$s} retention time has the same fabrication and reliability issues. Moreover, including different types of STT-RAM cells corresponding to different retention times in the same hierarchy will impose greater challenge and incur higher die cost. Also, to moderate our results we considered the fact that all cache banks may leak and reported leakage numbers asssuming no power gating techniques have been applied.
 
-Apart from this recent work, few other prior works have also proposed architectural and circuit level
+Apart from this recent work, a few other prior works have also proposed architectural and circuit level
 solutions to handle this long write latency problem in STT-RAMs. Architectural techniques such as
 early write termination~\cite{mram-energy-reduction}, hybrid SRAM/STT-RAM
 architecture~\cite{gsun-hpca, Qureshi:2009:SHPMM} and read-preemptive write-buffer designs have been

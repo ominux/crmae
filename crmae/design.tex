@@ -2,9 +2,6 @@ In this section, we first discuss STT-RAM preliminaries. This is followed by a d
 STT-RAM models which we have developed to guide us in our exploration of suitable STT-RAM device for
 LLC. Based on this, we show three stable/feasible STT-RAM cell designs
 suitable for LLC in multi-core architectures.
-
-\subsection{Preliminary on STT-RAM}
-
 %\begin{wrapfigure}{l}{0.50\textwidth}
 %%\begin{figure*} [t]
 %\centering
@@ -12,19 +9,19 @@ suitable for LLC in multi-core architectures.
 % \caption{\label{fig:mram_cell} (a) Structural view of an STT-RAM Cache Cell (b) Anti Space Parallel High Resistance, Indicating ``0" state (c) Parallel Low Resistance, Indicating ``1" state}
 %%\end{figure*}
 %\end{wrapfigure}
-
+\subsection{Preliminary on STT-RAM}
 \begin{figure*} [t]
 \centering
 \begin{minipage}{0.575\textwidth}
 \centering
- \psfig{figure=figures/stt-cell.eps, width=1.7in, height=0.85\textwidth, angle=-90}
+ \psfig{figure=figures/stt-cell.eps, width=1.5in, height=0.85\textwidth, angle=-90}
  \caption{\label{fig:mram_cell} (a) Structural view of an STT-RAM Cache Cell
- (b) Anti Space Parallel High Resistance, Indicating ``0" state (c) Parallel Low Resistance, Indicating ``1" state}
+ (b) Anti-Parallel High Resistance, Indicating ``0" state (c) Parallel Low Resistance, Indicating ``1" state}
 \end{minipage}
 \hfill
 \begin{minipage}{0.375\textwidth}
 \centering
- \psfig{figure=figures/IcWt.eps, width=0.85\textwidth, height=1.65in}
+ \psfig{figure=figures/IcWt.eps, width=0.85\textwidth, height=1.5in}
  \caption{\label{fig:IcWt} Demonstration of three switching phases:
  thermal activation, dynamic reversal and precessional switching }
 \end{minipage}
@@ -55,7 +52,7 @@ by many factors like material property, device geometry and most importantly the
 duration. Generally, the longer the write pulse is applied, the lesser the switching current is
 needed to switch the MTJ state. Three distinct switching modes were identified in~\cite{STTRAM:JAP07}
 according to the operating range of switching pulse width $\tau$: thermal activation ($\tau>20ns$),
-processional switching ($\tau<3ns$) and dynamic reversal ($3ns<\tau<20ns$).
+precessional switching ($\tau<3ns$) and dynamic reversal ($3ns<\tau<20ns$).
 
 The relationship between switching current density, $J_{c}$, and write pulse width $\tau$ in the
 three operating ranges was characterized by an analytical model in~\cite{STTRAM:IEDM09}. The
@@ -82,10 +79,10 @@ different switching characteristics in the three switching modes. For example, i
 activation mode, the required switching current increases very slowly even if we decrease the write
 pulse width by orders of magnitude, and thus, short write pulse width is more favorable in this
 region because reducing write pulse can reduce both write latency and energy without much penalty on
-read latency and energy. In the processional switching mode, write current goes up rapidly if we
+read latency and energy. In the precessional switching mode, write current goes up rapidly if we
 further reduce the write pulse width, therefore, minimum write energy of the MTJ is achieved at some
 particular write pulse width in this region. Based on this analysis, this paper will focus on the
-exploration of write pulse width in processional switching and dynamic reversal to optimize for
+exploration of write pulse width in precessional switching and dynamic reversal to optimize for
 different design goals.
 
 \subsection{STT-RAM Modeling}
@@ -116,11 +113,7 @@ where, $W$ and $L$ are the channel width and length of the access NMOS transisto
 
 \subsection{Impact of Retention Time on MTJ Characterstics} \label{subsec:retention}
 
-\begin{wrapfigure}{l}{0.50\textwidth}
-\centering
- \psfig{figure=figures/RT_TB.eps, width=3in}
-  \caption{\label{fig:retention} MTJ thermal stability requirement for different retention times}
-\end{wrapfigure}
+
 
 The retention time of a MTJ is largely determined by the \textit{thermal stability} of the MTJ. The relation
 between retention time and thermal barrier is shown in Figure~\ref{fig:retention}, which can be
@@ -136,10 +129,26 @@ in~\cite{PMTJ:Toshiba08} that the switching current of MTJ decreases as thermal 
 
 \begin{figure*} [t]
 \centering
+\begin{minipage}{0.575\textwidth}
 \centering
- \psfig{figure=figures/i_vs_t.eps, width=0.6\textwidth}
- \caption{\label{fig:currentVStime} Write current versus write pulse width for three MTJs with $10years$, $1sec$, and $10ms$ retention at $125\,^{\circ}\mathrm{C}$}
+ \psfig{figure=figures/RT_TB.eps, width=0.65\textwidth, height=1.7in}
+ \caption{\label{fig:retention} MTJ thermal stability requirement for different retention times}
+\end{minipage}
+\hfill
+\begin{minipage}{0.375\textwidth}
+\centering
+ \psfig{figure=figures/i_vs_t.eps, width=0.85\textwidth, height=1.7in}
+ \caption{\label{fig:currentVStime} Write current versus write pulse width for three MTJs with $10years$, $1sec$, and $10ms$ retention at $125\,^{\circ}\mathrm{C}$ }
+\end{minipage}
 \end{figure*}
+
+
+% \begin{figure*} [t]
+% \centering
+% \centering
+ % \psfig{figure=figures/i_vs_t.eps, width=3.4in, height=1.9in}
+ % \caption{\label{fig:currentVStime} Write current versus write pulse width for three MTJs with $10years$, $1sec$, and $10ms$ retention at $125\,^{\circ}\mathrm{C}$}
+% \end{figure*}
 
 \begin{table*}[t]
  \scriptsize

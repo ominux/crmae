@@ -1,10 +1,10 @@
 
-Designing an efficient memory hierarchy for multi-core architectures is a critical and a challenging
+Designing an efficient memory hierarchy for multi-core architectures is a critical and challenging
 task. As the number of cores on a chip increase with technology scaling, the demand on the on-chip
 memory would increase significantly, further worsening the memory wall problem~\cite{BurgerGK96}. The
 memory wall problem is critical both from the performance (memory density) and power perspectives.
 Thus, novel technology, circuit, and architectural techniques are currently being explored to address
-the memory wall problem for many core systems.
+the memory wall problem for many-core systems.
 
 
 % Dr. Yuan Changes to first two lines.
@@ -45,10 +45,19 @@ SPEC2K6~\cite{spec} benchmarks using the M5 simulator~\cite{M5} indicates that
 the average inter-write times for most of the L2 cache blocks is close to $10ms$, and thus, we advocate
 our STT-RAM design with this retention time.
 
-We conduct a detailed device level analysis of the STT-RAM cells to analyze the write current versus
-write pulse width tradeoffs, cell area analysis, and retention time stability analysis to capture the
-relationship between area, read/write latency and leakage power as a function of the retention time. Our observations demonstrate that the retention times in the range of $ms$ are more practical compared to the retention time in the
-{\it $\mu$s} range as described in prior work~\cite{STTRAM:HPCA11}. Consequently, using this $ms$ range retention time model, we propose effective
+We think the first effort to vary the retention time of STT-RAM cells for facilitating designing STT-RAM-based
+cache hierarchy was proposed in ~\cite{STTRAM:HPCA11}.
+In this work, the authors varied the MTJ cell size from 32$F^2$ to 10$F^2$ to reduce
+the retention time to {\it $\mu$s} range. Since, the state-of-the-art MTJ design is in the range of
+2-3$F^2$~\cite{STTRAM:Grandis11}, there is not much room for further MTJ planar area reduction. 
+Hence, we focus on varying the material property and the thickness of MTJ to reduce the retention time.
+Also, we do not reduce the MTJ thickness beyond $2nm$ (which can lead to {\it $\mu$s} retention time) 
+to avoid reliability problems. We conduct a detailed device level analysis of the
+STT-RAM cells to analyze the write current versus write pulse width tradeoffs,
+cell area analysis, and retention time stability analysis to capture the
+relationship between area, read/write latency and leakage power as a function of the retention time.
+Our observations demonstrate that the retention times in the range of $ms$ are more practical compared to the retention time in the {\it $\mu$s} range as described in~\cite{STTRAM:HPCA11}.
+Consequently, using this $ms$ range retention time model, we propose effective
 architectural techniques to avoid any data loss due to the volatile STT-RAM-based cache hierarchy.
 
 %Our observations demonstrate that the retention times in the range of
@@ -62,7 +71,7 @@ reduced write latency of STT-RAM cells with lower retention time against the ove
 write-back of cache lines with longer lifetimes. In this paper, we compare 3 different STT-RAM based
 cache designs: (1) STT-RAM cache without retention time relaxation (10+ years of data retention
 time); (2) STT-RAM cache with retention time of $1sec$, which is long enough for the inter-write time of
-majority of the cache lines, and therefore, no refreshing overhead is incurred; (3) STT-RAM cache with
+majority of the cache lines, and therefore, no refreshing overhead is incurred;  and (3) STT-RAM cache with
 retention time of $10ms$, which is a more aggressive design with better performance/energy gain, but a
 data refreshing technique is needed for correct operations, since cache lines that have inter-write times
 exceeding $10ms$ are likely to lose data. Thus, we propose simple extensions to the L2 cache design
@@ -71,12 +80,8 @@ in~\cite{cache-decay-2001}) to keep track of the inter-write times of all the ca
 to temporarily store the blocks whose inter-write time has exceeded the retention time. We conduct
 execution-driven analysis of our proposed techniques using the M5 simulator with
 a suite of PARSEC 2.1 and SPEC 2K6 benchmarks.
-
-The closest work~\cite{STTRAM:HPCA11} to our paper, varied MTJ cell size from 32$F^2$ to 10$F^2$ to reduce
-the retention time of STT-RAM. Since, the state-of-the-art MTJ design is in the range of 2-3$F^2$~\cite{STTRAM:Grandis11}, we cannot use the prior approach for varying the retention time. Thus, we focus on
-the material property and the thickness of MTJ to reduce the retention time. The main {\bf contributions} of this paper can be summarized as: \\
-\noindent
-\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
+The main {\bf contributions} of this paper can be summarized as: \\
+\noindent\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
 device characterization of data-retention tunability in STT-RAM cells, providing insight to the
 underlying principles enabling these tradeoffs.
 
@@ -85,10 +90,11 @@ Our application level characterization of the time between writes or replacement
 LLC block augments the prior body of work that analyzes cache lifetimes mainly
 in single processor and single program configurations. Based on the L2 cache behavior,
 we propose to design STT-RAMs with retention time in the range of $10ms$.
-We believe that analyzing this broad spectrum of applications
-and architecting the whole cache hierarchy with single retention time STT-RAM
-cells is a non-trivial task. Also, such design
-makes the LLC design homogenous which leads to lower die cost and ease in fabrication.
+%We believe that analyzing this broad spectrum of applications
+%and architecting the whole cache hierarchy with single retention time STT-RAM
+%cells is a non-trivial task.
+Also, such a design
+makes the LLC design homogenous leading to lower die cost and ease in fabrication.
 
 \noindent\textbf{Architectural solution to handle STT-RAM volatility:} We present a simple buffering
 mechanism to ensure the integrity of the programs given the volatile nature of our tuned STT-RAM cells.
@@ -109,8 +115,7 @@ with SPEC 2K6 benchmarks, and an average energy saving of 60\%, over 1MB SRAM ac
 
 The rest of this paper is as follows: In Section~\ref{sec:design}, we discuss the volatile STT-RAM design to
 parameterize the retention time and write latency behavior. Section~\ref{sec:motivation} presents a retention time
-estimation study from application perspective. Following this, the design of a volatile STT-RAM-based last
-level cache architecture is given in Section~\ref{sec:implementation}; the experimental platform details in Section~\ref{sec:evaluation};
+estimation study from application perspective. Following this, the design of a volatile STT-RAM-based LLC architecture is given in Section~\ref{sec:implementation}; the experimental platform details in Section~\ref{sec:evaluation};
 results in Section~\ref{sec:results}, and description of related work in Section~\ref{sec:prior_work}.
 The last section provides concluding remarks.
 
