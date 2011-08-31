@@ -118,7 +118,7 @@ Volatile M-4MB(10ms) with Volatile M-4MB(1sec), because of larger number of writ
 
 With our proposed cache block refreshment scheme, although there is an increase in the dynamic energy on account of additional back and forth writes to the buffer and cache lines, we consistently observe improvement in total energy (due to both reduction in leakage power and improvement in performance). On an average, we find 11\% energy benefits of using revived M-4MB design over Volatile-1sec and 30\% improvement over the baseline STT-RAM design. We observe similar benefits with SPEC 2K6 multiprogrammed applications, but for the sake of brevity we are not showing them.
 
-%DRAM-style refresh scheme proposed in~\cite{STTRAM:HPCA11} has extremely 
+%DRAM-style refresh scheme proposed in~\cite{STTRAM:HPCA11} has extremely
 
 In conclusion, we find that our proposed revived scheme is significantly better in terms of performance and energy
 when compared to a traditional non-volatile STT-RAM and even a volatile STT-RAM with $1sec$ retention time.
@@ -156,7 +156,7 @@ Further, the proposed $10ms$ retention time STT-RAM with revival schemes, is ver
 Figure~\ref{fig:revive-dram} shows the energy comparisons of our revive refresh scheme as a percentage of
 DRAM-style refresh scheme proposed in~\cite{STTRAM:HPCA11}. Since, our scheme only refreshes a small
 number of required blocks as opposed to all the LLC blocks, on an average, it consumes only 3.8\% of energy compared
-to DRAM-style refresh. Refreshing benefits will diminish radically if it is done at {\it $\mu$s} level, and hence our $ms$ proposal help in sustaining the energy benefits. Our scheme has 4\% more area overhead and 
+to DRAM-style refresh. Refreshing benefits will diminish radically if it is done at {\it $\mu$s} level, and hence our $ms$ proposal help in sustaining the energy benefits. Our scheme has 4\% more area overhead and
 has 90\% less performance penalty compared to DRAM-style refresh scheme.
 
 
@@ -212,6 +212,7 @@ write backs of useful blocks.
 We also see degradation in performance by increasing the number of slots from 8 to 12.
 This is because, with a constant buffer
 size, 12 MRU slots increase the probability of buffer overflows, which increases the write backs leading to performance degradation.
+
 
 \noindent\textbf{Sensitivity to number of bits of the counter:}
 As discussed in Section ~\ref{sec:implementation}, increasing the number of bits of the counter decreases the
