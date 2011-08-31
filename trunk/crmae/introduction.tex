@@ -1,9 +1,9 @@
 
-Designing an efficient memory hierarchy for multicore architectures is a critical, but a challenging
+Designing an efficient memory hierarchy for multi-core architectures is a critical, but a challenging
 problem. As the number of cores on a chip increase with technology scaling, the demand on the on-chip
 memory would increase significantly, further worsening the memory wall problem~\cite{BurgerGK96}. The
 memory wall problem is critical both from the performance (memory density) and power perspectives.
-Thus, novel technology, circuit and architectural techniques are currently being explored to address
+Thus, novel technology, circuit, and architectural techniques are currently being explored to address
 the memory wall problem for many core systems.
 
 
@@ -17,7 +17,7 @@ the memory wall problem for many core systems.
 Spin-Transfer Torque RAM (STT-RAM) is a promising memory technology that delivers on many aspects,
 desirable of a universal memory. It has the potential to replace the conventional on-chip SRAM
 caches because of its higher density, competitive read times, and lower leakage power consumption
-compared to static-RAM (SRAM). However, the high write latencies and write energy are key drawbacks
+compared to static-RAM (SRAM). However, the latency and energy overhead associated with the write operations are the key drawbacks
 of this technology for providing competitive or better performance compared to the SRAM-based cache
 hierarchy. Consequently, recent efforts have focused on masking the effects of high write latencies
 and write energy at the architectural level~\cite{mram-energy-reduction,gsun-hpca}. In contrast to
@@ -26,7 +26,7 @@ data retention times to reduce both write latencies and write energy~\cite{STTRA
 adaptable feature of tuning the data retention time can be exploited in several dimensions. The focus
 of this paper is to tune this data retention time to closely match the required refresh time of the Last
 Level Cache (LLC) blocks to achieve significant performance and energy gains. In this context, the paper
-addresses several design issues such as how to decide an appropriate retention time for the LLC, 
+addresses several design issues such as how to decide an appropriate retention time for the LLC,
 what the relationship between retention time and write latency is, and how we
 architect the cache hierarchy with a volatile STT-RAM.
 
@@ -70,30 +70,30 @@ for avoiding any data loss. This includes a simple 2-bit counter (similar to one
 in~\cite{cache-decay-2001}) to keep track of the inter-write times of all the cache blocks and a small buffer
 to temporarily store the blocks whose inter-write time has exceeded the retention time. We conduct
 execution-driven analysis of our proposed techniques using the M5 simulator with
-a suite of PARSEC 2.1 and SPEC 2K6 benchmarks. 
+a suite of PARSEC 2.1 and SPEC 2K6 benchmarks.
 
 The closest work~\cite{STTRAM:HPCA11} to our paper, varied MTJ cell size from 32$F^2$ to 10$F^2$ to reduce
 the retention time of STT-RAM. Since, the state-of-the-art MTJ design is in the range of 2-3$F^2$~\cite{STTRAM:Grandis11}, we cannot use the prior approach for varying the retention time. Thus, we focus on
 the material property and the thickness of MTJ to reduce the retention time. The main {\bf contributions} of this paper can be summarized as: \\
 \noindent\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
 device characterization of data-retention tunability in STT-RAM cells, providing insight to the
-underlying principles enabling these tradeoffs. 
+underlying principles enabling these tradeoffs.
 
 \noindent\textbf{An application-driven study to determine retention time:}
-Our application level characterization of the time between writes or replacements to a 
+Our application level characterization of the time between writes or replacements to a
 LLC block augments the prior body of work that analyzes cache lifetimes mainly
-in single processor and single program configurations. Based on the L2 cache behavior, 
+in single processor and single program configurations. Based on the L2 cache behavior,
 we propose to design STT-RAMs with retention time in the range of $10ms$.
 We believe that analyzing this broad spectrum of applications
 and architecting the whole cache hierarchy with single retention time STT-RAM
-cells is a non-trivial task. Also, such design 
+cells is a non-trivial task. Also, such design
 makes the LLC design homogenous which leads to lower die cost and ease in fabrication.
 
 \noindent\textbf{Architectural solution to handle STT-RAM volatility:} We present a simple buffering
 mechanism to ensure the integrity of the programs given the volatile nature of our tuned STT-RAM cells.
 This scheme is simple, yet very energy and performance efficient compared to the DRAM-style refresh.
-%This scheme is 26x less power consuming than DRAM-style refreshing proposed ~\cite{STTRAM:HPCA11}  
-%in addition to the 25x area and 22x performance benefits. 
+%This scheme is 26x less power consuming than DRAM-style refreshing proposed ~\cite{STTRAM:HPCA11}
+%in addition to the 25x area and 22x performance benefits.
 Experimental results with PARSEC 2.1 and SPEC 2K6 benchmarks on a four-core platform
 compared to a base case 1MB SRAM per core and the ideal 4MB SRAM per core indicate that the proposed
 solution is attractive both from performance and power perspectives. On an average, we find 18\% speedup

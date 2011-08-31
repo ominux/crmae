@@ -57,8 +57,7 @@ written back to the cache to start another fresh cycle.
 Figure~\ref{fig:architecture}(a) shows the schematic diagram of the proposed scheme.
 The main components of this design are a small buffer and a buffer controller.
 
-\noindent\textbf{Buffer:}
-It is a per bank small storage space with a fixed number of entries made up of low-retention time STT-RAM cells.
+\noindent\textbf{Buffer:} It is a per bank small storage space with a fixed number of entries made up of low-retention time STT-RAM cells.
 We use these entries to temporarily store the diminishing blocks. In order to calculate the optimal MRU slots for buffering,
 we collected statistics of MRU positions of diminishing blocks by running various PARSEC 2.1 and SPEC 2K6 Benchmarks on the M5 Simulator.
 Figure ~\ref{fig:cdf} shows the average cumulative distribution of diminishing blocks per bank
@@ -86,14 +85,14 @@ controller. Let us consider that the buffering scheme incorporates eight MRU slo
 cumulative distribution of MRU slots shown in Figure~\ref{fig:cdf}. In Section ~\ref{sec:results}, we
 will vary the number of slots to see the effects on performance. In Figure~\ref{fig:architecture}(a),
 \ding{182} shows that three blocks in first eight MRU slots are diminishing and directed to the
-buffer. Please note that we apply our scheme only to the diminshing (to-be-expired) blocks, which gives enough time for the scheme to be completed before actual data loss happens. \ding{183} checks the occupancy of the buffer and if it is not full, each of the diminishing
+buffer. Please note that we apply our scheme only to the diminishing (to-be-expired) blocks, which gives enough time for the scheme to be completed before actual data loss happens. \ding{183} checks the occupancy of the buffer and if it is not full, each of the diminishing
 blocks is copied to one of the entries of \ding{184} along with way and set ID. Way and set ID are
-again used by  \ding{183}  to copy back the blocks to the same place in the L2 cache. 
+again used by  \ding{183}  to copy back the blocks to the same place in the L2 cache.
 \textcircled{\raisebox{-.9pt}{A}} shows the blocks which are not in MRU slots, but are diminishing.
 We check these blocks in \textcircled{\raisebox{-.9pt}{B}} to see whether they are dirty or not. If
-they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}} and then 
-invalidate.  If they are not dirty, they are just invalidated. During this whole refresh process, if a read request for the cache block comes, it will be sucessfully completed as the data is still valid during that time. If a write/invalidate request comes, the cache blocks goes back to its original state. To make sure we don't copy the stale data
-from the buffer, we do perform state check before copying back as shown in \ding{185}. Moreover, our implementation assumes the worst-case temperature of $125\,^{\circ}\mathrm{C}$ and hence there is no possibility of early expiration of block because of sudden reduction in retention time of STT-RAM cells. 
+they are dirty, we write back those blocks as shown in \textcircled{\raisebox{-.9pt}{C}} and then
+invalidate.  If they are not dirty, they are just invalidated. During this whole refresh process, if a read request for the cache block comes, it will be successfully completed as the data is still valid during that time. If a write/invalidate request comes, the cache blocks goes back to its original state. To make sure we don't copy the stale data
+from the buffer, we do perform state check before copying back as shown in \ding{185}. Moreover, our implementation assumes the worst-case temperature of $125\,^{\circ}\mathrm{C}$ and hence there is no possibility of early expiration of block because of sudden reduction in retention time of STT-RAM cells.
 
 
 %\noindent\textbf{Choosing Optimal Buffer  Size and MRU Slots:}
