@@ -10,7 +10,7 @@
 \backcite {cache-decay-2001}{{4}{1}{section.1}}
 \backcite {STTRAM:HPCA11}{{4}{1}{section.1}}
 \backcite {STTRAM:Grandis11}{{4}{1}{section.1}}
-\backcite {STTRAM:JAP07, STTRAM:Qualcomm09}{{6}{2.1}{figure.2}}
+\backcite {STTRAM:JAP07, STTRAM:Qualcomm09}{{6}{2.1}{figure.caption.1}}
 \backcite {STTRAM:JAP07}{{6}{2.2}{subsection.2.2}}
 \backcite {STTRAM:IEDM09}{{6}{2.2}{subsection.2.2}}
 \backcite {PTM}{{7}{2.3}{subsection.2.3}}
@@ -18,19 +18,19 @@
 \backcite {STTRAM:Gatech10}{{7}{2.3}{subsection.2.3}}
 \backcite {STTRAM:RPI10}{{7}{2.3}{subsection.2.3}}
 \backcite {DRAM:6F2}{{7}{2.3}{subsection.2.3}}
-\backcite {PMTJ:Toshiba08}{{8}{2.4}{figure.3}}
-\backcite {STTRAM:HPCA11}{{8}{2.4}{figure.3}}
-\backcite {CACTI:DAC08:Dong}{{8}{2.4}{figure.3}}
-\backcite {CACTI:PCRAMsim}{{9}{2.5}{table.1}}
-\backcite {CACTI:DAC08:Dong}{{9}{2.5}{table.1}}
+\backcite {PMTJ:Toshiba08}{{8}{2.4}{figure.caption.2}}
+\backcite {STTRAM:HPCA11}{{8}{2.4}{figure.caption.2}}
+\backcite {CACTI:DAC08:Dong}{{8}{2.4}{figure.caption.2}}
+\backcite {CACTI:PCRAMsim}{{9}{2.5}{table.caption.4}}
+\backcite {CACTI:DAC08:Dong}{{9}{2.5}{table.caption.4}}
 \backcite {bienia11benchmarking}{{10}{3}{section.3}}
 \backcite {spec}{{10}{3}{section.3}}
-\backcite {3t1d-cache}{{10}{3.1}{figure.5}}
-\backcite {M5}{{11}{3.1}{figure.5}}
-\backcite {3t1d-cache}{{11}{3.1}{figure.5}}
+\backcite {3t1d-cache}{{10}{3.1}{figure.caption.5}}
+\backcite {M5}{{11}{3.1}{figure.caption.5}}
+\backcite {3t1d-cache}{{11}{3.1}{figure.caption.5}}
 \backcite {cache-decay-2001}{{13}{4.1}{subsection.4.1}}
-\backcite {M5}{{16}{5}{table.4}}
-\backcite {STTRAM:HPCA11}{{23}{6.2}{figure.13}}
+\backcite {M5}{{16}{5}{table.caption.10}}
+\backcite {STTRAM:HPCA11}{{23}{6.2}{figure.caption.15}}
 \backcite {STTRAM:HPCA11}{{25}{7}{section.7}}
 \backcite {PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}{{25}{7}{section.7}}
 \backcite {STTRAM:HPCA11}{{25}{7}{section.7}}

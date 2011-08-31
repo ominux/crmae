@@ -4,7 +4,7 @@ Spin-Transfer Torque RAM (STT-RAM) is an emerging non-volatile memory (NVM)
 technology that has the potential to replace the conventional
 on-chip SRAM caches for designing a more efficient memory hierarchy for
 multi-core architectures. Although the high density, low leakage and high endurance are attractive features of STT-RAM,
-its long write latency and high dynamic write energy are major obstacles for being competitive with the SRAM.
+the latency and energy overhead associated with write operations are the major obstacles for being competitive with the SRAM.
 Our study shows that the non-volatility feature with years of data-retention time for STT-RAM technology is not necessary for its usage in on-chip cache, since the refresh times of cache data are usually in  \it{$\mu$s} (for L1 cache) or $ms$ (for L2 cache) range. Consequently,  we exploit such observation for designing an efficient L2 cache
 architecture, and propose to trade off the non-volatility (data-retention time)
 for better write performance/energy in STT-RAM cache design. The paper addresses several critical design issues such as how we decide a suitable retention time for last level cache,
@@ -23,7 +23,7 @@ and write-back the rest of the dirty blocks to avoid any data loss.
 %The blocks in these slots are copied to
 %a per bank small buffer and again copied back to the respective slots.
 Our experiments with a four-core architecture with an SRAM-based L1 cache and volatile STT-RAM-based L2 cache
-indicate that not only we can eliminate the long write latency overhead of an NVM STT-RAM, but can provide
+indicate that not only we can eliminate the long write latency overhead of the NVM STT-RAM, but also can provide
 on an average $10$-$12\%$ improvement in performance compared to the traditional SRAM-based
 design, while reducing the energy consumption significantly.
 
