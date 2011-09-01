@@ -13,7 +13,7 @@ The work that is most closely related to ours is~\cite{STTRAM:HPCA11}.
 Here, the authors relax the retention time of STT-RAM from $10 years$ to $56 \mu s$ by
 reducing the planar area of MTJ from $32F^2$ to $10F^2$. However this methodology is limited by 
 technology challenges in newer scaled MTJs. Recently published work related to
-STT-RAM~\cite{PMTJ:Toshiba08,STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}
+STT-RAM~\cite{STTRAM:EDL11,STTRAM:Qualcomm09,STTRAM:Grandis11}
 uses state-of-the-art MTJ designs in the range of 2-3$F^2$. Since, these designs don't give the
 leeway of reducing the retention time by aggressively reducing the MTJ planar area as in~\cite{STTRAM:HPCA11} , we reduce the retention time by lowering the saturation magnetization and the thickness of the free layer. Analysis of retention times of LLC blocks with 25 multi-threaded and multi-programmed applications, shows that
 the ideal retention time of LLC should be in the order of $ms$ and not in {\it $\mu$s} as proposed
@@ -25,7 +25,7 @@ and make it more vulnerable to process variations. Also, our proposed refresh sc
 The 3T1D designs proposed in ~\cite{3T-brooks} has typical worst-case retention time in {\it $\mu$s} region, which makes it incompatible for our LLC design that needs $ms$ retention time. Increasing the retention time of 3T1D cell to $ms$ region will enlarge the size of the gated-diode or will increase the threshold voltage of the access transistor. These choices will incur significant area overhead or performance degradation for our cache design, respectively. 
 
 
-A very recent effort~\cite{multi-level-retention}explores the possibility of designing LLC 
+A very recent effort~\cite{multi-level-retention} explores the possibility of designing LLC 
 with STT-RAM banks of varying retention times and moving dying blocks 
 from lowest retention time ({\it $\mu$s}) bank to the higher 
 ones~\cite{multi-level-retention}. In contrast to this work that 
