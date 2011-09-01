@@ -45,7 +45,7 @@ SPEC2K6~\cite{spec} benchmarks using the M5 simulator~\cite{M5} indicates that
 the average inter-write times for most of the L2 cache blocks is close to $10ms$, and thus, we advocate
 our STT-RAM design with this retention time.
 
-The first effort to vary the retention time of STT-RAM cells for facilitating designing STT-RAM-based
+The first effort to vary the retention time of STT-RAM cells to facilitate the design of STT-RAM-based
 cache hierarchy was proposed in ~\cite{STTRAM:HPCA11}.
 In this work, the authors varied the MTJ cell size from 32$F^2$ to 10$F^2$ to reduce
 the retention time to {\it $\mu$s} range. Since, the state-of-the-art MTJ design is in the range of
@@ -80,6 +80,7 @@ in~\cite{cache-decay-2001}) to keep track of the inter-write times of all the ca
 to temporarily store the blocks whose inter-write time has exceeded the retention time. We conduct
 execution-driven analysis of our proposed techniques using the M5 simulator with
 a suite of PARSEC 2.1 and SPEC 2K6 benchmarks.
+
 The main {\bf contributions} of this paper can be summarized as: \\
 \noindent\textbf{Detailed characterization of STT-RAM volatile property:} We present a detailed
 device characterization of data-retention tunability in STT-RAM cells, providing insight to the
@@ -94,7 +95,7 @@ we propose to design STT-RAMs with retention time in the range of $10ms$.
 %and architecting the whole cache hierarchy with single retention time STT-RAM
 %cells is a non-trivial task.
 Also, such a design
-makes the LLC design homogenous (all same type of STT-RAM cells) leading to lower die cost and ease in fabrication.
+makes the LLC design homogeneous (all same type of STT-RAM cells) leading to lower die cost and ease in fabrication.
 
 \noindent\textbf{Architectural solution to handle STT-RAM volatility:} We present a simple buffering
 mechanism to ensure the integrity of the programs given the volatile nature of our tuned STT-RAM cells.

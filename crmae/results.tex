@@ -23,6 +23,18 @@ We also discuss the sensitivity of several architectural parameters.
 
 
 \subsection {Performance Comparison}
+\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/spec-ws.eps, width=0.5\textwidth, height=1.7in}
+ \caption{\label{fig:spec-new} Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2K6 multiprogrammed mixes. }
+\end{figure*}
+
+
+\begin{figure*} [t]
+\centering
+ \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.2in}
+ \caption{\label{fig:parsec-new} Normalized speedup for PARSEC 2.1 applications. }
+\end{figure*}
 
 
 Figure~\ref{fig:parsec-new} shows speedup results with multithreaded PARSEC 2.1
@@ -42,18 +54,6 @@ Volatile-M-4MB(1sec).
 
 {\bf Speedup when replacing a SRAM with 4MB, $10ms$ retention time STT-RAM without refreshing}: This volatile M-4MB(10ms) design also does not have any refreshing scheme, but the retention time of STT-RAM cells used is $10ms$. Using this STT-RAM device, after $10ms$ the STT-RAM device will lose its data and hence to keep the data integrity forces a large number of write-backs from the last-level cache to the main-memory before the actual expiration happens. Figure~\ref{fig:writebacks} shows number of write backs of all the designs normalized to M-4MB. We observe that the 4MB, $10ms$ retention time STT-RAM design, on an average, has 21\% more write backs than the traditional STT-RAM design.
 This leads to significant performance degradation across most applications when compared to simply using a $10years$ retention time STT-RAM cache (8\% performance degradation on average). For instance, in $vips$, there is about 20\% speedup degradation over M-4MB. It is interesting to see the case of $swaptions$, where there is a slight improvement in speedup over M-4MB, although there is an increase in the number of write backs. The reason for this improvement is due to the fact that the majority of blocks that are not refreshed within $10ms$ interval, are not accessed in future as well leading to a low number of read misses. This helps in reaping benefits from the reduced write latency.
-\begin{figure*} [t]
-\centering
- \psfig{figure=figures/spec-ws.eps, width=0.5\textwidth, height=1.7in}
- \caption{\label{fig:spec-new} Normalized Average Instruction Throughput(IT) and Weighted Speedup(WS) for SPEC 2K6 multiprogrammed mixes. }
-\end{figure*}
-
-
-\begin{figure*} [t]
-\centering
- \psfig{figure=figures/parsec-speedup.eps, width=6.9in, height=2.2in}
- \caption{\label{fig:parsec-new} Normalized speedup for PARSEC 2.1 applications. }
-\end{figure*}
 
 {\bf Speedup when replacing a SRAM with 4MB, $10ms$ retention time STT-RAM with refreshing}: This is our proposed scheme (annotated as Revived-M-4MB(10ms) in the figures), which incorporates refreshing of dirty blocks beyond the $10ms$ retention time.
 Use of this scheme significantly improves performance when compared to all realistic design scenarios evaluated. On an average, the proposed revived scheme is better than the conventional SRAM design (S-1MB) by 18\%, traditional $10years$ STT-RAM by 15\% and over Volatile M-4MB(1sec)
